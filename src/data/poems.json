@@ -1,0 +1,261 @@
+{
+  "poems": [
+    {
+      "id": "aku",
+      "title": "Aku",
+      "poet": "Chairil Anwar",
+      "year": 1943,
+      "stanzas": [
+        {
+          "id": "s1",
+          "lines": [
+            {
+              "id": "l1",
+              "text": "Kalau sampai waktuku",
+              "words": [
+                { "word": "Kalau sampai waktuku", "analysis": { "label": "Citraan Waktu", "jenis": "Majas Personifikasi & Citraan", "makna": "Mengacu pada kematian sang aku lirik. 'Waktuku' berarti ajal/kematian yang ditunggu dengan sadar dan berani, bukan dengan ketakutan.", "unsur": "Diksi (pemilihan kata)" } }
+              ]
+            },
+            {
+              "id": "l2",
+              "text": "'Ku mau tak seorang 'kan merayu",
+              "words": [
+                { "word": "'Ku mau tak seorang 'kan merayu", "analysis": { "label": "Ekspresi Kebebasan", "jenis": "Nada & Suasana", "makna": "Penolakan keras terhadap belas kasihan. Aku lirik tidak ingin dikasihani siapa pun saat menghadapi kematian. Mencerminkan sikap individualisme yang kuat.", "unsur": "Nada (tone)" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "lines": [
+            {
+              "id": "l3",
+              "text": "Tidak juga kau",
+              "words": [
+                { "word": "Tidak juga kau", "analysis": { "label": "Penolakan Personal", "jenis": "Diksi & Gaya Bahasa", "makna": "Penegasan bahwa bahkan orang yang dicintai pun tidak berhak merayu atau menghalangi. Menunjukkan komitmen total pada pendirian sang aku.", "unsur": "Diksi" } }
+              ]
+            },
+            {
+              "id": "l4",
+              "text": "Tak perlu sedu sedan itu",
+              "words": [
+                { "word": "sedu sedan", "analysis": { "label": "Majas Aliterasi", "jenis": "Majas & Bunyi", "makna": "Perulangan bunyi 's' menciptakan efek bunyi yang melankolis. 'Sedu sedan' = tangis dan isak. Ditolak oleh aku lirik karena dianggap lemah.", "unsur": "Majas Aliterasi" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "lines": [
+            {
+              "id": "l5",
+              "text": "Aku ini binatang jalang",
+              "words": [
+                { "word": "binatang jalang", "analysis": { "label": "Metafora Puncak", "jenis": "Majas Metafora", "makna": "Metafora paling ikonik dalam puisi Indonesia modern. 'Binatang jalang' = makhluk liar yang bebas, tak terkekang norma sosial. Bukan hinaan, melainkan pernyataan kemerdekaan jiwa yang absolut.", "unsur": "Majas Metafora" } }
+              ]
+            },
+            {
+              "id": "l6",
+              "text": "Dari kumpulannya terbuang",
+              "words": [
+                { "word": "terbuang", "analysis": { "label": "Pengasingan Diri", "jenis": "Makna & Tema", "makna": "Sang aku memilih (atau menerima) pengasingan dari kelompok/masyarakat. Ini bukan kepasrahan, melainkan kebanggaan menjadi 'lain' dari kebanyakan.", "unsur": "Tema Individualisme" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s4",
+          "lines": [
+            {
+              "id": "l7",
+              "text": "Biar peluru menembus kulitku",
+              "words": [
+                { "word": "peluru menembus kulitku", "analysis": { "label": "Simbol Penderitaan", "jenis": "Simbolisme & Imaji", "makna": "Peluru adalah simbol penderitaan, tantangan hidup, atau bahaya nyata (konteks perjuangan kemerdekaan). Aku lirik siap menerimanya tanpa menghindar.", "unsur": "Imaji Kinestetik & Simbolisme" } }
+              ]
+            },
+            {
+              "id": "l8",
+              "text": "Aku tetap meradang menerjang",
+              "words": [
+                { "word": "meradang menerjang", "analysis": { "label": "Aliterasi Semangat", "jenis": "Majas Aliterasi & Rima", "makna": "Rima internal 'meradang-menerjang'. Keduanya bermakna perlawanan aktif dan semangat yang tak padam. Ini adalah klimaks emosional puisi.", "unsur": "Majas Aliterasi & Klimaks" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s5",
+          "lines": [
+            {
+              "id": "l9",
+              "text": "Luka dan bisa kubawa berlari",
+              "words": [
+                { "word": "Luka dan bisa", "analysis": { "label": "Paradoks Keberanian", "jenis": "Paradoks & Metafora", "makna": "'Luka' = penderitaan fisik/batin. 'Bisa' = racun/bahaya. Dibawa berlari berarti penderitaan tidak menghentikan gerak maju. Paradoks: luka justru menjadi bahan bakar.", "unsur": "Paradoks & Metafora" } }
+              ]
+            },
+            {
+              "id": "l10",
+              "text": "Berlari",
+              "words": [
+                { "word": "Berlari", "analysis": { "label": "Repetisi Penegasan", "jenis": "Majas Repetisi", "makna": "Pengulangan kata 'berlari' memperkuat kesan kecepatan dan semangat yang tak terhenti. Teknik ini disebut anafora jika di awal baris.", "unsur": "Majas Repetisi (Epifora)" } }
+              ]
+            },
+            {
+              "id": "l11",
+              "text": "Hingga hilang pedih peri",
+              "words": [
+                { "word": "pedih peri", "analysis": { "label": "Aliterasi Akhir", "jenis": "Bunyi & Rima", "makna": "Aliterasi 'p' dan rima 'peri' memberi penutup yang musikal. 'Pedih peri' = segala rasa sakit. Hilangnya rasa sakit bukan berarti menyerah, tapi transendensi jiwa.", "unsur": "Aliterasi & Imaji Perasaan" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6",
+          "lines": [
+            {
+              "id": "l12",
+              "text": "Dan aku akan lebih tidak perduli",
+              "words": [
+                { "word": "tidak perduli", "analysis": { "label": "Nihilisme Positif", "jenis": "Tema & Filosofi", "makna": "Ketidakpedulian bukan kelemahan, melainkan kekuatan untuk melepas belenggu sosial. Aku lirik mencapai level kebebasan tertinggi: bebas dari penilaian siapapun.", "unsur": "Tema Eksistensialisme" } }
+              ]
+            },
+            {
+              "id": "l13",
+              "text": "Aku mau hidup seribu tahun lagi!",
+              "words": [
+                { "word": "seribu tahun lagi", "analysis": { "label": "Hiperbola Puncak", "jenis": "Majas Hiperbola & Klimaks", "makna": "Hiperbola paling terkenal dalam sastra Indonesia. Bukan keinginan hidup abadi secara harfiah, melainkan tekad agar karya dan semangat hidupnya abadi melampaui kematian fisik.", "unsur": "Majas Hiperbola & Amanat" } }
+              ]
+            }
+          ]
+        }
+      ],
+      "konteks": "Puisi 'Aku' ditulis Chairil Anwar pada tahun 1943, di masa pendudukan Jepang. Puisi ini menggambarkan semangat individualis yang kuat dan pemberontakan terhadap konvensi sosial. Chairil Anwar dianggap sebagai 'Pelopor Angkatan 45' dalam sastra Indonesia.",
+      "tema": "Kebebasan jiwa, pemberontakan, dan semangat hidup yang tak tergoyahkan",
+      "amanat": "Jadilah dirimu sendiri, hadapi tantangan dengan berani, dan tinggalkan jejak bermakna dalam hidup."
+    },
+    {
+      "id": "hujan-bulan-juni",
+      "title": "Hujan Bulan Juni",
+      "poet": "Sapardi Djoko Damono",
+      "year": 1989,
+      "stanzas": [
+        {
+          "id": "s1",
+          "lines": [
+            {
+              "id": "l1",
+              "text": "tak ada yang lebih tabah",
+              "words": [
+                { "word": "tabah", "analysis": { "label": "Personifikasi Hujan", "jenis": "Majas Personifikasi", "makna": "'Tabah' adalah sifat manusia yang diberikan kepada hujan. Hujan dipersonifikasikan sebagai makhluk yang sabar dan tegar menanggung sesuatu.", "unsur": "Majas Personifikasi" } }
+              ]
+            },
+            {
+              "id": "l2",
+              "text": "dari hujan bulan Juni",
+              "words": [
+                { "word": "hujan bulan Juni", "analysis": { "label": "Simbol Rindu", "jenis": "Simbolisme & Konteks", "makna": "Hujan di bulan Juni unik karena Juni adalah musim kemarau di Indonesia. Hujan yang 'aneh' ini menjadi simbol kerinduan yang datang di waktu yang tidak terduga.", "unsur": "Simbolisme" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "lines": [
+            {
+              "id": "l3",
+              "text": "dirahasiakannya rintik rindunya",
+              "words": [
+                { "word": "rintik rindunya", "analysis": { "label": "Metafora Terindah", "jenis": "Metafora & Aliterasi", "makna": "Metafora genius: rintik hujan = rintik rindu. Aliterasi 'r' menciptakan efek bunyi seperti gerimis. Hujan yang jatuh adalah representasi kerinduan yang dirahasiakan.", "unsur": "Metafora & Aliterasi" } }
+              ]
+            },
+            {
+              "id": "l4",
+              "text": "kepada pohon berbunga itu",
+              "words": [
+                { "word": "pohon berbunga", "analysis": { "label": "Simbol Sang Kekasih", "jenis": "Simbolisme", "makna": "'Pohon berbunga' adalah simbol sang kekasih atau orang yang dicintai: indah, mekar, dan menarik perhatian. Hujan (aku lirik) menaruh rindu padanya secara diam-diam.", "unsur": "Simbolisme & Alegori" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "lines": [
+            {
+              "id": "l5",
+              "text": "tak ada yang lebih bijak",
+              "words": [
+                { "word": "bijak", "analysis": { "label": "Repetisi Pola", "jenis": "Majas Anafora", "makna": "Pengulangan pola 'tak ada yang lebih...' adalah anafora. Setiap bait membuka dengan formula yang sama, menciptakan ritme seperti tetesan hujan yang konsisten.", "unsur": "Majas Anafora (Repetisi Awal)" } }
+              ]
+            },
+            {
+              "id": "l6",
+              "text": "dari hujan bulan Juni",
+              "words": [
+                { "word": "hujan bulan Juni", "analysis": { "label": "Refrain Puisi", "jenis": "Struktur & Musik", "makna": "Pengulangan frasa 'hujan bulan Juni' di setiap bait berfungsi sebagai refrain (seperti chorus dalam lagu). Ini menciptakan irama dan memperkuat citra utama puisi.", "unsur": "Refrain & Kohesi Struktural" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s4",
+          "lines": [
+            {
+              "id": "l7",
+              "text": "dibiarkannya yang tak terucapkan",
+              "words": [
+                { "word": "tak terucapkan", "analysis": { "label": "Tema Diam", "jenis": "Tema & Makna Tersirat", "makna": "Inti filosofis puisi: perasaan terdalam justru 'tak terucapkan'. Keheningan dan kebisuan adalah bentuk cinta yang paling dalam. Ini adalah tema 'unsaid love' yang universal.", "unsur": "Tema Utama & Ironi" } }
+              ]
+            },
+            {
+              "id": "l8",
+              "text": "diserap akar pohon bunga itu",
+              "words": [
+                { "word": "diserap akar", "analysis": { "label": "Citraan Alam", "jenis": "Imaji Kinestetik & Makna", "makna": "Rindu yang 'diserap akar' bermakna cinta itu terserap masuk ke dalam diri sang kekasih tanpa disadarinya. Cinta yang memberi tanpa meminta diakui, seperti hujan yang menyuburkan tanaman.", "unsur": "Imaji & Simbolisme Alam" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s5",
+          "lines": [
+            {
+              "id": "l9",
+              "text": "tak ada yang lebih arif",
+              "words": [
+                { "word": "arif", "analysis": { "label": "Klimaks Kebijaksanaan", "jenis": "Diksi & Klimaks", "makna": "Puncak dari tritunggal: tabah → bijak → arif. 'Arif' lebih dalam dari 'bijak': memahami secara mendalam. Hujan (aku lirik) mencapai tingkat kebijaksanaan tertinggi dengan diam.", "unsur": "Diksi & Struktur Klimaks" } }
+              ]
+            },
+            {
+              "id": "l10",
+              "text": "dari hujan bulan Juni",
+              "words": [
+                { "word": "hujan bulan Juni", "analysis": { "label": "Penutup Simetris", "jenis": "Struktur Puisi", "makna": "Pengulangan terakhir 'hujan bulan Juni' menutup puisi dengan simetri sempurna. Struktur tiga bait dengan pola yang sama menciptakan keindahan formal yang khas Sapardi.", "unsur": "Struktur & Keindahan Formal" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6",
+          "lines": [
+            {
+              "id": "l11",
+              "text": "dibiarkannya yang tak tersebut",
+              "words": [
+                { "word": "tak tersebut", "analysis": { "label": "Echo of Silence", "jenis": "Paralelisme & Variasi", "makna": "Variasi dari 'tak terucapkan': kini 'tak tersebut' (belum disebut). Perbedaan nuansa: ada yang sudah coba diucapkan tapi tak bisa, ada yang bahkan belum coba disebut nama/orangnya.", "unsur": "Paralelisme & Nuansa Makna" } }
+              ]
+            },
+            {
+              "id": "l12",
+              "text": "diserap akar pohon bunga itu",
+              "words": [
+                { "word": "diserap akar pohon bunga itu",  "analysis": { "label": "Amanat Final", "jenis": "Amanat & Makna Keseluruhan", "makna": "Penutup yang sama dengan bait sebelumnya, tapi kini berbobot lebih berat. Amanat puisi: cinta sejati memberi tanpa meminta diakui, menyerap masuk dan menyuburkan yang dicintai secara diam-diam.", "unsur": "Amanat Puisi" } }
+              ]
+            }
+          ]
+        }
+      ],
+      "konteks": "Sapardi Djoko Damono (1940-2020) adalah 'Maestro Puisi Hujan' Indonesia. Puisi ini ditulis 1989 dan menjadi salah satu puisi paling dicintai sepanjang masa di Indonesia. Kesederhanaan bahasa namun kedalaman makna menjadi ciri khas Sapardi.",
+      "tema": "Cinta yang tersembunyi, kesunyian, dan keikhlasan memberi tanpa meminta balasan",
+      "amanat": "Cinta yang sejati tidak selalu harus diungkapkan. Kadang, diam adalah bentuk cinta paling tulus."
+    }
+  ]
+}

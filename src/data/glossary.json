@@ -1,0 +1,27 @@
+{
+  "glossary": [
+    { "term": "Aliterasi", "definition": "Majas yang menggunakan pengulangan bunyi konsonan pada awal beberapa kata dalam satu baris. Contoh: 'sedu sedan' (Chairil Anwar) - perulangan bunyi 's'.", "category": "Majas" },
+    { "term": "Amanat", "definition": "Pesan moral, nasihat, atau nilai kehidupan yang ingin disampaikan penyair kepada pembaca melalui puisinya. Amanat bisa tersurat (langsung) atau tersirat (tidak langsung).", "category": "Unsur Intrinsik" },
+    { "term": "Anafora", "definition": "Majas repetisi di mana kata atau frasa yang sama diulang di awal beberapa baris puisi secara berurutan. Menciptakan ritme yang kuat. Contoh: 'tak ada yang lebih...' (Sapardi Djoko Damono).", "category": "Majas" },
+    { "term": "Bait", "definition": "Sekelompok baris (larik) dalam puisi yang membentuk satu kesatuan makna. Setara dengan 'paragraf' dalam prosa. Sebuah puisi dapat terdiri dari satu atau beberapa bait.", "category": "Struktur" },
+    { "term": "Citraan (Imaji)", "definition": "Penggunaan kata-kata yang mampu membangkitkan pengalaman indera pembaca (penglihatan, pendengaran, perasaan, penciuman, pengecapan, gerak). Membuat puisi terasa hidup.", "category": "Unsur Intrinsik" },
+    { "term": "Diksi", "definition": "Pilihan kata yang cermat dan tepat oleh penyair untuk menciptakan efek tertentu dalam puisi. Setiap kata dalam puisi dipilih dengan sangat hati-hati karena memiliki bobot makna.", "category": "Unsur Intrinsik" },
+    { "term": "Epifora", "definition": "Majas repetisi di mana kata atau frasa yang sama diulang di akhir beberapa baris puisi. Kebalikan dari anafora. Menciptakan efek penekanan di bagian akhir.", "category": "Majas" },
+    { "term": "Hiperbola", "definition": "Majas yang menggunakan ungkapan berlebihan untuk memperkuat kesan. Contoh: 'Aku mau hidup seribu tahun lagi!' (Chairil Anwar). Tidak dimaksudkan secara harfiah.", "category": "Majas" },
+    { "term": "Imaji Kinestetik", "definition": "Citraan yang membangkitkan perasaan gerak atau pergerakan pada pembaca. Membuat pembaca seolah merasakan aktivitas fisik yang digambarkan dalam puisi.", "category": "Citraan" },
+    { "term": "Larik", "definition": "Satu baris dalam puisi. Sebuah larik bisa terdiri dari satu kata hingga beberapa kata, dan tidak harus membentuk kalimat lengkap secara gramatikal.", "category": "Struktur" },
+    { "term": "Litotes", "definition": "Majas yang mengungkapkan sesuatu dengan cara merendahkan atau mengecilkan kenyataan yang sebenarnya. Kebalikan dari hiperbola. Digunakan untuk kesopanan atau rendah hati.", "category": "Majas" },
+    { "term": "Metafora", "definition": "Majas perbandingan langsung yang menyatakan sesuatu sebagai sesuatu yang lain tanpa menggunakan kata pembanding. Contoh: 'Aku ini binatang jalang' bukan 'Aku seperti binatang jalang'.", "category": "Majas" },
+    { "term": "Nada", "definition": "Sikap batin penyair yang terungkap dalam puisinya—bisa berupa nada sedih, gembira, marah, sinis, optimis, pesimis, dll. Nada mempengaruhi bagaimana pembaca merasakan puisi.", "category": "Unsur Intrinsik" },
+    { "term": "Paradoks", "definition": "Majas yang menggunakan pernyataan yang tampak bertentangan dengan logika, namun mengandung kebenaran tersembunyi. Contoh: 'Luka dan bisa kubawa berlari' - luka justru menjadi energi.", "category": "Majas" },
+    { "term": "Personifikasi", "definition": "Majas yang memberikan sifat atau perilaku manusia kepada benda mati atau makhluk non-manusia. Contoh: 'tak ada yang lebih tabah dari hujan' - hujan memiliki sifat manusia (tabah).", "category": "Majas" },
+    { "term": "Puisi Lirik", "definition": "Jenis puisi yang mengutamakan pengungkapan perasaan, pikiran, dan emosi penyair secara subjektif. Berbeda dengan puisi epik (bercerita) atau puisi dramatik. Sebagian besar puisi modern adalah lirik.", "category": "Jenis Puisi" },
+    { "term": "Rima", "definition": "Persamaan bunyi pada akhir baris-baris puisi. Bisa berupa rima akhir (a-a-b-b atau a-b-a-b) maupun rima dalam (di tengah baris). Menciptakan musikalitas dalam puisi.", "category": "Struktur" },
+    { "term": "Simbolisme", "definition": "Penggunaan simbol—benda, warna, atau situasi—untuk mewakili konsep abstrak yang lebih dalam. Contoh: 'pohon berbunga' = sang kekasih; 'hujan' = aku lirik yang merindu.", "category": "Gaya Bahasa" },
+    { "term": "Simile", "definition": "Majas perbandingan yang menggunakan kata pembanding eksplisit seperti 'seperti', 'bagai', 'laksana', 'ibarat'. Berbeda dengan metafora yang tidak menggunakan kata pembanding.", "category": "Majas" },
+    { "term": "Tema", "definition": "Gagasan pokok atau inti permasalahan yang menjadi dasar penciptaan sebuah puisi. Tema biasanya bersifat umum dan menjadi payung bagi makna-makna spesifik dalam puisi.", "category": "Unsur Intrinsik" },
+    { "term": "Tipografi", "definition": "Tata letak visual kata-kata dalam puisi di atas halaman. Dalam puisi modern, tipografi bisa menjadi bagian dari makna—bagaimana kata ditempatkan mempengaruhi cara pembaca memahaminya.", "category": "Unsur Fisik" },
+    { "term": "Unsur Ekstrinsik", "definition": "Unsur-unsur di luar teks puisi yang mempengaruhi penciptaan dan pemahaman puisi, seperti latar belakang penyair, kondisi sosial-budaya, era sejarah, dan ideologi.", "category": "Analisis" },
+    { "term": "Unsur Intrinsik", "definition": "Unsur-unsur yang membangun puisi dari dalam, antara lain: tema, amanat, diksi, citraan, majas/gaya bahasa, nada/suasana, dan rima/struktur.", "category": "Analisis" }
+  ]
+}

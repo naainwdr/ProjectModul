@@ -1,0 +1,68 @@
+{
+  "quiz": {
+    "title": "Refleksi Pemahaman Puisi",
+    "description": "Uji pemahamanmu tentang puisi yang telah kamu pelajari. Setiap jawaban benar = +20 poin!",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Majas yang digunakan pada baris 'Aku ini binatang jalang' dalam puisi 'Aku' karya Chairil Anwar adalah...",
+        "options": [
+          "Majas Simile (Perbandingan)",
+          "Majas Metafora",
+          "Majas Hiperbola",
+          "Majas Personifikasi"
+        ],
+        "correct": 1,
+        "explanation": "Baris 'Aku ini binatang jalang' menggunakan Majas Metafora karena membandingkan 'aku' dengan 'binatang jalang' secara langsung tanpa kata pembanding seperti 'seperti' atau 'bagai'. Ini adalah metafora paling ikonik dalam sastra Indonesia."
+      },
+      {
+        "id": 2,
+        "question": "Dalam puisi 'Hujan Bulan Juni' karya Sapardi Djoko Damono, 'hujan' merupakan simbol dari...",
+        "options": [
+          "Kesedihan dan dukacita",
+          "Aku lirik yang menyimpan rindu diam-diam",
+          "Musim dingin yang panjang",
+          "Alam yang tidak bersahabat"
+        ],
+        "correct": 1,
+        "explanation": "'Hujan' dalam puisi ini adalah simbol/alegori dari aku lirik (sang penyair/pecinta) yang menaruh rindu secara diam-diam kepada 'pohon berbunga' yang merupakan simbol sang kekasih. Hujan memberi tanpa meminta diakui."
+      },
+      {
+        "id": 3,
+        "question": "Baris 'Aku mau hidup seribu tahun lagi!' menggunakan majas apa?",
+        "options": [
+          "Litotes",
+          "Eufemisme",
+          "Hiperbola",
+          "Metonimia"
+        ],
+        "correct": 2,
+        "explanation": "Keinginan hidup 'seribu tahun' adalah pernyataan yang sangat berlebihan (melebih-lebihkan kenyataan). Ini adalah Majas Hiperbola. Maknanya bukan keinginan hidup abadi secara harfiah, melainkan tekad agar karya dan semangat hidupnya abadi."
+      },
+      {
+        "id": 4,
+        "question": "Struktur puisi yang terdiri dari kumpulan baris-baris yang membentuk satu kesatuan makna disebut...",
+        "options": [
+          "Larik",
+          "Rima",
+          "Bait",
+          "Sajak"
+        ],
+        "correct": 2,
+        "explanation": "Bait adalah unit struktural dalam puisi yang terdiri dari beberapa larik (baris) yang membentuk satu kesatuan makna. Mirip dengan 'paragraf' dalam prosa. Larik adalah satu baris puisi, sedangkan rima/sajak adalah pola bunyi akhir baris."
+      },
+      {
+        "id": 5,
+        "question": "Unsur intrinsik puisi yang berkaitan dengan pesan moral atau nilai kehidupan yang ingin disampaikan penyair kepada pembaca disebut...",
+        "options": [
+          "Tema",
+          "Amanat",
+          "Nada",
+          "Diksi"
+        ],
+        "correct": 1,
+        "explanation": "Amanat adalah pesan, nasihat, atau nilai kehidupan yang ingin disampaikan penyair kepada pembaca. Tema adalah gagasan pokok/inti puisi, nada adalah sikap penyair terhadap pembaca, dan diksi adalah pemilihan kata yang tepat."
+      }
+    ]
+  }
+}

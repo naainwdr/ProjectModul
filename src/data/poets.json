@@ -1,0 +1,102 @@
+{
+  "poets": [
+    {
+      "id": "chairil-anwar",
+      "name": "Chairil Anwar",
+      "born": "1922",
+      "died": "1949",
+      "origin": "Medan, Sumatra Utara",
+      "era": "Angkatan 45",
+      "tagline": "\"Sekali berarti, sesudah itu mati\"",
+      "bio": "Chairil Anwar adalah penyair revolusioner yang mengubah wajah sastra Indonesia selamanya. Lahir di Medan, ia hidup hanya 27 tahun namun meninggalkan lebih dari 90 karya yang menggetarkan. Ia menolak kepuasan, menolak konvensi, dan menciptakan bahasa puisi Indonesia yang bebas dan hidup.",
+      "color": "from-amber-900 to-yellow-700",
+      "accent": "#f59e0b",
+      "books": [
+        {
+          "title": "Deru Campur Debu",
+          "year": 1949,
+          "publisher": "Pembangunan",
+          "description": "Kumpulan puisi posthumous pertama Chairil. Berisi puisi-puisi paling ikonik termasuk 'Aku', 'Diponegoro', dan 'Krawang Bekasi'. Menjadi tonggak lahirnya Angkatan 45.",
+          "notable_poems": ["Aku", "Diponegoro", "Krawang Bekasi", "Hampa", "Sia-Sia"]
+        },
+        {
+          "title": "Kerikil Tajam dan Yang Terampas dan Yang Putus",
+          "year": 1949,
+          "publisher": "Pustaka Rakyat",
+          "description": "Kumpulan kedua yang diterbitkan bersamaan dengan Deru Campur Debu. Memperlihatkan sisi romantis dan eksistensialis Chairil yang lebih dalam.",
+          "notable_poems": ["Cintaku Jauh di Pulau", "Yang Terampas dan Yang Putus", "Senja di Pelabuhan Kecil"]
+        }
+      ]
+    },
+    {
+      "id": "sapardi-djoko-damono",
+      "name": "Sapardi Djoko Damono",
+      "born": "1940",
+      "died": "2020",
+      "origin": "Solo, Jawa Tengah",
+      "era": "Angkatan 66 / Kontemporer",
+      "tagline": "\"Hujan dalam Puisi, Rindu dalam Kata\"",
+      "bio": "Sapardi Djoko Damono adalah penyair terbesar Indonesia pasca-Chairil. Dosen UI yang meraih banyak penghargaan sastra internasional. Bahasa puisinya sederhana namun penuh kedalaman makna—seperti hujan yang tampak biasa namun menyuburkan bumi.",
+      "color": "from-blue-900 to-indigo-700",
+      "accent": "#6366f1",
+      "books": [
+        {
+          "title": "Hujan Bulan Juni",
+          "year": 1994,
+          "publisher": "Grasindo",
+          "description": "Kumpulan puisi paling dicintai Sapardi. Judulnya diambil dari puisi paling ikoniknya. Berisi puisi-puisi tentang cinta, alam, kesepian, dan waktu dengan bahasa yang jernih dan mengalir.",
+          "notable_poems": ["Hujan Bulan Juni", "Aku Ingin", "Pada Suatu Hari Nanti", "Yang Fana adalah Waktu"]
+        },
+        {
+          "title": "Duka-Mu Abadi",
+          "year": 1969,
+          "publisher": "Basis",
+          "description": "Kumpulan puisi pertama Sapardi yang memperkenalkan dunia pada gaya khasnya: imaji alam yang lembut dan permenungan yang mendalam tentang eksistensi manusia.",
+          "notable_poems": ["Duka-Mu Abadi", "Berjalan di Belakang Jenazah", "Lirik untuk Kesatria yang Gugur"]
+        }
+      ]
+    },
+    {
+      "id": "wiji-thukul",
+      "name": "Wiji Thukul",
+      "born": "1963",
+      "died": "1998*",
+      "origin": "Solo, Jawa Tengah",
+      "era": "Puisi Perlawanan",
+      "tagline": "\"Hanya ada satu kata: LAWAN!\"",
+      "bio": "Wiji Thukul adalah penyair aktivis yang hilang pada 1998 dalam pusaran reformasi. Puisi-puisinya adalah teriakan rakyat kecil melawan penindasan. Ia menulis dari jalanan, pabrik, dan kesusahan—menjadikan puisi sebagai senjata perlawanan yang nyata.",
+      "color": "from-red-900 to-rose-700",
+      "accent": "#ef4444",
+      "books": [
+        {
+          "title": "Aku Ingin Jadi Peluru",
+          "year": 2000,
+          "publisher": "Indonesiatera",
+          "description": "Kumpulan puisi Wiji Thukul yang dikompilasi setelah ia hilang. Berisi puisi-puisi perlawanan yang membakar semangat dan menggugat ketidakadilan sosial-politik.",
+          "notable_poems": ["Peringatan", "Sajak Suara", "Para Jenderal Marah-Marah"]
+        }
+      ]
+    },
+    {
+      "id": "toto-sudarto-bachtiar",
+      "name": "Toto Sudarto Bachtiar",
+      "born": "1929",
+      "died": "2010",
+      "origin": "Tasikmalaya, Jawa Barat",
+      "era": "Angkatan 45 / 66",
+      "tagline": "\"Sang Pejuang Kata dari Sunda\"",
+      "bio": "Toto Sudarto Bachtiar adalah penyair Sunda-Indonesia yang karya-karyanya penuh dengan nuansa humanisme dan cinta tanah air. Puisinya 'Pahlawan Tak Dikenal' menjadi salah satu puisi paling berpengaruh tentang perjuangan kemerdekaan Indonesia.",
+      "color": "from-green-900 to-emerald-700",
+      "accent": "#10b981",
+      "books": [
+        {
+          "title": "Suara",
+          "year": 1956,
+          "publisher": "N.V. Nusantara",
+          "description": "Kumpulan puisi pertama Toto yang memuat 'Pahlawan Tak Dikenal'—sebuah puisi monumental yang mengabadikan perjuangan para pahlawan yang namanya tidak tercatat sejarah.",
+          "notable_poems": ["Pahlawan Tak Dikenal", "Gadis Peminta-Minta", "Ibu Kota Senja"]
+        }
+      ]
+    }
+  ]
+}

@@ -134,8 +134,6 @@ function showCover() {
   document.getElementById('scene-cover').classList.add('flex');
   document.getElementById('scene-book').classList.add('hidden');
   document.getElementById('scene-book').classList.remove('flex');
-  document.getElementById('scene-book').classList.add('hidden');
-  document.getElementById('scene-book').classList.remove('flex');
 }
 
 function openBook() {
@@ -144,9 +142,10 @@ function openBook() {
   document.getElementById('scene-book').classList.remove('hidden');
   document.getElementById('scene-book').classList.add('flex');
   if (state.currentPage === 0) state.currentPage = 1;
-  renderPage(state.currentPage);
-  if (state.currentPage === 0) state.currentPage = 1;
-  renderPage(state.currentPage);
+  
+  // Render and initialize the current page without animation
+  renderDOM(state.currentPage);
+  initPageContent(PAGES[state.currentPage - 1]);
 }
 
 function goToPage(n, skipAnimation) {
@@ -160,6 +159,8 @@ function goToPage(n, skipAnimation) {
 
   if (skipAnimation) {
     renderDOM(n);
+    var newPage = PAGES[n - 1];
+    if (newPage) initPageContent(newPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     return;
   }

@@ -126,6 +126,7 @@ body {
   scrollbar-width: none;
   position: relative;
   z-index: 5;
+  top: 10px; /* Adjusting visually so they stick closer */
 }
 .book-tabs-bar::-webkit-scrollbar { display: none; }
 
@@ -407,6 +408,16 @@ body {
 @keyframes flipToLeft {
   0% { transform: rotateY(0deg); }
   100% { transform: rotateY(-180deg); }
+}
+
+/* Animasi Zoom In-Out Lembut untuk Cover Gambar */
+@keyframes breathingZoom {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.animate-breathing {
+  animation: breathingZoom 4s ease-in-out infinite;
 }
 
 /* Animasi Putar ke Kanan (Prev Page) */
@@ -1040,8 +1051,23 @@ body {
     background: var(--color-paper-bg);
   }
 
-  /* Hide tab bar on mobile (chapter nav via bottom bar) */
-  .book-tabs-bar { display: none; }
+  /* Tampilkan tab bar di mobile, sesuaikan posisi menempel atas */
+  .book-tabs-bar { 
+    position: absolute;
+    top: 4px;
+    left: 40px; /* Sisakan ruang untuk binder mobile */
+    right: 0;
+    gap: 1px;
+    padding: 0 10px;
+    z-index: 50;
+  }
+  .book-tab {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  .book-tab.active {
+    padding-bottom: 8px;
+  }
 
   .book-wrapper {
     width: 100vw;
@@ -1065,16 +1091,32 @@ body {
   .book-page-right {
     max-height: 100svh;
     min-height: 100svh;
-    padding: 24px 20px 80px 52px;
+    padding: 72px 20px 80px 52px; /* Diperbesar agar benar-benar bebas dari tab */
     border-radius: 0;
     overflow-y: auto;
     position: relative;
     box-shadow: none;
   }
 
-  /* Strip binder pada mobile (fixed di sisi kiri) */
-  .book-page-right::before {
-    content: '';
+  /* Logika Cover Terpisah di Mobile */
+  #page-right.mobile-cover-active #page-content {
+    display: none !important;
+  }
+  #page-right:not(.mobile-cover-active) #mobile-cover-content {
+    display: none !important;
+  }
+  #mobile-cover-content {
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    margin-bottom: 0;
+  }
+
+  /* Strip binder pada mobile (dipindahkan ke elemen terpisah agar benar-benar fixed) */
+  .mobile-binder {
+    display: block;
     position: fixed;
     left: 0;
     top: 0;
@@ -1082,18 +1124,18 @@ body {
     width: 38px;
     background: linear-gradient(90deg, #2a1505 0%, #4a2010 30%, #6b3018 70%, #7a3820 100%);
     border-right: 2px solid rgba(0,0,0,0.35);
-    z-index: 20;
+    z-index: 40;
   }
-
-  /* Ring binder mobile — CSS radial-gradient */
-  .book-page-right::after {
+  
+  /* Ring binder mobile */
+  .mobile-binder::after {
     content: '';
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
     width: 38px;
-    z-index: 21;
+    z-index: 41;
     /* 4 ring di sepanjang binder */
     background-image:
       /* Ring 1 */
@@ -1118,9 +1160,18 @@ body {
       radial-gradient(circle at 19px 85%, #3a1f0a 7px, transparent 7px);
     pointer-events: none;
   }
+  
+  /* Hapus pseudo-element binder dari halaman agar tidak ikut ter-scroll (bug 3D transform) */
+  .book-page-right::before,
+  .book-page-right::after {
+    display: none;
+  }
+
+  /* Sembunyikan top nav (desktop) pada mobile */
+  #book-top-nav { display: none; }
 
   /* Nav bar bawah fixed */
-  .book-nav {
+  #book-bottom-nav {
     width: 100%;
     padding: 8px 12px;
     position: fixed;
@@ -1130,8 +1181,10 @@ body {
     background: rgba(244,238,224,0.96);
     backdrop-filter: blur(8px);
     border-top: 1px solid var(--color-paper-700);
-    z-index: 30;
+    z-index: 50;
     box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+    /* Safe area untuk iPhone */
+    padding-bottom: calc(8px + env(safe-area-inset-bottom));
   }
 
   .btn-page-turn {
@@ -1143,10 +1196,10 @@ body {
   #tap-zone-prev,
   #tap-zone-next {
     position: fixed;
-    top: 0;
+    top: 60px;
     bottom: 60px;
-    width: 30%;
-    z-index: 15;
+    width: 25%;
+    z-index: 45;
     cursor: pointer;
   }
   #tap-zone-prev { left: 38px; }

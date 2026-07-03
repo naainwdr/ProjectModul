@@ -13,21 +13,25 @@ const poems   = poemsData.poems;
 const quiz    = quizData.quiz;
 const glossary = glossaryData.glossary;
 
-// Gambar penyair dari Wikipedia (sementara, bisa diganti folder lokal nanti)
+// Gambar penyair (menggunakan dummy lokal)
 const poetImages: Record<string, {src:string; alt:string}> = {
-  'chairil-anwar':       { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Chairil_Anwar.jpg/220px-Chairil_Anwar.jpg',         alt: 'Chairil Anwar' },
-  'sapardi-djoko-damono':{ src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Sapardi_Djoko_Damono.jpg/220px-Sapardi_Djoko_Damono.jpg', alt: 'Sapardi Djoko Damono' },
-  'wiji-thukul':         { src: 'https://upload.wikimedia.org/wikipedia/id/thumb/b/b5/WijiThukul.JPG/220px-WijiThukul.JPG',                   alt: 'Wiji Thukul' },
-  'toto-sudarto-bachtiar':{ src: 'https://upload.wikimedia.org/wikipedia/id/0/09/Toto_Sudarto_Bachtiar.jpg',                                  alt: 'Toto Sudarto Bachtiar' },
+  'chairil-anwar':       { src: '/assets/bab1.jpg', alt: 'Chairil Anwar' },
+  'sapardi-djoko-damono':{ src: '/assets/bab1.jpg', alt: 'Sapardi Djoko Damono' },
+  'wiji-thukul':         { src: '/assets/bab1.jpg', alt: 'Wiji Thukul' },
+  'toto-sudarto-bachtiar':{ src: '/assets/bab1.jpg', alt: 'Toto Sudarto Bachtiar' },
 };
 
-// Ilustrasi misi dari Wikimedia Commons / Unsplash
+// Ilustrasi misi / sampul bab (semua bab menggunakan dummy yang sama)
 const missionImages = [
-  { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Old_book_-_Read_Me_Please.jpg/320px-Old_book_-_Read_Me_Please.jpg',              alt: 'Membaca Puisi' },
-  { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Quill_and_ink.jpg/320px-Quill_and_ink.jpg',                                      alt: 'Menganalisis Puisi' },
-  { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Indonesia_physical_map.jpg/320px-Indonesia_physical_map.jpg',                     alt: 'Penyair Nusantara' },
-  { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Fountain_pen_writing_%28literacy%29.jpg/320px-Fountain_pen_writing_%28literacy%29.jpg', alt: 'Menulis Puisi' },
-  { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pencil_writing.jpg/320px-Pencil_writing.jpg',                                    alt: 'Evaluasi' },
+  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Kata Pengantar' },
+  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Daftar Isi' },
+  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Mengenal Puisi' },
+  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Analisis Puisi' },
+  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Penyair Nusantara' },
+  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Workshop Menulis' },
+  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Evaluasi' },
+  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Glosarium' },
+  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Penutup' },
 ];
 
 // SVG ornamen pojok halaman
@@ -79,7 +83,7 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
       <div class="my-4 w-28 h-28 rounded-full overflow-hidden border-2 border-yellow-800/40"
            style="box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Old_book_-_Read_Me_Please.jpg/220px-Old_book_-_Read_Me_Please.jpg"
+          src="/assets/sampul buku utama.jpg"
           alt="Buku Tua"
           width="220" height="220"
           loading="lazy"
@@ -144,6 +148,10 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
 
   <!-- Buku: Wrapper -->
   <div class="book-wrapper" id="book-main">
+    
+    <!-- Strip Binder Khusus Mobile -->
+    <div class="mobile-binder max-md:block hidden" aria-hidden="true"></div>
+
     <div class="book-spread" id="book-spread">
 
       <!-- ░░ HALAMAN KIRI (Konten — Chapter Cover) ░░ -->
@@ -158,8 +166,7 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
           </div>
         </div>
 
-        <!-- Nomor halaman -->
-        <div class="page-number-left" id="page-num-left">i</div>
+        <!-- Nomor halaman dihapus sesuai permintaan -->
         <div class="page-corner-ornament bottom-left" set:html={cornerSVG}></div>
       </div>
 
@@ -183,6 +190,9 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
         <!-- Ornamen sudut -->
         <div class="page-corner-ornament top-right" set:html={cornerSVG}></div>
 
+        <!-- Mobile Cover Content (Hidden on Desktop) -->
+        <div id="mobile-cover-content" class="md:hidden mb-8 mt-2 pb-6 border-b-2 border-yellow-800/20 border-dashed"></div>
+
         <!-- Konten utama — diisi oleh JS -->
         <div id="page-content">
           <div class="flex items-center justify-center h-64">
@@ -198,7 +208,7 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
   </div><!-- /book-wrapper -->
 
   <!-- Navigasi bawah: tombol balik halaman -->
-  <div class="book-nav mt-2">
+  <div class="book-nav mt-2" id="book-bottom-nav">
     <button id="btn-prev-page" class="btn-page-turn" disabled>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M15 18l-6-6 6-6"/>
@@ -282,12 +292,12 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
 <!-- ╔══════════════════════════════════════════════════════════════╗
      ║  DATA JSON (di-embed untuk app.js)                         ║
      ╚══════════════════════════════════════════════════════════════╝ -->
-<script id="data-poets"  type="application/json" set:text={JSON.stringify(poetsData)}></script>
-<script id="data-poems"  type="application/json" set:text={JSON.stringify(poemsData)}></script>
-<script id="data-quiz"   type="application/json" set:text={JSON.stringify(quizData)}></script>
-<script id="data-glossary" type="application/json" set:text={JSON.stringify(glossaryData)}></script>
-<script id="data-poet-images" type="application/json" set:text={JSON.stringify(poetImages)}></script>
-<script id="data-mission-images" type="application/json" set:text={JSON.stringify(missionImages)}></script>
+<script id="data-poets"  type="application/json" set:html={JSON.stringify(poetsData)}></script>
+<script id="data-poems"  type="application/json" set:html={JSON.stringify(poemsData)}></script>
+<script id="data-quiz"   type="application/json" set:html={JSON.stringify(quizData)}></script>
+<script id="data-glossary" type="application/json" set:html={JSON.stringify(glossaryData)}></script>
+<script id="data-poet-images" type="application/json" set:html={JSON.stringify(poetImages)}></script>
+<script id="data-mission-images" type="application/json" set:html={JSON.stringify(missionImages)}></script>
 
 </MainLayout>
 

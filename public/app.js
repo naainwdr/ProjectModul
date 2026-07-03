@@ -57,7 +57,7 @@ function buildPages() {
       chapter: 'Daftar Isi',
       leftTitle: 'Isi Buku',
       rightTitle: 'Peta Misi',
-      leftIllustration: null,
+      leftIllustration: missionImgs[1] || null,
       render: function() { return renderDaftarIsi(); }
     },
     // 3. Misi 1: Mengenal Puisi
@@ -66,7 +66,7 @@ function buildPages() {
       chapter: 'Bab I',
       leftTitle: 'Bab I',
       rightTitle: 'Mengenal Puisi',
-      leftIllustration: missionImgs[0] || null,
+      leftIllustration: missionImgs[2] || null,
       render: function() { return renderMisi1(); }
     },
     // 4. Misi 2: Analisis Puisi "Aku"
@@ -75,7 +75,7 @@ function buildPages() {
       chapter: 'Bab II',
       leftTitle: 'Bab II',
       rightTitle: 'Analisis Puisi',
-      leftIllustration: missionImgs[1] || null,
+      leftIllustration: missionImgs[3] || null,
       render: function() { return renderMisi2(poems); }
     },
     // 5. Misi 3: Penyair Nusantara
@@ -84,7 +84,7 @@ function buildPages() {
       chapter: 'Bab III',
       leftTitle: 'Bab III',
       rightTitle: 'Penyair Nusantara',
-      leftIllustration: missionImgs[2] || null,
+      leftIllustration: missionImgs[4] || null,
       poetIllustrations: poetImgs,
       render: function() { return renderMisi3(poets, poetImgs); }
     },
@@ -94,7 +94,7 @@ function buildPages() {
       chapter: 'Bab IV',
       leftTitle: 'Bab IV',
       rightTitle: 'Workshop Menulis',
-      leftIllustration: missionImgs[3] || null,
+      leftIllustration: missionImgs[5] || null,
       render: function() { return renderMisi4(); }
     },
     // 7. Misi 5: Kuis Evaluasi
@@ -103,7 +103,7 @@ function buildPages() {
       chapter: 'Bab V',
       leftTitle: 'Bab V',
       rightTitle: 'Evaluasi & Kuis',
-      leftIllustration: missionImgs[4] || null,
+      leftIllustration: missionImgs[6] || null,
       render: function() { return renderMisi5(quiz); }
     },
     // 8. Glosarium
@@ -112,7 +112,7 @@ function buildPages() {
       chapter: 'Glosarium',
       leftTitle: 'Kamus',
       rightTitle: 'Glosarium Puisi',
-      leftIllustration: null,
+      leftIllustration: missionImgs[7] || null,
       render: function() { return renderGlosarium(glossary); }
     },
     // 9. Penutup
@@ -121,7 +121,7 @@ function buildPages() {
       chapter: 'Penutup',
       leftTitle: 'Akhir Kata',
       rightTitle: 'Daftar Pustaka',
-      leftIllustration: missionImgs[0] || null,
+      leftIllustration: missionImgs[8] || null,
       render: function() { return renderPenutup(); }
     },
   ];
@@ -297,15 +297,52 @@ function renderDOM(n) {
   if (!page) return;
 
   var leftEl = document.getElementById('page-left-content');
+  var mobileCoverEl = document.getElementById('mobile-cover-content');
+  
   if (leftEl) {
     leftEl.innerHTML = renderLeftPage(page, n);
     leftEl.style.opacity = '1';
-    leftEl.querySelectorAll('.popup-image-card').forEach(function(card) {
-      card.style.cursor = 'pointer';
-      card.addEventListener('click', function() {
-        openImageModal(card.getAttribute('data-src'), card.getAttribute('data-caption'), card.getAttribute('data-desc'));
-      });
-    });
+  }
+  if (mobileCoverEl) {
+    mobileCoverEl.innerHTML = renderLeftPage(page, n);
+    var revealEl = mobileCoverEl.querySelector('.reveal');
+    if (revealEl) {
+      revealEl.classList.remove('h-full');
+      revealEl.style.justifyContent = 'flex-start';
+    }
+    
+    // Logika Cover Interaktif di Mobile
+    if (window.innerWidth <= 768) {
+      var pageRight = document.getElementById('page-right');
+      if (pageRight) pageRight.classList.add('mobile-cover-active');
+      
+      var tapPrev = document.getElementById('tap-zone-prev');
+      var tapNext = document.getElementById('tap-zone-next');
+      if (tapPrev) tapPrev.style.display = 'none';
+      if (tapNext) tapNext.style.display = 'none';
+      
+      var coverImg = mobileCoverEl.querySelector('.animate-breathing');
+      if (coverImg) {
+        coverImg.style.cursor = 'pointer';
+        coverImg.onclick = function() {
+          if (pageRight) pageRight.classList.remove('mobile-cover-active');
+          if (tapPrev) tapPrev.style.display = 'block';
+          if (tapNext) tapNext.style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        
+        // Teks bantuan di luar gambar
+        var imgContainer = mobileCoverEl.querySelector('.mx-auto');
+        if (imgContainer) {
+          var tapText = document.createElement('p');
+          tapText.className = 'animate-popup';
+          tapText.style = 'text-align:center; font-size:13px; color:var(--color-accent-red); font-weight:bold; margin-top:12px; cursor:pointer;';
+          tapText.innerHTML = '👆 Ketuk di sini atau pada gambar untuk membaca bab';
+          tapText.onclick = coverImg.onclick;
+          imgContainer.parentNode.insertBefore(tapText, imgContainer.nextSibling);
+        }
+      }
+    }
   }
 
   var contentEl = document.getElementById('page-content');
@@ -390,12 +427,20 @@ function buildBookTabs() {
       + '</button>';
   }).join('');
 
-  bar.querySelectorAll('.book-tab').forEach(function(btn) {
+  bar.innerHTML += '<button class="book-tab" id="btn-close-book" style="color:var(--color-accent-red); margin-left:auto;">'
+    + '<span class="tab-num">Keluar</span>Tutup</button>';
+
+  bar.querySelectorAll('.book-tab[data-page]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var n = parseInt(btn.getAttribute('data-page'));
       goToPage(n);
     });
   });
+
+  var closeBtn = document.getElementById('btn-close-book');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', showCover);
+  }
 }
 
 function updateBookTabs(activePage) {
@@ -429,11 +474,10 @@ function renderLeftPage(page, n) {
     + '<div class="page-divider mt-3"><span style="font-size:10px; color:var(--color-accent-gold);">✦</span></div>'
     + '</div>';
 
-  // Ilustrasi pop-up
+  // Ilustrasi animasi zoom (breathing)
   if (img) {
-    html += '<div class="popup-image-container mx-auto my-4" style="max-width:220px; width:100%;">'
-      + '<div class="popup-image-card animate-popup" data-src="' + img.src
-      + '" data-caption="' + escapeAttr(img.alt) + '" data-desc="' + escapeAttr(page.chapter) + '">'
+    html += '<div class="mx-auto my-4" style="max-width:220px; width:100%;">'
+      + '<div class="animate-breathing" style="border-radius:4px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.3); border:4px solid #fff;">'
       + '<img src="' + img.src + '" alt="' + escapeAttr(img.alt) + '" loading="lazy"'
       + ' style="width:100%;height:180px;object-fit:cover;display:block;">'
       + '<div class="popup-image-caption">' + escapeHTML(img.alt) + '</div>'
@@ -449,7 +493,6 @@ function renderLeftPage(page, n) {
   html += '<div style="border-top:1px solid var(--color-paper-700); padding-top:12px; margin-top:8px;">'
     + '<p class="font-serif text-xs italic text-center" style="color:var(--color-ink-300);">'
     + 'Petualangan Puisi Nusantara</p>'
-    + '<p class="font-serif text-center mt-1" style="font-size:10px; color:var(--color-accent-gold);">✦ ' + toRoman(n) + ' ✦</p>'
     + '</div>';
 
   html += '</div>';
@@ -805,7 +848,16 @@ function renderPenutup() {
     + '<p class="text-center" style="color:var(--color-ink-300); font-size:0.8rem;">— Chairil Anwar</p>'
     + '</div>'
     + '</div>'
-    + '<div class="reveal text-center mt-4">'
+    + '<div class="reveal mt-6 flex justify-center">'
+    + '<button class="btn-book-secondary text-xs" style="padding:6px 12px; display:flex; align-items:center; gap:6px;" id="btn-show-developer"><span>ℹ️</span> Informasi Pengembang</button>'
+    + '</div>'
+    + '<div id="developer-info-card" class="hidden animate-popup mx-auto" style="max-width:260px; background:var(--color-paper-950); border:1px solid var(--color-paper-700); padding:16px; border-radius:6px; font-size:13px; color:var(--color-ink-800); text-align:center; margin-top:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">'
+    + '<p class="font-bold mb-1" style="color:var(--color-ink-900);">Pengembang Sistem</p>'
+    + '<p class="mb-3">Nina Wulandari</p>'
+    + '<p class="font-serif text-xs italic" style="color:var(--color-ink-500);">Untuk Tugas Akhir:</p>'
+    + '<p class="font-bold" style="color:var(--color-ink-900);">Firyal Nur Wulanti</p>'
+    + '</div>'
+    + '<div class="reveal text-center mt-6">'
     + '<button class="btn-book-primary" id="btn-restart">↩ Kembali ke Awal</button>'
     + '</div>'
     + '</div>';
@@ -824,7 +876,19 @@ function initPageContent(page) {
   var restartBtn = document.getElementById('btn-restart');
   if (restartBtn) restartBtn.addEventListener('click', function() {
     showCover();
+    state.currentPage = 0;
+    updateBookTabs(0);
+    window.scrollTo(0, 0);
   });
+
+  // Tombol informasi pengembang
+  var btnDev = document.getElementById('btn-show-developer');
+  var devCard = document.getElementById('developer-info-card');
+  if (btnDev && devCard) {
+    btnDev.addEventListener('click', function() {
+      devCard.classList.toggle('hidden');
+    });
+  }
 
   // Klik kata analisis
   document.querySelectorAll('.word-tap').forEach(function(el) {

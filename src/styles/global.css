@@ -104,7 +104,13 @@ body {
   align-items: center;
   justify-content: center;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
   padding: 20px 0;
+}
+
+html {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -1045,7 +1051,7 @@ body {
    RESPONSIVE — MOBILE (Satu Halaman + Tap Nav)
    ============================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   body {
     padding: 0;
     background: var(--color-paper-bg);
@@ -1071,7 +1077,8 @@ body {
 
   .book-wrapper {
     width: 100%;
-    min-height: 100svh;
+    height: calc(100svh - 52px);
+    min-height: calc(100svh - 52px);
     filter: none;
     box-shadow: none;
   }
@@ -1079,8 +1086,10 @@ body {
   /* Mobile: single column (hide left, hide spine-binder) */
   .book-spread {
     grid-template-columns: 1fr;
-    min-height: 100svh;
+    height: calc(100svh - 52px);
+    min-height: calc(100svh - 52px);
     position: relative;
+    touch-action: pan-y; /* Mencegah geser horizontal bawaan browser */
   }
 
   /* Sembunyikan halaman kiri dan spine binder */
@@ -1089,13 +1098,14 @@ body {
 
   /* Halaman kanan = full-screen dengan binder di kiri */
   .book-page-right {
-    max-height: 100svh;
-    min-height: 100svh;
-    padding: 72px 20px 80px 52px; /* Diperbesar agar benar-benar bebas dari tab */
-    border-radius: 0;
+    height: calc(100svh - 52px);
+    max-height: calc(100svh - 52px);
+    min-height: calc(100svh - 52px);
+    padding: 72px 20px 20px 52px; /* Bottom padding dikurangi karena nav sudah di luar kertas */
+    border-radius: 0 0 12px 12px; /* Lengkungan sedikit di bawah agar mirip buku */
     overflow-y: auto;
     position: relative;
-    box-shadow: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Bayangan kecil di bawah kertas */
   }
 
   /* Logika Cover Terpisah di Mobile */

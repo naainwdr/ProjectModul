@@ -155,7 +155,7 @@ function goToPage(n, skipAnimation) {
   state.currentPage = n;
 
   var isNext = n > oldN;
-  var isMobile = window.innerWidth <= 768;
+  var isMobile = window.innerWidth <= 1024;
 
   if (skipAnimation) {
     renderDOM(n);
@@ -313,7 +313,7 @@ function renderDOM(n) {
     }
     
     // Logika Cover Interaktif di Mobile
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       var pageRight = document.getElementById('page-right');
       if (pageRight) pageRight.classList.add('mobile-cover-active');
       

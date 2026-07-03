@@ -4,349 +4,1169 @@
    DESIGN TOKENS — TEMA BUKU DONGENG KLASIK
    ============================================ */
 @theme {
-  /* Palette Navy -> Paper (Latar belakang) */
-  --color-navy-950: #fbf8f1; /* Sangat terang (halaman buku) */
-  --color-navy-900: #f4eee0; /* Kertas dasar */
-  --color-navy-800: #e8dfce; /* Pembatas / shadow kertas */
-  --color-navy-700: #d8cdb8; /* Border kertas */
-  --color-navy-600: #c2b29a;
+  /* === PAPER PALETTE === */
+  --color-paper-bg:    #c8b89a;   /* Meja kayu / latar belakang luar buku */
+  --color-paper-950:   #fbf8f1;   /* Halaman buku paling terang */
+  --color-paper-900:   #f5eedf;   /* Halaman dasar */
+  --color-paper-800:   #eddfc8;   /* Halaman agak kusam */
+  --color-paper-700:   #e0ceaf;   /* Halaman tua */
+  --color-paper-600:   #ccb895;   /* Tepi halaman / bayangan */
 
-  /* Palette Gold -> Aksen Dongeng (Coklat / Merah / Emas Kusam) */
-  --color-gold-300: #d97706; 
-  --color-gold-400: #b45309;
-  --color-gold-500: #92400e;
-  --color-gold-600: #78350f;
+  /* === BOOK COVER / LEATHER === */
+  --color-cover-900:   #3d2b1f;   /* Sampul buku coklat tua */
+  --color-cover-800:   #5c3d2e;   /* Sampul buku medium */
+  --color-cover-700:   #7a5240;   /* Aksen sampul */
+  --color-spine:       #2a1d14;   /* Punggung buku (lipatan tengah) */
 
-  /* Palette Cream -> Tinta (Teks utama) */
-  --color-cream-50:  #5c4b3a; /* Tinta pudar */
-  --color-cream-100: #42362b; /* Tinta dasar */
-  --color-cream-200: #29211a; /* Tinta tebal */
+  /* === INK PALETTE (Teks) === */
+  --color-ink-900:     #1a1108;   /* Tinta tua pekat */
+  --color-ink-800:     #2d1e0f;   /* Tinta hitam kecokelatan */
+  --color-ink-700:     #42321e;   /* Tinta normal */
+  --color-ink-500:     #6b4f35;   /* Tinta lebih muda */
+  --color-ink-300:     #9b7a58;   /* Tinta pudar / placeholder */
 
-  /* Typography */
-  --font-serif: "Lora", "Merriweather", "Playfair Display", Georgia, serif;
-  --font-sans:  "Inter", system-ui, sans-serif;
+  /* === ACCENT (Merah Marun / Emas Kusam) === */
+  --color-accent-red:  #8b1a1a;   /* Merah marun buku klasik */
+  --color-accent-gold: #b8860b;   /* Emas tua */
+  --color-accent-warm: #c17f24;   /* Emas hangat */
 
-  /* Animations */
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-fade-up: fadeUp 0.6s ease-out forwards;
-  --animate-slide-in: slideIn 0.4s ease-out forwards;
-  --animate-shimmer: shimmer 2s linear infinite;
-  --animate-pulse-gold: pulseGold 2s ease-in-out infinite;
-  --animate-popup: popUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  --animate-page-flip: pageFlip 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  /* === TYPOGRAPHY === */
+  --font-serif:  "Lora", "Merriweather", "Georgia", serif;
+  --font-display:"Playfair Display", "Lora", serif;
+  --font-sans:   "Inter", system-ui, sans-serif;
+
+  /* === ANIMATIONS === */
+  --animate-float:        float 6s ease-in-out infinite;
+  --animate-fade-in:      fadeIn 0.5s ease-out forwards;
+  --animate-popup-image:  popupImage 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  --animate-page-turn:    pageTurn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  --animate-bounce-in:    bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  --animate-stamp:        stamp 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
+    50%       { transform: translateY(-6px); }
   }
-  @keyframes fadeUp {
-    0%   { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+  @keyframes fadeIn {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
   }
-  @keyframes slideIn {
-    0%   { opacity: 0; transform: translateX(-20px); }
-    100% { opacity: 1; transform: translateX(0); }
+  @keyframes popupImage {
+    0%   { opacity: 0; transform: scale(0.5) translateY(30px) rotateX(20deg); }
+    60%  { opacity: 1; transform: scale(1.08) translateY(-5px) rotateX(-3deg); }
+    100% { opacity: 1; transform: scale(1) translateY(0) rotateX(0); }
   }
-  @keyframes shimmer {
-    0%   { background-position: 200% center; }
-    100% { background-position: -200% center; }
+  @keyframes pageTurn {
+    0%   { opacity: 0; transform: perspective(1200px) rotateY(-12deg) translateX(30px); }
+    100% { opacity: 1; transform: perspective(1200px) rotateY(0deg) translateX(0); }
   }
-  @keyframes pulseGold {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(146, 64, 14, 0.3); }
-    50% { box-shadow: 0 0 0 8px rgba(146, 64, 14, 0); }
+  @keyframes bounceIn {
+    0%   { opacity: 0; transform: scale(0.7); }
+    60%  { opacity: 1; transform: scale(1.05); }
+    100% { transform: scale(1); }
   }
-  @keyframes popUp {
-    0%   { opacity: 0; transform: scale(0.8) translateY(20px) rotateX(10deg); }
-    100% { opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); }
-  }
-  @keyframes pageFlip {
-    0%   { opacity: 0; transform: perspective(1000px) rotateY(-15deg) translateX(20px); transform-origin: left center; }
-    100% { opacity: 1; transform: perspective(1000px) rotateY(0deg) translateX(0); transform-origin: left center; }
+  @keyframes stamp {
+    0%   { opacity: 0; transform: scale(1.4) rotate(-5deg); }
+    60%  { transform: scale(0.9) rotate(1deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
   }
 }
 
 /* ============================================
-   GLOBAL BASE STYLES
+   GLOBAL BASE
    ============================================ */
 *, *::before, *::after { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--color-navy-900);
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
-  color: var(--color-cream-100);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-paper-bg);
+  /* Tekstur kayu meja */
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(0,0,0,0.03) 40px,
+      rgba(0,0,0,0.03) 41px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 80px,
+      rgba(0,0,0,0.02) 80px,
+      rgba(0,0,0,0.02) 81px
+    );
+  color: var(--color-ink-800);
+  font-family: var(--font-serif);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow-x: hidden;
+  padding: 20px 0;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-navy-950); }
-::-webkit-scrollbar-thumb { background: var(--color-navy-700); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-navy-600); }
+::-webkit-scrollbar-track { background: var(--color-paper-800); }
+::-webkit-scrollbar-thumb { background: var(--color-ink-500); border-radius: 3px; }
 
 /* ============================================
-   REUSABLE COMPONENT CLASSES
+   TAB BOOKMARK DI ATAS BUKU
    ============================================ */
 
-.font-serif { font-family: var(--font-serif); }
-
-/* Gradient text */
-.text-gradient {
-  background: linear-gradient(135deg, #b45309, #92400e, #78350f);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.text-gradient-light {
-  background: linear-gradient(135deg, #d97706, #b45309, #92400e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Paper / Book textures */
-.glass {
-  background: var(--color-navy-950);
-  box-shadow: 0 4px 12px rgba(41, 33, 26, 0.05), inset 0 0 20px rgba(232, 223, 206, 0.4);
-  border: 1px solid var(--color-navy-800);
-}
-.glass-dark {
-  background: var(--color-navy-900);
-  box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
-  border: 1px solid var(--color-navy-700);
-}
-
-/* Vintage decorative background */
-.stars-bg {
-  background-image:
-    radial-gradient(1px 1px at 10% 15%, rgba(146,64,14,0.15) 0%, transparent 100%),
-    radial-gradient(1px 1px at 25% 40%, rgba(146,64,14,0.1) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 50% 20%, rgba(146,64,14,0.15) 0%, transparent 100%),
-    radial-gradient(1px 1px at 75% 60%, rgba(146,64,14,0.1) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 85% 90%, rgba(146,64,14,0.15) 0%, transparent 100%);
-}
-
-/* Golden button with vintage shine effect */
-.btn-gold {
-  background: linear-gradient(135deg, #d97706, #b45309);
+.book-tabs-bar {
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 0 20px;
+  gap: 3px;
+  width: min(1100px, 96vw);
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-width: none;
   position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  color: #fffbeb !important;
-  border: 1px solid #92400e;
-  box-shadow: 0 4px 0 #78350f, 0 8px 16px rgba(120,53,15,0.2);
+  z-index: 5;
 }
-.btn-gold::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s ease;
-}
-.btn-gold:hover::before { left: 100%; }
-.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #78350f, 0 12px 20px rgba(120,53,15,0.3); }
-.btn-gold:active { transform: translateY(4px); box-shadow: 0 0px 0 #78350f, 0 2px 8px rgba(120,53,15,0.2); }
+.book-tabs-bar::-webkit-scrollbar { display: none; }
 
-/* Word analysis highlight */
-.word-analyzable {
+.book-tab {
+  flex-shrink: 0;
+  padding: 7px 16px 10px;
+  background: var(--color-paper-700);
+  border: 1px solid var(--color-paper-600);
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  font-family: var(--font-serif);
+  font-size: 11px;
+  color: var(--color-ink-300);
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+  bottom: -2px;
+  user-select: none;
+  line-height: 1.3;
+  text-align: center;
+  min-width: 64px;
+}
+.book-tab .tab-num {
+  display: block;
+  font-size: 9px;
+  opacity: 0.55;
+  margin-bottom: 2px;
+  font-style: italic;
+}
+.book-tab:hover {
+  background: var(--color-paper-800);
+  color: var(--color-ink-700);
+  transform: translateY(-2px);
+}
+.book-tab.active {
+  background: var(--color-paper-900);
+  color: var(--color-ink-900);
+  font-weight: 700;
+  bottom: -2px;
+  padding-bottom: 12px;
+  border-color: var(--color-paper-600);
+  z-index: 2;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.08);
+}
+
+/* ============================================
+   BOOK LAYOUT — STRUKTUR UTAMA
+   ============================================ */
+
+/* Wrapper buku */
+.book-wrapper {
+  width: min(1100px, 96vw);
+  min-height: 80vh;
+  position: relative;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5)) drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+/* Buku terbuka: halaman kiri | spine binder | halaman kanan */
+.book-spread {
+  display: grid;
+  grid-template-columns: 1fr 54px 1fr;
+  min-height: 80vh;
+  position: relative;
+  border-radius: 2px;
+  overflow: visible;
+  perspective: 2000px;
+}
+
+/* ============================================
+   SPINE BINDER (TENGAH BUKU — DESKTOP)
+   ============================================ */
+
+.book-spine-binder {
+  background: linear-gradient(
+    90deg,
+    #2a1505 0%,
+    #4a2010 15%,
+    #6b3018 40%,
+    #7a3820 50%,
+    #6b3018 60%,
+    #4a2010 85%,
+    #2a1505 100%
+  );
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 24px 0;
+  /* Alur engsel di kiri dan kanan spine */
+  box-shadow:
+    inset 6px 0 10px rgba(0,0,0,0.35),
+    inset -6px 0 10px rgba(0,0,0,0.35),
+    inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+/* Garis engsel (hinge groove) kiri dan kanan spine */
+.book-spine-binder::before,
+.book-spine-binder::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.45), rgba(0,0,0,0.1));
+  border-radius: 0 2px 2px 0;
+}
+.book-spine-binder::before { left: 5px; }
+.book-spine-binder::after  {
+  right: 5px;
+  background: linear-gradient(270deg, rgba(0,0,0,0.45), rgba(0,0,0,0.1));
+  border-radius: 2px 0 0 2px;
+}
+
+/* Plat engsel (hinge plate) logam */
+.spine-hinge-plate {
+  width: 42px;
+  height: 18px;
+  background: linear-gradient(180deg,
+    #c8c8c8 0%, #a0a0a0 20%,
+    #d0d0d0 40%, #888 70%,
+    #c0c0c0 100%
+  );
   border-radius: 3px;
-  padding: 0 2px;
-  border-bottom: 2px dashed rgba(180, 83, 9, 0.4);
+  border: 1px solid #555;
+  box-shadow:
+    0 2px 5px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+  position: relative;
+  flex-shrink: 0;
 }
-.word-analyzable:hover {
-  background: rgba(180, 83, 9, 0.1);
-  color: #92400e;
+/* Sekrup kecil pada engsel */
+.spine-hinge-plate::before,
+.spine-hinge-plate::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #e0e0e0, #707070);
+  border: 1px solid #444;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+}
+.spine-hinge-plate::before { left: 5px; }
+.spine-hinge-plate::after  { right: 5px; }
+
+/* Ring binder logam */
+.spine-ring {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #d8d8d8 0deg,
+    #909090 90deg,
+    #e8e8e8 160deg,
+    #a8a8a8 220deg,
+    #d0d0d0 280deg,
+    #d8d8d8 360deg
+  );
+  border: 2px solid #555;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow:
+    inset 0 2px 5px rgba(255,255,255,0.7),
+    inset 0 -2px 5px rgba(0,0,0,0.4),
+    0 3px 8px rgba(0,0,0,0.55),
+    0 1px 2px rgba(0,0,0,0.3);
+}
+/* Lubang tengah ring */
+.spine-ring::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #3a1f0a, #1a0e04);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.8);
+}
+/* Kilap ring */
+.spine-ring::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 9px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.65);
+  transform: rotate(-20deg);
+  z-index: 3;
+}
+
+/* Lubang Kertas (bayangan lubang pada kertas) */
+.paper-hole-left,
+.paper-hole-right {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: -1; /* Di bawah ring */
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.4);
+}
+.paper-hole-left  { left: -14px; }
+.paper-hole-right { right: -14px; }
+
+/* ============================================
+   HALAMAN BUKU (KIRI & KANAN — SAMA UKURAN)
+   ============================================ */
+
+/* Kedua halaman memakai style yang sama */
+.book-page-left,
+.book-page-right {
+  background: var(--color-paper-950);
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 31px,
+      rgba(180,150,100,0.09) 31px,
+      rgba(180,150,100,0.09) 32px
+    );
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 40px 40px 56px 40px;
+  max-height: 80vh;
+  min-height: 80vh;
+}
+
+/* Bayangan tepi kiri (kiri) */
+.book-page-left {
+  box-shadow:
+    inset -2px 0 6px rgba(0,0,0,0.04),
+    inset 6px 0 14px rgba(255,255,255,0.6);
+  transform-style: preserve-3d;
+}
+/* Bayangan tepi kanan (kanan) */
+.book-page-right {
+  box-shadow:
+    inset 2px 0 6px rgba(0,0,0,0.04),
+    inset -6px 0 14px rgba(255,255,255,0.6);
+  transform-style: preserve-3d;
+}
+
+/* ── Animasi 3D Page Flip (Flipping Page Overlay) ── */
+.flipping-page {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 20;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  /* background & shadow disetel dinamis via JS agar seragam dengan halaman asli */
+}
+
+/* Sisi Depan & Belakang Lembaran Flip */
+.flipping-page-front,
+.flipping-page-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.flipping-page-back {
+  transform: rotateY(180deg);
+}
+
+/* Animasi Putar ke Kiri (Next Page) */
+@keyframes flipToLeft {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(-180deg); }
+}
+
+/* Animasi Putar ke Kanan (Prev Page) */
+@keyframes flipToRight {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(180deg); }
+}
+
+/* Nomor halaman */
+.page-number-left {
+  position: absolute;
+  bottom: 20px;
+  left: 44px;
+  font-family: var(--font-serif);
+  font-size: 11px;
+  color: var(--color-ink-300);
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+.page-number-right {
+  position: absolute;
+  bottom: 20px;
+  right: 44px;
+  font-family: var(--font-serif);
+  font-size: 11px;
+  color: var(--color-ink-300);
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* Ornamen sudut halaman */
+.page-corner-ornament {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  opacity: 0.25;
+}
+.page-corner-ornament.top-left    { top: 12px; left: 16px; }
+.page-corner-ornament.top-right   { top: 12px; right: 16px; transform: scaleX(-1); }
+.page-corner-ornament.bottom-left { bottom: 12px; left: 16px; transform: scaleY(-1); }
+
+/* ============================================
+   SAMPUL BUKU (COVER)
+   ============================================ */
+
+#book-cover {
+  width: min(520px, 92vw);
+  min-height: 80vh;
+  background: linear-gradient(160deg, var(--color-cover-800) 0%, var(--color-cover-900) 60%, #1a0e08 100%);
+  border-radius: 4px 8px 8px 4px;
+  position: relative;
+  overflow: hidden;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  /* Tekstur kulit buku */
+  box-shadow:
+    inset -6px 0 12px rgba(0,0,0,0.3),
+    inset 4px 0 8px rgba(255,255,255,0.04),
+    0 0 0 4px #1a0e08,
+    0 0 0 6px var(--color-cover-700),
+    -12px 4px 0 #2a1d14,
+    -14px 6px 20px rgba(0,0,0,0.5);
+}
+
+#book-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' x='0' y='0' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+  background-size: 4px 4px;
+}
+
+#book-cover .cover-border {
+  position: absolute;
+  inset: 16px;
+  border: 1.5px solid rgba(184,134,11,0.35);
+  border-radius: 2px;
+  pointer-events: none;
+}
+#book-cover .cover-border::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 0.5px solid rgba(184,134,11,0.2);
+  border-radius: 1px;
+}
+
+/* ============================================
+   NAVIGASI BUKU
+   ============================================ */
+
+.book-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1100px, 96vw);
+  padding: 14px 4px;
+  gap: 12px;
+}
+
+.btn-page-turn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--color-cover-800);
+  color: var(--color-paper-900);
+  border: 1px solid var(--color-cover-700);
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-style: italic;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 0 var(--color-spine), 0 6px 12px rgba(0,0,0,0.2);
+}
+.btn-page-turn:hover {
+  background: var(--color-cover-700);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--color-spine), 0 10px 16px rgba(0,0,0,0.3);
+}
+.btn-page-turn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--color-spine), 0 2px 6px rgba(0,0,0,0.2);
+}
+.btn-page-turn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.book-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 300px;
+}
+.book-progress-dots {
+  display: flex;
+  gap: 5px;
+}
+.book-progress-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-ink-300);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+.book-progress-dot.active {
+  background: var(--color-accent-gold);
+  transform: scale(1.3);
+}
+
+/* ============================================
+   POP-UP GAMBAR (3D BOOK POP-UP EFFECT)
+   ============================================ */
+
+.popup-image-container {
+  position: relative;
+  display: inline-block;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.popup-image-card {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: perspective(800px) rotateX(0deg);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  box-shadow:
+    0 8px 0 rgba(0,0,0,0.15),
+    0 16px 30px rgba(0,0,0,0.3),
+    inset 0 0 0 1px rgba(255,255,255,0.3);
+}
+
+.popup-image-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.15) contrast(1.05);
+}
+
+.popup-image-card:hover {
+  transform: perspective(800px) rotateX(-8deg) translateY(-8px) scale(1.04);
+  box-shadow:
+    0 24px 0 rgba(0,0,0,0.1),
+    0 32px 50px rgba(0,0,0,0.4),
+    inset 0 0 0 1px rgba(255,255,255,0.3);
+}
+
+/* Label / caption foto */
+.popup-image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(26,17,8,0.9));
+  color: var(--color-paper-900);
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-style: italic;
+  padding: 20px 10px 8px;
+  text-align: center;
+}
+
+/* Animasi masuk dari bawah seperti buku pop-up */
+.popup-image-card.animate-popup {
+  animation: var(--animate-popup-image);
+  transform-origin: bottom center;
+}
+
+/* ============================================
+   KONTEN HALAMAN — TYPOGRAPHY
+   ============================================ */
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-ink-900);
+  line-height: 1.2;
+  margin-bottom: 0.3em;
+}
+
+.page-subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--color-ink-500);
+  font-style: italic;
+  margin-bottom: 1.2em;
+}
+
+.page-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+  color: var(--color-accent-gold);
+  opacity: 0.7;
+}
+.page-divider::before,
+.page-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-gold), transparent);
+}
+
+.prose-text {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: var(--color-ink-700);
+}
+
+.poem-text {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--color-ink-800);
+  font-style: italic;
+  padding-left: 1.5rem;
+  border-left: 3px solid rgba(184,134,11,0.4);
+}
+
+/* Kata yang bisa dianalisis */
+.word-tap {
+  cursor: pointer;
+  border-bottom: 1.5px dashed rgba(139,26,26,0.4);
+  transition: all 0.2s ease;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+.word-tap:hover {
+  background: rgba(139,26,26,0.08);
+  color: var(--color-accent-red);
   border-bottom-style: solid;
 }
-.word-analyzable.active {
-  background: rgba(180, 83, 9, 0.15);
-  color: #78350f;
-  border-bottom-style: solid;
+.word-tap.active {
+  background: rgba(139,26,26,0.12);
+  color: var(--color-accent-red);
 }
 
-/* Health bar */
-.health-bar-fill {
-  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(90deg, #b45309, #d97706, #22c55e);
+/* ============================================
+   TOMBOL AKSI (BUKU)
+   ============================================ */
+
+.btn-book-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--color-accent-red);
+  color: var(--color-paper-950);
+  border: none;
+  border-radius: 3px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 3px 0 #5c1111, 0 6px 12px rgba(139,26,26,0.2);
+  letter-spacing: 0.02em;
+}
+.btn-book-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #5c1111, 0 10px 16px rgba(139,26,26,0.3);
+}
+.btn-book-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #5c1111;
 }
 
-/* Scroll reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px) scale(0.98);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+.btn-book-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: transparent;
+  color: var(--color-ink-700);
+  border: 1.5px solid var(--color-ink-300);
+  border-radius: 3px;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+.btn-book-secondary:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  background: rgba(184,134,11,0.05);
 }
 
-/* Modal overlay */
-.modal-overlay {
+/* ============================================
+   KARTU MISI (DAFTAR BAB)
+   ============================================ */
+
+.chapter-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  margin-bottom: 6px;
+}
+.chapter-item:hover {
+  background: rgba(184,134,11,0.07);
+  border-color: rgba(184,134,11,0.2);
+}
+.chapter-item.active {
+  background: rgba(139,26,26,0.06);
+  border-color: rgba(139,26,26,0.2);
+}
+.chapter-item.locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.chapter-number {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-accent-gold);
+  line-height: 1;
+  min-width: 28px;
+}
+
+.chapter-title {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-ink-800);
+  line-height: 1.3;
+}
+.chapter-subtitle {
+  font-size: 0.75rem;
+  color: var(--color-ink-300);
+  font-style: italic;
+}
+
+/* ============================================
+   MODAL POP-UP (ANALISIS KATA / INFO)
+   ============================================ */
+
+.book-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(41, 33, 26, 0.6); /* Ink brown transparent */
-  backdrop-filter: blur(4px);
+  background: rgba(26,17,8,0.7);
+  backdrop-filter: blur(3px);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
-.modal-overlay.open {
+.book-modal-overlay.open {
   opacity: 1;
   pointer-events: all;
 }
-.modal-content {
-  transform: scale(0.8) translateY(40px) rotateX(-15deg);
+
+.book-modal {
+  background: var(--color-paper-950);
+  border-radius: 4px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.8) translateY(40px);
   opacity: 0;
   transform-origin: bottom center;
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
-  perspective: 1000px;
+
+  /* Border buku klasik */
+  border: 1px solid var(--color-paper-700);
+  box-shadow:
+    0 0 0 5px var(--color-paper-900),
+    0 0 0 6px var(--color-paper-700),
+    0 30px 60px rgba(0,0,0,0.5);
 }
-.modal-overlay.open .modal-content {
-  transform: scale(1) translateY(0) rotateX(0);
+.book-modal-overlay.open .book-modal {
+  transform: scale(1) translateY(0);
   opacity: 1;
 }
 
-/* Sidebar drawer */
-.sidebar-drawer {
-  position: fixed;
-  top: 0; right: -100%;
-  width: min(420px, 92vw);
-  height: 100vh;
-  z-index: 900;
-  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-y: auto;
-}
-.sidebar-drawer.open { right: 0; }
-
-/* Card hover */
-.card-hover {
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
-}
-.card-hover:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 12px 24px rgba(41, 33, 26, 0.15), inset 0 0 12px rgba(232, 223, 206, 0.5);
+.book-modal-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--color-paper-700);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-/* Mission locked */
-.mission-card-locked {
-  position: relative;
-  pointer-events: none;
-  filter: grayscale(0.8) opacity(0.7);
-}
-.mission-card-locked::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(244, 238, 224, 0.5); /* Semi-transparent paper */
-  border-radius: inherit;
-  backdrop-filter: blur(2px);
+.book-modal-body {
+  padding: 20px 24px;
 }
 
-/* Horizontal scroll snapping */
-.scroll-snap-x {
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+.btn-modal-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-ink-300);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-ink-500);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
-.scroll-snap-x > * { scroll-snap-align: start; }
-
-/* Progress bar shimmer */
-.progress-bar-fill {
-  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(90deg, #b45309, #d97706, #b45309);
-  background-size: 200% 100%;
-  animation: shimmer 2s linear infinite;
+.btn-modal-close:hover {
+  background: var(--color-accent-red);
+  border-color: var(--color-accent-red);
+  color: white;
 }
 
-/* Poetry textarea */
-.poetry-textarea {
-  background: rgba(244, 238, 224, 0.9);
-  border: 1px solid rgba(146, 64, 14, 0.3);
-  color: var(--color-cream-100);
+/* ============================================
+   KUIS
+   ============================================ */
+
+.quiz-option-book {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--color-paper-600);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: var(--color-paper-950);
+  margin-bottom: 8px;
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  line-height: 1.9;
+  font-size: 0.88rem;
+  color: var(--color-ink-700);
+  text-align: left;
+  width: 100%;
+}
+.quiz-option-book:hover:not(.disabled) {
+  border-color: var(--color-accent-gold);
+  background: rgba(184,134,11,0.05);
+  transform: translateX(4px);
+}
+.quiz-option-book.correct {
+  border-color: #2d6a4f;
+  background: rgba(45,106,79,0.08);
+  color: #2d6a4f;
+}
+.quiz-option-book.wrong {
+  border-color: var(--color-accent-red);
+  background: rgba(139,26,26,0.06);
+  color: var(--color-accent-red);
+}
+.quiz-option-book.disabled { cursor: default; pointer-events: none; }
+
+/* ============================================
+   TEXTAREA MENULIS PUISI
+   ============================================ */
+
+.poem-write-area {
+  width: 100%;
+  min-height: 200px;
+  background: var(--color-paper-800);
+  border: 1px solid var(--color-paper-600);
+  border-radius: 3px;
+  padding: 16px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 2.2;
+  color: var(--color-ink-800);
   resize: vertical;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  /* Garis horizontal seperti buku tulis */
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 35px,
+    rgba(139,26,26,0.12) 35px,
+    rgba(139,26,26,0.12) 36px
+  );
 }
-.poetry-textarea:focus {
+.poem-write-area:focus {
   outline: none;
-  border-color: rgba(146, 64, 14, 0.8);
-  box-shadow: 0 0 0 3px rgba(146, 64, 14, 0.15);
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 0 3px rgba(184,134,11,0.1);
 }
-.poetry-textarea::placeholder {
-  color: rgba(92, 75, 58, 0.5);
+.poem-write-area::placeholder {
+  color: var(--color-ink-300);
   font-style: italic;
 }
 
-/* Ornament dividers */
-.ornament {
-  display: flex;
+/* ============================================
+   GLOSARIUM
+   ============================================ */
+
+.glossary-card {
+  padding: 12px 14px;
+  border: 1px solid var(--color-paper-700);
+  border-radius: 3px;
+  background: var(--color-paper-950);
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+}
+.glossary-card:hover {
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.glossary-term {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-ink-900);
+  margin-bottom: 4px;
+}
+
+.glossary-def {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--color-ink-700);
+}
+
+/* ============================================
+   BADGE / STICKER / STAMP
+   ============================================ */
+
+.stamp-badge {
+  display: inline-flex;
   align-items: center;
-  gap: 1rem;
-}
-.ornament::before,
-.ornament::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(146,64,14,0.3), transparent);
-}
-
-/* Prose poetry text */
-.prose-poetry {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  line-height: 2;
-  color: var(--color-cream-100);
+  justify-content: center;
+  border: 2.5px solid var(--color-accent-gold);
+  border-radius: 50%;
+  padding: 6px;
+  font-size: 1.2rem;
+  color: var(--color-accent-gold);
+  background: rgba(184,134,11,0.08);
 }
 
-/* Quiz option button */
-.quiz-option {
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border: 1px solid rgba(146, 64, 14, 0.3);
-  cursor: pointer;
-  background: var(--color-navy-950);
+.category-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-style: italic;
+  letter-spacing: 0.05em;
 }
-.quiz-option:hover:not(.disabled) {
-  border-color: rgba(146, 64, 14, 0.8);
-  background: rgba(146, 64, 14, 0.05);
-  transform: translateX(4px);
-}
-.quiz-option.correct {
-  border-color: #16a34a;
-  background: rgba(22, 163, 74, 0.1);
-  box-shadow: inset 0 0 10px rgba(22,163,74,0.1);
-}
-.quiz-option.wrong {
-  border-color: #dc2626;
-  background: rgba(220, 38, 38, 0.1);
-  box-shadow: inset 0 0 10px rgba(220,38,38,0.1);
-}
-.quiz-option.disabled { cursor: default; pointer-events: none; }
 
-/* Nav sidebar overlay */
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(4, 13, 31, 0.7);
-  backdrop-filter: blur(4px);
-  z-index: 850;
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+
+.reveal {
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.nav-overlay.open {
+.reveal.visible {
   opacity: 1;
-  pointer-events: all;
+  transform: translateY(0);
 }
+
+/* ============================================
+   RESPONSIVE — MOBILE (Satu Halaman + Tap Nav)
+   ============================================ */
+
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+    background: var(--color-paper-bg);
+  }
+
+  /* Hide tab bar on mobile (chapter nav via bottom bar) */
+  .book-tabs-bar { display: none; }
+
+  .book-wrapper {
+    width: 100vw;
+    min-height: 100svh;
+    filter: none;
+    box-shadow: none;
+  }
+
+  /* Mobile: single column (hide left, hide spine-binder) */
+  .book-spread {
+    grid-template-columns: 1fr;
+    min-height: 100svh;
+    position: relative;
+  }
+
+  /* Sembunyikan halaman kiri dan spine binder */
+  .book-page-left,
+  .book-spine-binder { display: none; }
+
+  /* Halaman kanan = full-screen dengan binder di kiri */
+  .book-page-right {
+    max-height: 100svh;
+    min-height: 100svh;
+    padding: 24px 20px 80px 52px;
+    border-radius: 0;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: none;
+  }
+
+  /* Strip binder pada mobile (fixed di sisi kiri) */
+  .book-page-right::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 38px;
+    background: linear-gradient(90deg, #2a1505 0%, #4a2010 30%, #6b3018 70%, #7a3820 100%);
+    border-right: 2px solid rgba(0,0,0,0.35);
+    z-index: 20;
+  }
+
+  /* Ring binder mobile — CSS radial-gradient */
+  .book-page-right::after {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 38px;
+    z-index: 21;
+    /* 4 ring di sepanjang binder */
+    background-image:
+      /* Ring 1 */
+      radial-gradient(circle at 19px 15%, #e0e0e0 10px, transparent 10px),
+      radial-gradient(circle at 19px 15%, #808080 13px, transparent 13px),
+      radial-gradient(circle at 19px 15%, #3a1f0a 7px, transparent 7px),
+      /* Engsel 1 */
+      linear-gradient(180deg, transparent 22%, #b0b0b0 22%, #b0b0b0 24%, transparent 24%),
+      /* Ring 2 */
+      radial-gradient(circle at 19px 40%, #e0e0e0 10px, transparent 10px),
+      radial-gradient(circle at 19px 40%, #808080 13px, transparent 13px),
+      radial-gradient(circle at 19px 40%, #3a1f0a 7px, transparent 7px),
+      /* Ring 3 */
+      radial-gradient(circle at 19px 63%, #e0e0e0 10px, transparent 10px),
+      radial-gradient(circle at 19px 63%, #808080 13px, transparent 13px),
+      radial-gradient(circle at 19px 63%, #3a1f0a 7px, transparent 7px),
+      /* Engsel 2 */
+      linear-gradient(180deg, transparent 69%, #b0b0b0 69%, #b0b0b0 71%, transparent 71%),
+      /* Ring 4 */
+      radial-gradient(circle at 19px 85%, #e0e0e0 10px, transparent 10px),
+      radial-gradient(circle at 19px 85%, #808080 13px, transparent 13px),
+      radial-gradient(circle at 19px 85%, #3a1f0a 7px, transparent 7px);
+    pointer-events: none;
+  }
+
+  /* Nav bar bawah fixed */
+  .book-nav {
+    width: 100%;
+    padding: 8px 12px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(244,238,224,0.96);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--color-paper-700);
+    z-index: 30;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+  }
+
+  .btn-page-turn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  /* Zona tap invisible */
+  #tap-zone-prev,
+  #tap-zone-next {
+    position: fixed;
+    top: 0;
+    bottom: 60px;
+    width: 30%;
+    z-index: 15;
+    cursor: pointer;
+  }
+  #tap-zone-prev { left: 38px; }
+  #tap-zone-next { right: 0; }
+
+  #tap-zone-prev:active {
+    background: linear-gradient(to right, rgba(139,26,26,0.07), transparent);
+  }
+  #tap-zone-next:active {
+    background: linear-gradient(to left, rgba(139,26,26,0.07), transparent);
+  }
+
+  #book-cover {
+    width: 100vw;
+    border-radius: 0;
+    min-height: 100svh;
+  }
+
+  #book-top-nav { display: none; }
+}
+
+
+

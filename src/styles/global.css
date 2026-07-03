@@ -1070,7 +1070,7 @@ body {
   }
 
   .book-wrapper {
-    width: 100vw;
+    width: 100%;
     min-height: 100svh;
     filter: none;
     box-shadow: none;
@@ -1192,28 +1192,8 @@ body {
     font-size: 12px;
   }
 
-  /* Zona tap invisible */
-  #tap-zone-prev,
-  #tap-zone-next {
-    position: fixed;
-    top: 60px;
-    bottom: 60px;
-    width: 25%;
-    z-index: 45;
-    cursor: pointer;
-  }
-  #tap-zone-prev { left: 38px; }
-  #tap-zone-next { right: 0; }
-
-  #tap-zone-prev:active {
-    background: linear-gradient(to right, rgba(139,26,26,0.07), transparent);
-  }
-  #tap-zone-next:active {
-    background: linear-gradient(to left, rgba(139,26,26,0.07), transparent);
-  }
-
   #book-cover {
-    width: 100vw;
+    width: 100%;
     border-radius: 0;
     min-height: 100svh;
   }

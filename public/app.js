@@ -134,8 +134,8 @@ function showCover() {
   document.getElementById('scene-cover').classList.add('flex');
   document.getElementById('scene-book').classList.add('hidden');
   document.getElementById('scene-book').classList.remove('flex');
-  // Sembunyikan tap zone saat cover
-  updateTapZoneVisibility();
+  document.getElementById('scene-book').classList.add('hidden');
+  document.getElementById('scene-book').classList.remove('flex');
 }
 
 function openBook() {
@@ -145,8 +145,8 @@ function openBook() {
   document.getElementById('scene-book').classList.add('flex');
   if (state.currentPage === 0) state.currentPage = 1;
   renderPage(state.currentPage);
-  // Tampilkan tap zone saat buku terbuka
-  updateTapZoneVisibility();
+  if (state.currentPage === 0) state.currentPage = 1;
+  renderPage(state.currentPage);
 }
 
 function goToPage(n, skipAnimation) {
@@ -316,18 +316,11 @@ function renderDOM(n) {
       var pageRight = document.getElementById('page-right');
       if (pageRight) pageRight.classList.add('mobile-cover-active');
       
-      var tapPrev = document.getElementById('tap-zone-prev');
-      var tapNext = document.getElementById('tap-zone-next');
-      if (tapPrev) tapPrev.style.display = 'none';
-      if (tapNext) tapNext.style.display = 'none';
-      
       var coverImg = mobileCoverEl.querySelector('.animate-breathing');
       if (coverImg) {
         coverImg.style.cursor = 'pointer';
         coverImg.onclick = function() {
           if (pageRight) pageRight.classList.remove('mobile-cover-active');
-          if (tapPrev) tapPrev.style.display = 'block';
-          if (tapNext) tapNext.style.display = 'block';
           window.scrollTo({ top: 0, behavior: 'smooth' });
         };
         
@@ -1244,47 +1237,6 @@ function initCoreListeners() {
   });
 }
 
-// ─── TAP ZONES (MOBILE ONLY) ─────────────────────────────────────
-// Zona kiri layar = prev, zona kanan layar = next
-// Hanya aktif di mobile (<= 768px)
-
-function initTapZones() {
-  var prevZone = document.getElementById('tap-zone-prev');
-  var nextZone = document.getElementById('tap-zone-next');
-
-  if (prevZone) {
-    prevZone.addEventListener('click', function() {
-      if (window.innerWidth <= 768) {
-        goToPage(state.currentPage - 1);
-      }
-    });
-  }
-
-  if (nextZone) {
-    nextZone.addEventListener('click', function() {
-      if (window.innerWidth <= 768) {
-        goToPage(state.currentPage + 1);
-      }
-    });
-  }
-}
-
-// Tampilkan / sembunyikan tap zone sesuai scene
-function updateTapZoneVisibility() {
-  var prevZone = document.getElementById('tap-zone-prev');
-  var nextZone = document.getElementById('tap-zone-next');
-  if (!prevZone || !nextZone) return;
-
-  // Tampilkan hanya saat buku terbuka dan di mobile
-  var bookOpen = document.getElementById('scene-book') &&
-                 !document.getElementById('scene-book').classList.contains('hidden');
-  var isMobile = window.innerWidth <= 768;
-
-  var show = bookOpen && isMobile;
-  prevZone.style.display = show ? 'block' : 'none';
-  nextZone.style.display = show ? 'block' : 'none';
-}
-
 // ─── BOOTSTRAP ───────────────────────────────────────────────────
 
 function bootstrap() {
@@ -1294,11 +1246,7 @@ function bootstrap() {
   initCoreListeners();
   initSwipe();
   initKeyboard();
-  initTapZones();
   showCover();
-
-  // Update tap zone saat resize
-  window.addEventListener('resize', updateTapZoneVisibility);
 
   console.log('📖 Petualangan Puisi Nusantara — Buku terbuka!');
   console.log('   Halaman tersedia:', PAGES.length);

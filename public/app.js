@@ -1669,20 +1669,7 @@ function escapeAttr(str) {
 // ─── SWIPE TOUCH (MOBILE) ────────────────────────────────────────
 
 function initSwipe() {
-  var startX = 0;
-  var spread = document.getElementById('book-spread');
-  if (!spread) return;
-
-  spread.addEventListener('touchstart', function (e) {
-    startX = e.changedTouches[0].clientX;
-  }, { passive: true });
-
-  spread.addEventListener('touchend', function (e) {
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) < 50) return;
-    if (dx < 0) goToPage(state.currentPage + 1);
-    else goToPage(state.currentPage - 1);
-  }, { passive: true });
+  // Fitur swipe dimatikan agar tidak mengganggu proses scroll pengguna (terlalu sensitif/berpindah halaman otomatis)
 }
 
 // ─── KEYBOARD ────────────────────────────────────────────────────

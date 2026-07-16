@@ -1238,29 +1238,17 @@ function submitQuiz() {
     matrix_2: getRadioVal('matrix_2'),
     matrix_3: getRadioVal('matrix_3'),
     matrix_4: getRadioVal('matrix_4'),
-    essay_1: document.getElementById('essay_2') ? document.getElementById('essay_2').value.trim() : '-',
-    essay_2: document.getElementById('essay_3') ? document.getElementById('essay_3').value.trim() : '-',
-    puisi_karya: document.getElementById('essay_4') ? document.getElementById('essay_4').value.trim() : '-'
+    essay_2: document.getElementById('essay_2') ? document.getElementById('essay_2').value.trim() : '-',
+    essay_3: document.getElementById('essay_3') ? document.getElementById('essay_3').value.trim() : '-',
+    essay_4: document.getElementById('essay_4') ? document.getElementById('essay_4').value.trim() : '-'
   };
 
   // Validasi semua kolom wajib diisi
-  if (!data.nama || !data.kelas || data.matrix_1 === '-' || data.matrix_2 === '-' || data.matrix_3 === '-' || data.matrix_4 === '-' || !data.essay_1 || !data.essay_2 || !data.puisi_karya) {
+  if (!data.nama || !data.kelas || data.matrix_1 === '-' || data.matrix_2 === '-' || data.matrix_3 === '-' || data.matrix_4 === '-' || !data.essay_2 || data.essay_2 === '-' || !data.essay_3 || data.essay_3 === '-' || !data.essay_4 || data.essay_4 === '-') {
     showCustomAlert("Semua kolom (termasuk identitas, pilihan ganda, dan esai/puisi) wajib diisi!");
     btn.innerHTML = originalText;
     btn.disabled = false;
     btn.style.opacity = "1";
-    return;
-  }
-
-  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("ISI_DENGAN_URL")) {
-    showCustomAlert("Peringatan: URL Google Script belum disetel. Jawaban tidak tersimpan ke server.");
-    setTimeout(function () {
-      btn.innerHTML = originalText;
-      btn.disabled = false;
-      btn.style.opacity = "1";
-      localStorage.removeItem('quizDraft');
-      goToPage(11);
-    }, 1500);
     return;
   }
 

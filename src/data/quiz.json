@@ -1,67 +1,93 @@
 {
   "quiz": {
-    "title": "Refleksi Pemahaman Puisi",
-    "description": "Uji pemahamanmu tentang puisi yang telah kamu pelajari. Setiap jawaban benar = +20 poin!",
+    "title": "A. KUIS",
+    "poem": {
+      "title": "SUARA DARI PENGUNGSIAN",
+      "meta": "2019 (SDP, 2021: 72-73)",
+      "lines": [
+        "Kepedihan adalah langit",
+        "Gelap dan basah air mata",
+        "",
+        "Kesedihan adalah laut",
+        "Tempat segala ombak dan harapan pasang surut",
+        "",
+        "Di saat doa-doa diterbangkan",
+        "Mimpi-mimpi dilayarkan",
+        "Kami hidup berimpitan",
+        "Di antara puisi dan slogan-slogan",
+        "",
+        "Kesedihan adalah bumi",
+        "Menimbun dendam dan kecemasan",
+        "Hingga musim menumbuhkannya kembali",
+        "Menjadi nyala api",
+        "",
+        "Kesedihan adalah kami",
+        "Diungsikan puisi",
+        "Diasingkan bahasa dan kata-kata",
+        "",
+        "Hingga kami hanya kuasa",
+        "Menuliskan sisa usia",
+        "Pada nasib waktu",
+        "Saling melempar dadu"
+      ]
+    },
     "questions": [
       {
         "id": 1,
-        "question": "Majas yang digunakan pada baris 'Aku ini binatang jalang' dalam puisi 'Aku' karya Chairil Anwar adalah...",
-        "options": [
-          "Majas Simile (Perbandingan)",
-          "Majas Metafora",
-          "Majas Hiperbola",
-          "Majas Personifikasi"
+        "type": "matrix",
+        "instruction": "Pertanyaan 1: Pilihlah jawaban Benar atau Salah pada setiap pernyataan berikut!",
+        "headers": [
+          "NO.",
+          "PERNYATAAN",
+          "BENAR",
+          "SALAH"
         ],
-        "correct": 1,
-        "explanation": "Baris 'Aku ini binatang jalang' menggunakan Majas Metafora karena membandingkan 'aku' dengan 'binatang jalang' secara langsung tanpa kata pembanding seperti 'seperti' atau 'bagai'. Ini adalah metafora paling ikonik dalam sastra Indonesia."
+        "statements": [
+          {
+            "no": 1,
+            "text": "Kata \"air mata\" pada larik \"Gelap dan basah air mata\" merupakan diksi yang menggambarkan kesedihan tokoh dalam puisi.",
+            "correct": "BENAR"
+          },
+          {
+            "no": 2,
+            "text": "Pengulangan frasa \"Kesedihan adalah...\" berfungsi untuk menegaskan bahwa kesedihan menjadi bagian dari kehidupan para pengungsi.",
+            "correct": "BENAR"
+          },
+          {
+            "no": 3,
+            "text": "Larik \"Doa-doa diterbangkan\" dan \"Mimpi-mimpi dilayarkan\" menunjukkan bahwa para pengungsi masih memiliki harapan meskipun berada dalam kondisi sulit.",
+            "correct": "BENAR"
+          },
+          {
+            "no": 4,
+            "text": "Tema utama puisi ini adalah kegembiraan karena para pengungsi telah memperoleh kehidupan yang lebih baik.",
+            "correct": "SALAH"
+          }
+        ]
       },
       {
         "id": 2,
-        "question": "Dalam puisi 'Hujan Bulan Juni' karya Sapardi Djoko Damono, 'hujan' merupakan simbol dari...",
-        "options": [
-          "Kesedihan dan dukacita",
-          "Aku lirik yang menyimpan rindu diam-diam",
-          "Musim dingin yang panjang",
-          "Alam yang tidak bersahabat"
-        ],
-        "correct": 1,
-        "explanation": "'Hujan' dalam puisi ini adalah simbol/alegori dari aku lirik (sang penyair/pecinta) yang menaruh rindu secara diam-diam kepada 'pohon berbunga' yang merupakan simbol sang kekasih. Hujan memberi tanpa meminta diakui."
+        "type": "essay",
+        "instruction": "Pertanyaan 2",
+        "question": "Analisislah hubungan antara tema puisi dengan realitas sosial yang terjadi dalam kehidupan masyarakat yang mengalami pengungsian akibat bencana, konflik, atau peperangan. Jelaskan jawabanmu dengan menggunakan bukti larik dari puisi!"
       },
       {
         "id": 3,
-        "question": "Baris 'Aku mau hidup seribu tahun lagi!' menggunakan majas apa?",
-        "options": [
-          "Litotes",
-          "Eufemisme",
-          "Hiperbola",
-          "Metonimia"
-        ],
-        "correct": 2,
-        "explanation": "Keinginan hidup 'seribu tahun' adalah pernyataan yang sangat berlebihan (melebih-lebihkan kenyataan). Ini adalah Majas Hiperbola. Maknanya bukan keinginan hidup abadi secara harfiah, melainkan tekad agar karya dan semangat hidupnya abadi."
+        "type": "essay",
+        "instruction": "Pertanyaan 3",
+        "question": "Menurut pendapatmu, apakah puisi Suara dari Pengungsian berhasil menyampaikan pesan kemanusiaan kepada pembaca? Berikan penilaianmu disertai alasan dan dukung dengan bukti larik yang terdapat dalam puisi!"
       },
       {
         "id": 4,
-        "question": "Struktur puisi yang terdiri dari kumpulan baris-baris yang membentuk satu kesatuan makna disebut...",
-        "options": [
-          "Larik",
-          "Rima",
-          "Bait",
-          "Sajak"
-        ],
-        "correct": 2,
-        "explanation": "Bait adalah unit struktural dalam puisi yang terdiri dari beberapa larik (baris) yang membentuk satu kesatuan makna. Mirip dengan 'paragraf' dalam prosa. Larik adalah satu baris puisi, sedangkan rima/sajak adalah pola bunyi akhir baris."
-      },
-      {
-        "id": 5,
-        "question": "Unsur intrinsik puisi yang berkaitan dengan pesan moral atau nilai kehidupan yang ingin disampaikan penyair kepada pembaca disebut...",
-        "options": [
-          "Tema",
-          "Amanat",
-          "Nada",
-          "Diksi"
-        ],
-        "correct": 1,
-        "explanation": "Amanat adalah pesan, nasihat, atau nilai kehidupan yang ingin disampaikan penyair kepada pembaca. Tema adalah gagasan pokok/inti puisi, nada adalah sikap penyair terhadap pembaca, dan diksi adalah pemilihan kata yang tepat."
+        "type": "essay",
+        "instruction": "Pertanyaan 4",
+        "question": "Buatlah sebuah puisi minimal 3 bait yang mengangkat salah satu persoalan sosial di lingkungan sekitar, seperti bencana, kemiskinan, perundungan, kerusakan lingkungan, atau kepedulian terhadap sesama.",
+        "rules": [
+          "Memiliki tema yang jelas",
+          "Menggunakan minimal dua majas",
+          "Menggunakan diksi yang sesuai dengan tema",
+          "Menyampaikan amanat atau pesan kepada pembaca"
+        ]
       }
     ]
   }

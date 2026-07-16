@@ -1,37 +1,30 @@
 ---
 // src/pages/index.astro
-import MainLayout from '../layouts/MainLayout.astro';
-import '../styles/global.css';
+import MainLayout from "../layouts/MainLayout.astro";
+import "../styles/global.css";
 
-import poetsData    from '../data/poets.json';
-import poemsData    from '../data/poems.json';
-import quizData     from '../data/quiz.json';
-import glossaryData from '../data/glossary.json';
+import poetsData from "../data/poets.json";
+import poemsData from "../data/poems.json";
+import quizData from "../data/quiz.json";
+import glossaryData from "../data/glossary.json";
+import bibliographyData from "../data/bibliography.json";
 
-const poets   = poetsData.poets;
-const poems   = poemsData.poems;
-const quiz    = quizData.quiz;
+const poets = poetsData.poets;
+const poems = poemsData.poems;
+const quiz = quizData.quiz;
 const glossary = glossaryData.glossary;
-
-// Gambar penyair (menggunakan dummy lokal)
-const poetImages: Record<string, {src:string; alt:string}> = {
-  'chairil-anwar':       { src: '/assets/bab1.jpg', alt: 'Chairil Anwar' },
-  'sapardi-djoko-damono':{ src: '/assets/bab1.jpg', alt: 'Sapardi Djoko Damono' },
-  'wiji-thukul':         { src: '/assets/bab1.jpg', alt: 'Wiji Thukul' },
-  'toto-sudarto-bachtiar':{ src: '/assets/bab1.jpg', alt: 'Toto Sudarto Bachtiar' },
-};
 
 // Ilustrasi misi / sampul bab (semua bab menggunakan dummy yang sama)
 const missionImages = [
-  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Kata Pengantar' },
-  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Daftar Isi' },
-  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Mengenal Puisi' },
-  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Analisis Puisi' },
-  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Penyair Nusantara' },
-  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Workshop Menulis' },
-  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Evaluasi' },
-  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Glosarium' },
-  { src: '/assets/bab1.jpg', alt: 'Ilustrasi Penutup' },
+  { src: "/assets/Buku Suara dari Pengungsian.png", alt: "" },
+  { src: "/assets/Buku Suara dari Pengungsian.png", alt: "" },
+  { src: "/assets/Buku Suara dari Pengungsian.png", alt: "" },
+  { src: "/assets/Buku Suara dari Pengungsian.png", alt: "" },
+  { src: "/assets/Buku Suara dari Pengungsian.png", alt: "" },
+  { src: "/assets/Buku Suara dari Pengungsian.png", alt: "" },
+  { src: "/assets/Buku Suara dari Pengungsian.png", alt: "" },
+  { src: "/assets/Buku Suara dari Pengungsian.png", alt: "" },
+  { src: "/assets/Buku Suara dari Pengungsian.png", alt: "" },
 ];
 
 // SVG ornamen pojok halaman
@@ -43,257 +36,468 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
 ---
 
 <MainLayout>
-<!-- ╔══════════════════════════════════════════════════════════════╗
+  <!-- ╔══════════════════════════════════════════════════════════════╗
      ║  BUKU — PETUALANGAN PUISI NUSANTARA                         ║
      ╚══════════════════════════════════════════════════════════════╝ -->
 
-<!-- ░░░ SAMPUL BUKU (Halaman 0) ░░░ -->
-<div id="scene-cover" class="flex flex-col items-center">
-  <div id="book-cover" role="button" tabindex="0" aria-label="Buka buku">
-    <!-- Border dekoratif -->
-    <div class="cover-border"></div>
+  <!-- ░░░ SAMPUL BUKU (Halaman 0) ░░░ -->
+  <div id="scene-cover" class="flex flex-col items-center">
+    <div id="book-cover" role="button" tabindex="0" aria-label="Buka buku">
+      <!-- Border dekoratif -->
+      <div class="cover-border"></div>
 
-    <!-- Ornamen atas -->
-    <div class="absolute top-8 left-0 right-0 flex justify-center">
-      <svg width="120" height="20" viewBox="0 0 120 20" fill="none">
-        <line x1="0" y1="10" x2="50" y2="10" stroke="#b8860b" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="60" cy="10" r="4" fill="none" stroke="#b8860b" stroke-width="1" opacity="0.7"/>
-        <circle cx="60" cy="10" r="1.5" fill="#b8860b" opacity="0.7"/>
-        <line x1="70" y1="10" x2="120" y2="10" stroke="#b8860b" stroke-width="0.8" opacity="0.6"/>
-      </svg>
-    </div>
-
-    <!-- Isi Sampul -->
-    <div class="relative z-10 flex flex-col items-center gap-4">
-      <div class="text-5xl mb-2 animate-float">📖</div>
-
-      <div class="px-4 py-1 border border-yellow-700/40 text-yellow-600/70 text-xs font-serif italic tracking-widest uppercase">
-        Modul Pengayaan Puisi · SMA
+      <!-- Ornamen atas -->
+      <div class="absolute top-8 left-0 right-0 flex justify-center">
+        <svg width="120" height="20" viewBox="0 0 120 20" fill="none">
+          <line
+            x1="0"
+            y1="10"
+            x2="50"
+            y2="10"
+            stroke="#b8860b"
+            stroke-width="0.8"
+            opacity="0.6"></line>
+          <circle
+            cx="60"
+            cy="10"
+            r="4"
+            fill="none"
+            stroke="#b8860b"
+            stroke-width="1"
+            opacity="0.7"></circle>
+          <circle cx="60" cy="10" r="1.5" fill="#b8860b" opacity="0.7"></circle>
+          <line
+            x1="70"
+            y1="10"
+            x2="120"
+            y2="10"
+            stroke="#b8860b"
+            stroke-width="0.8"
+            opacity="0.6"></line>
+        </svg>
       </div>
 
-      <h1 class="font-display font-bold text-center leading-tight" style="color:#f5eedf; font-size: clamp(1.6rem, 4vw, 2.4rem);">
-        Petualangan<br/>Puisi Nusantara
-      </h1>
+      <!-- Isi Sampul -->
+      <div class="relative z-10 flex flex-col items-center gap-4">
+        <div class="text-5xl mb-2 animate-float">📖</div>
 
-      <p class="text-center font-serif italic text-sm" style="color: rgba(245,238,223,0.6); max-width:240px;">
-        Menjelajahi Keindahan Kata melalui<br/>Karya Para Maestro
-      </p>
+        <div
+          class="px-4 py-1 border border-yellow-700/40 text-yellow-600/70 text-xs font-serif italic tracking-widest uppercase"
+        >
+          Modul Pengayaan Puisi · SMA
+        </div>
 
-      <!-- Ilustrasi buku kecil -->
-      <div class="my-4 w-28 h-28 rounded-full overflow-hidden border-2 border-yellow-800/40"
-           style="box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
-        <img
-          src="/assets/sampul buku utama.jpg"
-          alt="Buku Tua"
-          width="220" height="220"
-          loading="lazy"
-          style="width:100%;height:100%;object-fit:cover;filter:sepia(0.3) brightness(0.8);"
-        />
+        <h1
+          class="font-display font-bold text-center leading-tight"
+          style="color:#f5eedf; font-size: clamp(1.6rem, 4vw, 2.4rem);"
+        >
+          Petualangan<br />Puisi Nusantara
+        </h1>
+
+        <p
+          class="text-center font-serif italic text-sm"
+          style="color: rgba(245,238,223,0.6); max-width:240px;"
+        >
+          Menjelajahi Keindahan Kata melalui<br />Karya Nissa Rengganis
+        </p>
+
+        <!-- Ilustrasi buku kecil -->
+        <div
+          class="my-4 w-28 h-28 rounded-full overflow-hidden border-2 border-yellow-800/40"
+          style="box-shadow: 0 4px 20px rgba(0,0,0,0.4);"
+        >
+          <img
+            src="/assets/sampul buku utama.jpg"
+            alt="Buku Tua"
+            width="220"
+            height="220"
+            loading="lazy"
+            style="width:100%;height:100%;object-fit:cover;filter:sepia(0.3) brightness(0.8);"
+          />
+        </div>
+
+        <div
+          id="btn-open-book"
+          class="mt-2 flex items-center gap-3 px-6 py-3 font-serif text-sm italic cursor-pointer"
+          style="color:#f5eedf; border: 1px solid rgba(184,134,11,0.5); border-radius:3px; background:rgba(184,134,11,0.1);"
+        >
+          <span>✦</span>
+          <span>Buka Buku</span>
+          <span>✦</span>
+        </div>
+
+        <p
+          class="text-xs font-serif italic mt-4"
+          style="color:rgba(245,238,223,0.35);"
+        >
+          Klik mana saja untuk membuka
+        </p>
       </div>
 
-      <div id="btn-open-book"
-           class="mt-2 flex items-center gap-3 px-6 py-3 font-serif text-sm italic cursor-pointer"
-           style="color:#f5eedf; border: 1px solid rgba(184,134,11,0.5); border-radius:3px; background:rgba(184,134,11,0.1);">
-        <span>✦</span>
-        <span>Buka Buku</span>
-        <span>✦</span>
+      <!-- Ornamen bawah -->
+      <div class="absolute bottom-8 left-0 right-0 flex justify-center">
+        <svg width="80" height="16" viewBox="0 0 80 16" fill="none">
+          <line
+            x1="0"
+            y1="8"
+            x2="30"
+            y2="8"
+            stroke="#b8860b"
+            stroke-width="0.8"
+            opacity="0.5"></line>
+          <path
+            d="M35 8 L40 3 L45 8 L40 13 Z"
+            stroke="#b8860b"
+            stroke-width="0.8"
+            fill="none"
+            opacity="0.6"></path>
+          <line
+            x1="50"
+            y1="8"
+            x2="80"
+            y2="8"
+            stroke="#b8860b"
+            stroke-width="0.8"
+            opacity="0.5"></line>
+        </svg>
       </div>
-
-      <p class="text-xs font-serif italic mt-4" style="color:rgba(245,238,223,0.35);">
-        Klik mana saja untuk membuka
-      </p>
     </div>
 
-    <!-- Ornamen bawah -->
-    <div class="absolute bottom-8 left-0 right-0 flex justify-center">
-      <svg width="80" height="16" viewBox="0 0 80 16" fill="none">
-        <line x1="0" y1="8" x2="30" y2="8" stroke="#b8860b" stroke-width="0.8" opacity="0.5"/>
-        <path d="M35 8 L40 3 L45 8 L40 13 Z" stroke="#b8860b" stroke-width="0.8" fill="none" opacity="0.6"/>
-        <line x1="50" y1="8" x2="80" y2="8" stroke="#b8860b" stroke-width="0.8" opacity="0.5"/>
-      </svg>
-    </div>
+    <!-- Judul di bawah sampul -->
+    <p class="mt-3 text-xs font-serif italic" style="color:rgba(50,35,20,0.5);">
+      Klik sampul untuk membuka
+    </p>
   </div>
 
-  <!-- Judul di bawah sampul -->
-  <p class="mt-3 text-xs font-serif italic" style="color:rgba(50,35,20,0.5);">
-    Klik sampul untuk membuka
-  </p>
-</div>
+  <!-- ░░░ BUKU TERBUKA (Halaman 1–N) ░░░ -->
+  <div id="scene-book" class="hidden flex-col items-center w-full">
+    <!-- Navigasi atas (Desktop) -->
+    <nav class="book-nav" id="book-top-nav">
+      <div class="flex items-center gap-2">
+        <button
+          id="btn-cover-back"
+          class="btn-book-secondary text-xs py-2 px-3"
+        >
+          ← Tutup Buku
+        </button>
+      </div>
+      <div class="flex-1 flex justify-center">
+        <div class="book-progress">
+          <span
+            class="font-serif text-xs italic"
+            style="color:var(--color-ink-300);"
+            id="page-label">Hal. 1</span
+          >
+          <div class="book-progress-dots" id="progress-dots"></div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <p
+          class="font-serif text-xs italic"
+          style="color:var(--color-ink-300);"
+          id="page-info-top"
+        >
+          Halaman 1 dari 9
+        </p>
+      </div>
+    </nav>
 
-<!-- ░░░ BUKU TERBUKA (Halaman 1–N) ░░░ -->
-<div id="scene-book" class="hidden flex-col items-center w-full">
+    <!-- Tab Bookmark di atas buku (Desktop) -->
+    <div class="book-tabs-bar" id="book-tabs-bar">
+      <!-- Diisi oleh JS -->
+    </div>
 
-  <!-- Navigasi atas (Desktop) -->
-  <nav class="book-nav" id="book-top-nav">
-    <div class="flex items-center gap-2">
-      <button id="btn-cover-back" class="btn-book-secondary text-xs py-2 px-3">
-        ← Tutup Buku
+    <!-- Buku: Wrapper -->
+    <div class="book-wrapper" id="book-main">
+      <!-- Strip Binder Khusus Mobile -->
+      <div class="mobile-binder max-md:block hidden" aria-hidden="true"></div>
+
+      <div class="book-spread" id="book-spread">
+        <!-- ░░ HALAMAN KIRI (Konten — Chapter Cover) ░░ -->
+        <div class="book-page-left" id="page-left">
+          <!-- Ornamen sudut -->
+          <div class="page-corner-ornament top-left" set:html={cornerSVG} />
+
+          <!-- Konten kiri (chapter cover / ilustrasi) — diisi oleh JS -->
+          <div id="page-left-content">
+            <div class="flex items-center justify-center h-full">
+              <p class="font-serif italic" style="color:var(--color-ink-300);">
+                Memuat...
+              </p>
+            </div>
+          </div>
+
+          <!-- Nomor halaman dihapus sesuai permintaan -->
+          <div class="page-corner-ornament bottom-left" set:html={cornerSVG} />
+        </div>
+
+        <!-- ░░ SPINE BINDER TENGAH ░░ -->
+        <div class="book-spine-binder" aria-hidden="true">
+          <!-- Engsel atas -->
+          <div class="spine-hinge-plate"></div>
+          <!-- Ring-ring logam -->
+          <div class="spine-ring">
+            <div class="paper-hole-left"></div><div class="paper-hole-right">
+            </div>
+          </div>
+          <div class="spine-ring">
+            <div class="paper-hole-left"></div><div class="paper-hole-right">
+            </div>
+          </div>
+          <div class="spine-ring">
+            <div class="paper-hole-left"></div><div class="paper-hole-right">
+            </div>
+          </div>
+          <div class="spine-ring">
+            <div class="paper-hole-left"></div><div class="paper-hole-right">
+            </div>
+          </div>
+          <div class="spine-ring">
+            <div class="paper-hole-left"></div><div class="paper-hole-right">
+            </div>
+          </div>
+          <div class="spine-ring">
+            <div class="paper-hole-left"></div><div class="paper-hole-right">
+            </div>
+          </div>
+          <!-- Engsel bawah -->
+          <div class="spine-hinge-plate"></div>
+        </div>
+
+        <!-- ░░ HALAMAN KANAN (Konten Utama) ░░ -->
+        <div class="book-page-right" id="page-right">
+          <!-- Ornamen sudut -->
+          <div class="page-corner-ornament top-right" set:html={cornerSVG} />
+
+          <!-- Mobile Cover Content (Hidden on Desktop) -->
+          <div
+            id="mobile-cover-content"
+            class="md:hidden mb-8 mt-2 pb-6 border-b-2 border-yellow-800/20 border-dashed"
+          >
+          </div>
+
+          <!-- Konten utama — diisi oleh JS -->
+          <div id="page-content">
+            <div class="flex items-center justify-center h-64">
+              <p class="font-serif italic" style="color:var(--color-ink-300);">
+                Memuat halaman...
+              </p>
+            </div>
+          </div>
+
+          <!-- Nomor halaman dihapus sesuai permintaan -->
+          <div class="page-corner-ornament bottom-right" set:html={cornerSVG} />
+        </div>
+      </div><!-- /book-spread -->
+    </div><!-- /book-wrapper -->
+
+    <!-- Navigasi bawah: tombol balik halaman -->
+    <div class="book-nav mt-2" id="book-bottom-nav">
+      <button id="btn-prev-page" class="btn-page-turn" disabled>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M15 18l-6-6 6-6"></path>
+        </svg>
+        Halaman Sebelumnya
+      </button>
+
+      <div class="text-center">
+        <p
+          class="font-serif text-xs italic"
+          style="color:var(--color-ink-300);"
+          id="page-info-bottom"
+        >
+          Halaman 1 dari 9
+        </p>
+      </div>
+
+      <button id="btn-next-page" class="btn-page-turn">
+        Halaman Berikutnya
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M9 18l6-6-6-6"></path>
+        </svg>
       </button>
     </div>
-    <div class="flex-1 flex justify-center">
-      <div class="book-progress">
-        <span class="font-serif text-xs italic" style="color:var(--color-ink-300);" id="page-label">Hal. 1</span>
-        <div class="book-progress-dots" id="progress-dots"></div>
-      </div>
-    </div>
-    <div class="flex items-center gap-2">
-      <p class="font-serif text-xs italic" style="color:var(--color-ink-300);" id="page-info-top">Halaman 1 dari 9</p>
-    </div>
-  </nav>
-
-  <!-- Tab Bookmark di atas buku (Desktop) -->
-  <div class="book-tabs-bar" id="book-tabs-bar">
-    <!-- Diisi oleh JS -->
-  </div>
-
-  <!-- Buku: Wrapper -->
-  <div class="book-wrapper" id="book-main">
-    
-    <!-- Strip Binder Khusus Mobile -->
-    <div class="mobile-binder max-md:block hidden" aria-hidden="true"></div>
-
-    <div class="book-spread" id="book-spread">
-
-      <!-- ░░ HALAMAN KIRI (Konten — Chapter Cover) ░░ -->
-      <div class="book-page-left" id="page-left">
-        <!-- Ornamen sudut -->
-        <div class="page-corner-ornament top-left" set:html={cornerSVG}></div>
-
-        <!-- Konten kiri (chapter cover / ilustrasi) — diisi oleh JS -->
-        <div id="page-left-content">
-          <div class="flex items-center justify-center h-full">
-            <p class="font-serif italic" style="color:var(--color-ink-300);">Memuat...</p>
-          </div>
-        </div>
-
-        <!-- Nomor halaman dihapus sesuai permintaan -->
-        <div class="page-corner-ornament bottom-left" set:html={cornerSVG}></div>
-      </div>
-
-      <!-- ░░ SPINE BINDER TENGAH ░░ -->
-      <div class="book-spine-binder" aria-hidden="true">
-        <!-- Engsel atas -->
-        <div class="spine-hinge-plate"></div>
-        <!-- Ring-ring logam -->
-        <div class="spine-ring"><div class="paper-hole-left"></div><div class="paper-hole-right"></div></div>
-        <div class="spine-ring"><div class="paper-hole-left"></div><div class="paper-hole-right"></div></div>
-        <div class="spine-ring"><div class="paper-hole-left"></div><div class="paper-hole-right"></div></div>
-        <div class="spine-ring"><div class="paper-hole-left"></div><div class="paper-hole-right"></div></div>
-        <div class="spine-ring"><div class="paper-hole-left"></div><div class="paper-hole-right"></div></div>
-        <div class="spine-ring"><div class="paper-hole-left"></div><div class="paper-hole-right"></div></div>
-        <!-- Engsel bawah -->
-        <div class="spine-hinge-plate"></div>
-      </div>
-
-      <!-- ░░ HALAMAN KANAN (Konten Utama) ░░ -->
-      <div class="book-page-right" id="page-right">
-        <!-- Ornamen sudut -->
-        <div class="page-corner-ornament top-right" set:html={cornerSVG}></div>
-
-        <!-- Mobile Cover Content (Hidden on Desktop) -->
-        <div id="mobile-cover-content" class="md:hidden mb-8 mt-2 pb-6 border-b-2 border-yellow-800/20 border-dashed"></div>
-
-        <!-- Konten utama — diisi oleh JS -->
-        <div id="page-content">
-          <div class="flex items-center justify-center h-64">
-            <p class="font-serif italic" style="color:var(--color-ink-300);">Memuat halaman...</p>
-          </div>
-        </div>
-
-        <!-- Nomor halaman -->
-        <div class="page-number-right" id="page-num-right">1</div>
-      </div>
-
-    </div><!-- /book-spread -->
-  </div><!-- /book-wrapper -->
-
-  <!-- Navigasi bawah: tombol balik halaman -->
-  <div class="book-nav mt-2" id="book-bottom-nav">
-    <button id="btn-prev-page" class="btn-page-turn" disabled>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M15 18l-6-6 6-6"/>
-      </svg>
-      Halaman Sebelumnya
-    </button>
-
-    <div class="text-center">
-      <p class="font-serif text-xs italic" style="color:var(--color-ink-300);" id="page-info-bottom">Halaman 1 dari 9</p>
-    </div>
-
-    <button id="btn-next-page" class="btn-page-turn">
-      Halaman Berikutnya
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M9 18l6-6-6-6"/>
-      </svg>
-    </button>
-  </div>
-
-</div><!-- /scene-book -->
-
+  </div><!-- /scene-book -->
 
   <!-- Navigasi atas buku -->
 
-
-<!-- ╔══════════════════════════════════════════════════════════════╗
+  <!-- ╔══════════════════════════════════════════════════════════════╗
      ║  MODAL: ANALISIS KATA                                       ║
      ╚══════════════════════════════════════════════════════════════╝ -->
-<div id="modal-word-analysis" class="book-modal-overlay" role="dialog" aria-modal="true">
-  <div class="book-modal" style="max-width:420px;">
-    <div class="book-modal-header">
-      <div>
-        <p class="font-serif text-xs italic mb-1" style="color:var(--color-ink-300);">Analisis Unsur Puisi</p>
-        <h3 id="modal-word-title" class="page-title text-lg"></h3>
-        <span id="modal-word-label" class="category-tag mt-1" style="color:var(--color-accent-red); border-color:var(--color-accent-red);"></span>
+  <div
+    id="modal-word-analysis"
+    class="book-modal-overlay"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="book-modal" style="max-width:420px;">
+      <div class="book-modal-header">
+        <div>
+          <p
+            class="font-serif text-xs italic mb-1"
+            style="color:var(--color-ink-300);"
+          >
+            Analisis Unsur Puisi
+          </p>
+          <h3 id="modal-word-title" class="page-title text-lg"></h3>
+          <span
+            id="modal-word-label"
+            class="category-tag mt-1"
+            style="color:var(--color-accent-red); border-color:var(--color-accent-red);"
+          ></span>
+        </div>
+        <button class="btn-modal-close" id="btn-close-word-modal">✕</button>
       </div>
-      <button class="btn-modal-close" id="btn-close-word-modal">✕</button>
-    </div>
-    <div class="book-modal-body space-y-4">
-      <div>
-        <p class="font-serif text-xs font-semibold mb-1" style="color:var(--color-ink-300); text-transform:uppercase; letter-spacing:.05em;">Jenis</p>
-        <p id="modal-word-jenis" class="prose-text text-sm"></p>
-      </div>
-      <div style="border-top:1px solid var(--color-paper-700); padding-top:12px;">
-        <p class="font-serif text-xs font-semibold mb-1" style="color:var(--color-ink-300); text-transform:uppercase; letter-spacing:.05em;">Makna & Penjelasan</p>
-        <p id="modal-word-makna" class="prose-text text-sm"></p>
-      </div>
-      <div style="border-top:1px solid var(--color-paper-700); padding-top:12px;">
-        <p class="font-serif text-xs font-semibold mb-1" style="color:var(--color-ink-300); text-transform:uppercase; letter-spacing:.05em;">Unsur Puisi</p>
-        <p id="modal-word-unsur" class="prose-text text-sm"></p>
+      <div class="book-modal-body space-y-4">
+        <div>
+          <p
+            class="font-serif text-xs font-semibold mb-1"
+            style="color:var(--color-ink-300); text-transform:uppercase; letter-spacing:.05em;"
+          >
+            Jenis
+          </p>
+          <p id="modal-word-jenis" class="prose-text text-sm"></p>
+        </div>
+        <div
+          style="border-top:1px solid var(--color-paper-700); padding-top:12px;"
+        >
+          <p
+            class="font-serif text-xs font-semibold mb-1"
+            style="color:var(--color-ink-300); text-transform:uppercase; letter-spacing:.05em;"
+          >
+            Makna & Penjelasan
+          </p>
+          <p id="modal-word-makna" class="prose-text text-sm"></p>
+        </div>
+        <div
+          style="border-top:1px solid var(--color-paper-700); padding-top:12px;"
+        >
+          <p
+            class="font-serif text-xs font-semibold mb-1"
+            style="color:var(--color-ink-300); text-transform:uppercase; letter-spacing:.05em;"
+          >
+            Unsur Puisi
+          </p>
+          <p id="modal-word-unsur" class="prose-text text-sm"></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ╔══════════════════════════════════════════════════════════════╗
+  <!-- ╔══════════════════════════════════════════════════════════════╗
      ║  MODAL: POP-UP FOTO                                         ║
      ╚══════════════════════════════════════════════════════════════╝ -->
-<div id="modal-image-popup" class="book-modal-overlay" role="dialog" aria-modal="true">
-  <div class="book-modal" style="max-width:380px; overflow:hidden;">
-    <div style="position:relative;">
-      <img id="modal-popup-img" src="" alt="" width="380" height="300"
-           style="width:100%;height:260px;object-fit:cover;display:block;filter:sepia(0.12) contrast(1.05);" />
-      <div style="position:absolute;top:10px;right:10px;">
-        <button class="btn-modal-close" id="btn-close-image-modal" style="background:rgba(26,17,8,0.7);border-color:rgba(255,255,255,0.2);color:#fff;">✕</button>
+  <div
+    id="modal-image-popup"
+    class="book-modal-overlay"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="book-modal" style="max-width:380px; overflow:hidden;">
+      <div style="position:relative;">
+        <img
+          id="modal-popup-img"
+          src=""
+          alt=""
+          width="380"
+          height="300"
+          style="width:100%;height:260px;object-fit:cover;display:block;filter:sepia(0.12) contrast(1.05);"
+        />
+        <div style="position:absolute;top:10px;right:10px;">
+          <button
+            class="btn-modal-close"
+            id="btn-close-image-modal"
+            style="background:rgba(26,17,8,0.7);border-color:rgba(255,255,255,0.2);color:#fff;"
+            >✕</button
+          >
+        </div>
+      </div>
+      <div class="book-modal-body pt-3 pb-4">
+        <p
+          id="modal-popup-caption"
+          class="font-serif text-sm italic text-center"
+          style="color:var(--color-ink-700);"
+        >
+        </p>
+        <p
+          id="modal-popup-desc"
+          class="prose-text text-sm mt-2 text-center"
+          style="color:var(--color-ink-500);"
+        >
+        </p>
       </div>
     </div>
-    <div class="book-modal-body pt-3 pb-4">
-      <p id="modal-popup-caption" class="font-serif text-sm italic text-center" style="color:var(--color-ink-700);"></p>
-      <p id="modal-popup-desc" class="prose-text text-sm mt-2 text-center" style="color:var(--color-ink-500);"></p>
+  </div>
+
+  <!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  MODAL: ALERT NOTIFIKASI                                   ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+  <div
+    id="modal-alert-popup"
+    class="book-modal-overlay"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="book-modal" style="max-width:360px; text-align:center;">
+      <div class="book-modal-header" style="justify-content:center; padding-top:20px; border-bottom:none;">
+        <h3 class="page-title text-lg" id="modal-alert-title" style="margin:0;">Pemberitahuan</h3>
+      </div>
+      <button class="btn-modal-close" id="btn-close-alert-modal" style="position:absolute; top:12px; right:12px;">✕</button>
+      <div class="book-modal-body space-y-4 px-6 pt-2 pb-6">
+        <p id="modal-alert-message" class="prose-text text-sm" style="line-height:1.6; color:var(--color-ink-900);"></p>
+      </div>
+      <div class="pb-6">
+        <button class="btn-book-primary" id="btn-ok-alert-modal">Kembali</button>
+      </div>
     </div>
   </div>
-</div>
 
-
-<!-- ╔══════════════════════════════════════════════════════════════╗
+  <!-- ╔══════════════════════════════════════════════════════════════╗
      ║  DATA JSON (di-embed untuk app.js)                         ║
      ╚══════════════════════════════════════════════════════════════╝ -->
-<script id="data-poets"  type="application/json" set:html={JSON.stringify(poetsData)}></script>
-<script id="data-poems"  type="application/json" set:html={JSON.stringify(poemsData)}></script>
-<script id="data-quiz"   type="application/json" set:html={JSON.stringify(quizData)}></script>
-<script id="data-glossary" type="application/json" set:html={JSON.stringify(glossaryData)}></script>
-<script id="data-poet-images" type="application/json" set:html={JSON.stringify(poetImages)}></script>
-<script id="data-mission-images" type="application/json" set:html={JSON.stringify(missionImages)}></script>
-
+  <script
+    id="data-poets"
+    type="application/json"
+    set:html={JSON.stringify(poetsData)}
+  />
+  <script
+    id="data-poems"
+    type="application/json"
+    set:html={JSON.stringify(poemsData)}
+  />
+  <script
+    id="data-quiz"
+    type="application/json"
+    set:html={JSON.stringify(quizData)}
+  />
+  <script
+    id="data-glossary"
+    type="application/json"
+    set:html={JSON.stringify(glossaryData)}
+  />
+  <script
+    id="data-mission-images"
+    type="application/json"
+    set:html={JSON.stringify(missionImages)}
+  />
+  <script
+    id="data-bibliography"
+    type="application/json"
+    set:html={JSON.stringify(bibliographyData)}
+  />
+  <script is:inline src="/app.js"></script>
 </MainLayout>
-
-<script is:inline src="/app.js"></script>

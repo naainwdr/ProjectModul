@@ -78,10 +78,19 @@ function buildPages() {
       leftIllustration: missionImgs[3] || null,
       render: function () { return renderHalamanDinamis('pendahuluan'); }
     },
+    // Biografi Nissa Rengganis
+    {
+      id: 'biografi-tokoh',
+      chapter: 'Halaman 2',
+      leftTitle: 'Pembelajaran',
+      rightTitle: 'Profil Penulis Buku',
+      leftIllustration: null,
+      render: function () { return renderBiografiTokoh(); }
+    },
     // 5. Uraian Materi - Hakikat Puisi
     {
       id: 'hakikat-puisi',
-      chapter: 'Halaman 2',
+      chapter: 'Halaman 3',
       leftTitle: 'Pembelajaran',
       rightTitle: '1. Hakikat Puisi',
       leftIllustration: missionImgs[4] || null,
@@ -90,7 +99,7 @@ function buildPages() {
     // 6. Uraian Materi - Puisi & Sosial
     {
       id: 'puisi-sosial',
-      chapter: 'Halaman 3',
+      chapter: 'Halaman 4',
       leftTitle: 'Pembelajaran',
       rightTitle: '2. Puisi dan Kehidupan Sosial',
       leftIllustration: missionImgs[5] || null,
@@ -99,7 +108,7 @@ function buildPages() {
     // 7. Uraian Materi - Representasi Realitas
     {
       id: 'puisi-representasi',
-      chapter: 'Halaman 4',
+      chapter: 'Halaman 5',
       leftTitle: 'Pembelajaran',
       rightTitle: '3. Puisi sebagai Representasi Realitas Sosial',
       render: function () { return renderPuisiRepresentasi(); }
@@ -107,7 +116,7 @@ function buildPages() {
     // 8. Uraian Materi - Pengungsian
     {
       id: 'puisi-pengungsian',
-      chapter: 'Halaman 5',
+      chapter: 'Halaman 6',
       leftTitle: 'Pembelajaran',
       rightTitle: '4. Pengungsian sebagai Representasi Realitas Sosial',
       render: function () { return renderPuisiPengungsian(); }
@@ -115,7 +124,7 @@ function buildPages() {
     // 9. Analisis Puisi 1
     {
       id: 'analisis-puisi-1',
-      chapter: 'Halaman 6',
+      chapter: 'Halaman 7',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 1 — Kepada Langit',
       render: function () { return renderAnalisisPuisi('analisis-puisi-1', 'analisis-puisi-2'); }
@@ -123,7 +132,7 @@ function buildPages() {
     // 10. Analisis Puisi 2
     {
       id: 'analisis-puisi-2',
-      chapter: 'Halaman 7',
+      chapter: 'Halaman 8',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 2 — Pertanyaan',
       render: function () { return renderAnalisisPuisi('analisis-puisi-2', 'analisis-puisi-3'); }
@@ -131,7 +140,7 @@ function buildPages() {
     // 11. Analisis Puisi 3
     {
       id: 'analisis-puisi-3',
-      chapter: 'Halaman 8',
+      chapter: 'Halaman 9',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 3 — Waktu Pun Terhenti',
       render: function () { return renderAnalisisPuisi('analisis-puisi-3', 'analisis-puisi-4'); }
@@ -139,7 +148,7 @@ function buildPages() {
     // 12. Analisis Puisi 4
     {
       id: 'analisis-puisi-4',
-      chapter: 'Halaman 9',
+      chapter: 'Halaman 10',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 4 — Atas Nama Negara',
       render: function () { return renderAnalisisPuisi('analisis-puisi-4', 'analisis-puisi-5'); }
@@ -147,7 +156,7 @@ function buildPages() {
     // 13. Analisis Puisi 5
     {
       id: 'analisis-puisi-5',
-      chapter: 'Halaman 10',
+      chapter: 'Halaman 11',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 5 — Suara dari Pengungsian',
       render: function () { return renderAnalisisPuisi('analisis-puisi-5', 'rangkuman'); }
@@ -156,7 +165,7 @@ function buildPages() {
     // 9. Rangkuman
     {
       id: 'rangkuman',
-      chapter: 'Halaman 11',
+      chapter: 'Halaman 12',
       leftTitle: 'Pembelajaran',
       rightTitle: 'C. Rangkuman',
       render: function () { return renderRangkuman(); }
@@ -164,7 +173,7 @@ function buildPages() {
     // 10. Kuis
     {
       id: 'kuis',
-      chapter: 'Halaman 12',
+      chapter: 'Halaman 13',
       leftTitle: 'Pembelajaran',
       rightTitle: 'D. Kuis',
       render: function () { return renderKuis(quiz); }
@@ -1014,46 +1023,172 @@ function renderRangkuman() {
   return html;
 }
 
+function renderBiografiTokoh() {
+  var a = {
+    name: "Nissa Rengganis",
+    role: "Penulis Puisi 'Suara dari Pengungsian'",
+    ttl: "Cirebon, 8 September 1988",
+    bio: "Nissa Rengganis merupakan penyair, penulis, dan akademisi asal Cirebon yang dikenal aktif mengangkat isu sosial, politik, dan kemanusiaan dalam karya-karyanya. Latar belakang keilmuannya di bidang Ilmu Politik dan Hubungan Internasional, pengalaman sebagai dosen, serta keterlibatannya dalam berbagai kegiatan literasi dan kemanusiaan membentuk sudut pandangnya dalam memaknai berbagai persoalan sosial. Kepedulian tersebut tercermin dalam sejumlah karya puisinya, salah satunya Suara dari Pengungsian yang diterbitkan pada tahun 2021. Antologi ini memuat 50 puisi yang merepresentasikan pengalaman masyarakat pengungsian akibat konflik dan bencana melalui gambaran kehilangan, penderitaan, keterpisahan, serta harapan. Pengalaman kemanusiaan tersebut dihadirkan melalui bahasa puitis yang reflektif sehingga puisi tidak hanya berfungsi sebagai ekspresi estetik, tetapi juga menjadi media untuk menyuarakan realitas sosial dan membangun kepedulian pembaca terhadap kehidupan masyarakat pengungsian. <br <br> <i>(Source: https://id.wikipedia.org/wiki/Nissa_Rengganis)</i>",
+    ig: "nissrengganis",
+    photo: "public/assets/Nissa Rengganis.png"
+  };
+
+  var targetPage = 6; // Halaman berikutnya (Hakikat Puisi, urutan ke-6)
+
+  // Memisahkan teks bio menjadi array kata untuk animasi typewriter per kata
+  var bioWords = a.bio.split(' ');
+  var bioAnimatedHTML = bioWords.map(function (word, index) {
+    // Delay dimunculkan satu persatu tiap 0.04 detik
+    return '<span style="opacity:0; display:inline-block; animation: fadeWord 0.2s ease forwards; animation-delay: ' + (index * 0.04) + 's;">' + word + '</span>';
+  }).join(' ');
+
+  // CSS Khusus untuk halaman ini
+  var style = '<style>'
+    + '@keyframes scrapFloat { 0% { transform: translateY(0px) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } 100% { transform: translateY(0px) rotate(-1deg); } } '
+    + '.anim-scrap { animation: scrapFloat 5s ease-in-out infinite; transform-origin: bottom center; } '
+    + '@keyframes fadeWord { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } } '
+    + '.magazine-quote { font-size: 5rem; font-family: serif; color: var(--color-accent-gold); opacity: 0.3; line-height: 0; display: block; float: left; margin-top: 35px; margin-right: 12px; margin-bottom: -15px; }'
+    + '</style>';
+
+  var html = style + '<div class="reveal space-y-4 flex flex-col h-full">'
+    + '<p class="page-title">Profil Penulis Buku</p>'
+    + '<div class="page-divider"><span>✦</span></div>'
+
+    + '<div style="padding: 10px 8px 40px 8px; flex-grow: 1; display: flex; flex-direction: column;">'
+    + '<div style="background:linear-gradient(to bottom, var(--color-paper-900), var(--color-paper-950)); border:1px solid var(--color-paper-600); border-radius:12px; padding:30px 24px; display:flex; flex-direction:column; position:relative; box-shadow: 0 8px 20px -5px rgba(0,0,0,0.05); min-height: 480px; flex-grow: 1;">'
+
+    // Header Profil (Info Nama di Kiri, Foto Scrap di Kanan)
+    + '<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 20px; border-bottom: 1px solid rgba(200,160,100,0.3); padding-bottom: 16px;">'
+    // Info Nama & Jabatan (Di Kiri)
+    + '<div style="text-align: left; flex-grow: 1;">'
+    + '<h3 class="font-display font-bold" style="font-size:1.2rem; color:var(--color-ink-900); margin: 0; letter-spacing: 0.02em; line-height: 1.3;">' + escapeHTML(a.name) + '</h3>'
+    + '<p class="font-serif italic" style="font-size:0.75rem; color:var(--color-accent-red); margin: 4px 0 0 0;">' + escapeHTML(a.role) + '</p>'
+    + '<p class="prose-text" style="font-size:0.65rem; color:var(--color-ink-700); margin: 6px 0 0 0;"><strong>TTL:</strong> ' + escapeHTML(a.ttl) + '</p>'
+    + '</div>'
+    // Foto Scrap (Diperbesar, di Kanan)
+    + '<div class="anim-scrap" style="width: 160px; height: auto; flex-shrink: 0; z-index: 10; margin-bottom: -16px;">'
+    + '<img src="' + a.photo + '" alt="' + escapeAttr(a.name) + '" style="width: 100%; height: auto; display: block; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.3));" onerror="this.src=\'https://ui-avatars.com/api/?name=' + encodeURIComponent(a.name) + '&background=transparent&color=7d6c56&size=200&font-size=0.33&bold=true\'">'
+    + '</div>'
+    + '</div>'
+
+    // Teks Bio dengan Kutipan Besar bergaya majalah
+    + '<div style="text-align: justify; z-index: 2; position: relative; margin-bottom: 10px;">'
+    + '<span class="magazine-quote">“</span>'
+    + '<p class="prose-text" style="font-size:0.8rem; color:var(--color-ink-900); line-height: 2; margin:0.7rem;">'
+    + bioAnimatedHTML
+    + '</p>'
+    + '</div>'
+
+    // Spacer
+    + '<div style="flex-grow: 1;"></div>'
+
+    // Kontak & Sosial Media (Hanya Instagram)
+    + '<div style="display:flex; gap: 8px; justify-content:flex-end; flex-wrap: wrap; position: relative; z-index: 5; margin-top: 20px;">'
+    + '<a href="https://instagram.com/' + escapeAttr(a.ig.replace('@', '')) + '" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; font-size:0.65rem; color:var(--color-paper-950); background:var(--color-ink-800); padding:6px 14px; border-radius:20px; text-decoration:none;">'
+    + '📸 ' + escapeHTML(a.ig)
+    + '</a>'
+    + '</div>'
+
+    + '</div>'
+    + '</div>'
+
+    + '<div class="mt-6 text-right pb-4">'
+    + '<button class="btn-book-primary" onclick="goToPage(' + targetPage + ')">Mulai Pembelajaran →</button>'
+    + '</div>'
+
+    + '</div>';
+  return html;
+}
+
 function renderBiografi() {
-  return '<div class="reveal space-y-4">'
+  var authors = [
+    {
+      name: "Firyal Nur Wulanti",
+      role: "Penulis & Pemilik Tugas Akhir",
+      ttl: "Bandung, 14 April 2004",
+      prodi: "Pendidikan Bahasa dan Sastra Indonesia, FPBS UPI",
+      bio: "Merancang landasan penelitian, konsep dasar pengayaan, serta bertanggung jawab penuh atas keutuhan materi utama dalam penyusunan tugas akhir ini.",
+      email: "wijayapiyal@gmail.com ",
+      ig: "@firyalnw_",
+      photo: "public/assets/Firyal Nur Wulanti.jpeg"
+    },
+    {
+      name: "Hasna Nailah Luthfiyah",
+      role: "Penulis & Editor Modul",
+      ttl: "Serang, 25 Januari 2004",
+      prodi: "Pendidikan Teknik Otomotif, FPTI UPI",
+      bio: "Menyusun struktur kebahasaan, memilih ragam materi puisi, serta menyelaraskan seluruh redaksi tulisan agar materi disajikan secara runtut.",
+      email: "hasnanailah2000@gmail.com ",
+      ig: "@hasnanailah",
+      photo: "public/assets/Hasna Nailah L.jpeg"
+    },
+    {
+      name: "Nina Wulandari",
+      role: "Pengembang Sistem",
+      ttl: "Cirebon, 27 Juni 2005",
+      prodi: "Ilmu Komputer, FPMIPA UPI",
+      bio: "Membangun arsitektur perangkat lunak modul digital interaktif, mengintegrasikan sistem navigasi booklet, serta merancang interaktivitas antarmuka sistem.",
+      email: "ninawd27@gmail.com",
+      ig: "@naainwdr",
+      photo: "public/assets/Nina W.jpeg"
+    }
+  ];
+
+  var html = '<div class="reveal space-y-4 flex flex-col h-full">'
     + '<p class="page-title">Biografi Penulis</p>'
     + '<div class="page-divider"><span>✦</span></div>'
 
     // Pembungkus untuk semua kartu biografi
-    + '<div class="space-y-4" style="max-height: 65vh; overflow-y: auto; padding-right: 8px;">'
+    + '<div class="space-y-12" style="max-height: 65vh; overflow-y: auto; padding: 25px 8px 40px 8px;">';
 
-    // 1. Profil Pemilik Tugas Akhir
-    + '<div style="background:var(--color-paper-950); border:1px solid var(--color-paper-700); padding:16px; border-radius:6px; display: flex; gap: 16px; align-items: center;">'
-    + '<div style="width:50px; height:50px; background:var(--color-paper-700); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink: 0;">👩‍🎓</div>'
-    + '<div>'
-    + '<h3 class="font-display font-bold text-base" style="color:var(--color-ink-900); margin: 0;">Firyal Nur Wulanti</h3>'
-    + '<p class="font-serif text-xs italic" style="color:var(--color-accent-red); margin: 2px 0 6px 0;">Penulis & Pemilik Tugas Akhir</p>'
-    + '<p class="prose-text text-xs text-justify" style="margin: 0;">Merancang landasan penelitian, konsep dasar pengayaan, serta bertanggung jawab penuh atas keutuhan materi utama dalam penyusunan tugas akhir ini.</p>'
-    + '</div>'
-    + '</div>'
+  authors.forEach(function (a) {
+    html += '<div style="background:linear-gradient(to bottom, var(--color-paper-900), var(--color-paper-950)); border:1px solid var(--color-paper-600); border-radius:12px; padding:20px 24px; margin-top:16px; display:flex; flex-direction:column; position:relative; box-shadow: 0 8px 20px -5px rgba(0,0,0,0.05);">'
 
-    // 2. Profil Penulis dan Editor Modul
-    + '<div style="background:var(--color-paper-950); border:1px solid var(--color-paper-700); padding:16px; border-radius:6px; display: flex; gap: 16px; align-items: center;">'
-    + '<div style="width:50px; height:50px; background:var(--color-paper-700); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink: 0;">✍️</div>'
-    + '<div>'
-    + '<h3 class="font-display font-bold text-base" style="color:var(--color-ink-900); margin: 0;">Hasna Nailah Luthfiyah</h3>'
-    + '<p class="font-serif text-xs italic" style="color:var(--color-accent-red); margin: 2px 0 6px 0;">Penulis & Editor Modul</p>'
-    + '<p class="prose-text text-xs text-justify" style="margin: 0;">Menyusun struktur kebahasaan, memilih ragam materi puisi, serta menyelaraskan seluruh redaksi tulisan agar materi disajikan secara runtut, adaptif, dan mudah dipahami.</p>'
-    + '</div>'
-    + '</div>'
+      // Bagian Atas: Nama Kiri, Foto Kanan (Reverse)
+      + '<div style="display:flex; align-items:center; justify-content: space-between; gap: 24px; margin-bottom: 20px;">'
 
-    // 3. Profil Pengembang Sistem
-    + '<div style="background:var(--color-paper-950); border:1px solid var(--color-paper-700); padding:16px; border-radius:6px; display: flex; gap: 16px; align-items: center;">'
-    + '<div style="width:50px; height:50px; background:var(--color-paper-700); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink: 0;">💻</div>'
-    + '<div>'
-    + '<h3 class="font-display font-bold text-base" style="color:var(--color-ink-900); margin: 0;">Nina Wulandari</h3>'
-    + '<p class="font-serif text-xs italic" style="color:var(--color-accent-red); margin: 2px 0 6px 0;">Pengembang Sistem</p>'
-    + '<p class="prose-text text-xs text-justify" style="margin: 0;">Membangun arsitektur perangkat lunak modul digital interaktif, mengintegrasikan sistem navigasi booklet, serta merancang interaktivitas pop-up analisis unsur puisi.</p>'
-    + '</div>'
-    + '</div>'
+      // Nama & Jabatan (Di Kiri)
+      + '<div style="text-align: left; flex-grow: 1;">'
+      + '<h3 class="font-display font-bold" style="font-size:1.2rem; color:var(--color-ink-900); margin: 0; letter-spacing: 0.02em; line-height: 1.3;">' + escapeHTML(a.name) + '</h3>'
+      + '<p class="font-serif text-sm italic" style="color:var(--color-accent-red); margin: 4px 0 0 0;">' + escapeHTML(a.role) + '</p>'
+      + '</div>'
 
-    + '</div>' // Akhir dari pembungkus scroll
-    + '</div>';
+      // Bingkai Vintage Kotak (Di Kanan)
+      + '<div style="width: 95px; height: 95px; flex-shrink: 0; background: var(--color-paper-900); border: 4px double var(--color-accent-gold); padding: 3px; box-shadow: 2px 4px 12px rgba(0,0,0,0.15); border-radius: 2px; position: relative;">'
+      + '<img src="' + a.photo + '" alt="' + escapeAttr(a.name) + '" style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px;" onerror="this.src=\'https://ui-avatars.com/api/?name=' + encodeURIComponent(a.name) + '&background=7d6c56&color=fff&size=200&font-size=0.33&bold=true\'">'
+      + '</div>'
+
+      + '</div>'
+
+      + '<div style="width: 100%; height: 1px; background: var(--color-accent-gold); margin: 0 0 16px 0; opacity: 0.3;"></div>'
+
+      // Tempat Tanggal Lahir (TTL) & Prodi
+      + '<div style="text-align: left; margin-bottom: 8px;">'
+      + '<p class="prose-text" style="font-size:0.75rem; color:var(--color-ink-700); margin: 0;"><strong>TTL:</strong> ' + escapeHTML(a.ttl) + '</p>'
+      + '<p class="prose-text" style="font-size:0.75rem; color:var(--color-ink-700); margin: 4px 0 0 0;"><strong>Prodi:</strong> ' + escapeHTML(a.prodi) + '</p>'
+      + '</div>'
+
+      // Biodata / Deskripsi
+      + '<p class="prose-text text-justify" style="font-size:0.75rem; color:var(--color-ink-900); margin-bottom: 20px; line-height: 1.5;">'
+      + escapeHTML(a.bio)
+      + '</p>'
+
+      // Kontak & Sosial Media
+      + '<div style="display:flex; gap: 8px; justify-content:flex-start; flex-wrap: wrap;">'
+      // Menuliskan alamat email secara langsung sesuai permintaan
+      + '<a href="mailto:' + escapeAttr(a.email.trim()) + '" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; font-size:0.65rem; color:var(--color-paper-950); background:var(--color-ink-800); padding:6px 14px; border-radius:20px; text-decoration:none;">'
+      + '✉️ ' + escapeHTML(a.email.trim())
+      + '</a>'
+      + '<a href="https://instagram.com/' + escapeAttr(a.ig.replace('@', '')) + '" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; font-size:0.65rem; color:var(--color-paper-950); background:var(--color-ink-800); padding:6px 14px; border-radius:20px; text-decoration:none;">'
+      + '📸 ' + escapeHTML(a.ig)
+      + '</a>'
+      + '</div>'
+
+      + '</div>';
+  });
+
+  html += '</div></div>';
+  return html;
 }
 
 var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8IVsMff1xlCP3Gqio1xg9fXsnAY9ab0hiucqSK2yZyLrnUkyEDXn9yR69jdxEy3zMUA/exec";

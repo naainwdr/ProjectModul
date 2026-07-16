@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   PETUALANGAN PUISI NUSANTARA — app.js
+   Buku Pengayaan — app.js
    Sistem Buku Interaktif dengan Pop-Up Gambar
    ═══════════════════════════════════════════════════════════════ */
 
@@ -81,7 +81,7 @@ function buildPages() {
     // 5. Uraian Materi - Hakikat Puisi
     {
       id: 'hakikat-puisi',
-      chapter: 'Halaman 1',
+      chapter: 'Halaman 2',
       leftTitle: 'Pembelajaran',
       rightTitle: '1. Hakikat Puisi',
       leftIllustration: missionImgs[4] || null,
@@ -90,7 +90,7 @@ function buildPages() {
     // 6. Uraian Materi - Puisi & Sosial
     {
       id: 'puisi-sosial',
-      chapter: 'Halaman 4',
+      chapter: 'Halaman 3',
       leftTitle: 'Pembelajaran',
       rightTitle: '2. Puisi dan Kehidupan Sosial',
       leftIllustration: missionImgs[5] || null,
@@ -99,7 +99,7 @@ function buildPages() {
     // 7. Uraian Materi - Representasi Realitas
     {
       id: 'puisi-representasi',
-      chapter: 'Halaman 5',
+      chapter: 'Halaman 4',
       leftTitle: 'Pembelajaran',
       rightTitle: '3. Puisi sebagai Representasi Realitas Sosial',
       render: function () { return renderPuisiRepresentasi(); }
@@ -115,7 +115,7 @@ function buildPages() {
     // 9. Analisis Puisi 1
     {
       id: 'analisis-puisi-1',
-      chapter: 'Halaman 5',
+      chapter: 'Halaman 6',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 1 — Kepada Langit',
       render: function () { return renderAnalisisPuisi('analisis-puisi-1', 'analisis-puisi-2'); }
@@ -123,7 +123,7 @@ function buildPages() {
     // 10. Analisis Puisi 2
     {
       id: 'analisis-puisi-2',
-      chapter: 'Halaman 5',
+      chapter: 'Halaman 7',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 2 — Pertanyaan',
       render: function () { return renderAnalisisPuisi('analisis-puisi-2', 'analisis-puisi-3'); }
@@ -131,7 +131,7 @@ function buildPages() {
     // 11. Analisis Puisi 3
     {
       id: 'analisis-puisi-3',
-      chapter: 'Halaman 5',
+      chapter: 'Halaman 8',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 3 — Waktu Pun Terhenti',
       render: function () { return renderAnalisisPuisi('analisis-puisi-3', 'analisis-puisi-4'); }
@@ -139,7 +139,7 @@ function buildPages() {
     // 12. Analisis Puisi 4
     {
       id: 'analisis-puisi-4',
-      chapter: 'Halaman 5',
+      chapter: 'Halaman 9',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 4 — Atas Nama Negara',
       render: function () { return renderAnalisisPuisi('analisis-puisi-4', 'analisis-puisi-5'); }
@@ -147,7 +147,7 @@ function buildPages() {
     // 13. Analisis Puisi 5
     {
       id: 'analisis-puisi-5',
-      chapter: 'Halaman 5',
+      chapter: 'Halaman 10',
       leftTitle: 'Pembelajaran',
       rightTitle: '● Analisis Puisi 5 — Suara dari Pengungsian',
       render: function () { return renderAnalisisPuisi('analisis-puisi-5', 'rangkuman'); }
@@ -156,7 +156,7 @@ function buildPages() {
     // 9. Rangkuman
     {
       id: 'rangkuman',
-      chapter: 'Halaman 17',
+      chapter: 'Halaman 11',
       leftTitle: 'Pembelajaran',
       rightTitle: 'C. Rangkuman',
       render: function () { return renderRangkuman(); }
@@ -164,7 +164,7 @@ function buildPages() {
     // 10. Kuis
     {
       id: 'kuis',
-      chapter: 'Halaman 18',
+      chapter: 'Halaman 12',
       leftTitle: 'Pembelajaran',
       rightTitle: 'D. Kuis',
       render: function () { return renderKuis(quiz); }
@@ -566,7 +566,7 @@ function renderLeftPage(page, n) {
   // Quote / keterangan bawah
   html += '<div style="border-top:1px solid var(--color-paper-700); padding-top:12px; margin-top:8px;">'
     + '<p class="font-serif text-xs italic text-center" style="color:var(--color-ink-300);">'
-    + 'Petualangan Puisi Nusantara</p>'
+    + 'Suara dari Pengungsian: Membaca Puisi, Memaknai Realitas Kehidupan</p>'
     + '</div>';
 
   html += '</div>';
@@ -588,14 +588,14 @@ function renderPengantar() {
     + '<p class="indent-8">Penulis berharap buku pengayaan ini dapat menjadi sumber belajar yang bermanfaat dan menambah semangat peserta didik dalam mempelajari puisi. Penulis juga menyadari bahwa buku ini masih memiliki kekurangan. Oleh karena itu, kritik dan saran yang membangun sangat diharapkan sebagai bahan perbaikan di masa mendatang. Semoga buku ini dapat memberikan manfaat bagi peserta didik, guru, dan semua pihak yang menggunakannya dalam proses pembelajaran Bahasa Indonesia.</p>'
     + '</div>'
     + '<div class="mt-6 text-right">'
-    + '<p class="font-serif text-sm italic pb-6" style="color:var(--color-ink-500);">Cimahi, 14 Juli 2026<br><br></br>Penulis</p>'
+    + '<p class="font-serif text-sm italic pb-6" style="color:var(--color-ink-500);">Bandung, 14 Juli 2026<br><br></br>Penulis</p>'
     + '</div>'
     + '</div>';
 }
 
 function renderDaftarIsi() {
   var html = '<div class="reveal">'
-    + '<p class="page-title">Peta Misi Petualanganmu</p>'
+    + '<p class="page-title">Daftar Isi</p>'
     + '<div class="page-divider"><span>✦</span></div>'
     + '<p class="prose-text text-sm mt-2 mb-4">Klik bab mana saja untuk langsung membuka halamannya.</p>'
     + '<div class="space-y-1" style="display: flex; flex-direction: column; gap: 4px;">';
@@ -722,13 +722,13 @@ function renderAnalisisPuisi(id, nextId) {
       if (p.trim().substring(0, 4) === '<div') {
         return '<div style="background:var(--color-paper-950); border-top:1px solid var(--color-paper-600); border-bottom:1px solid var(--color-paper-600); padding:24px 12px; margin:24px 0;">' + p + '</div>';
       }
-      
+
       // 2. Realitas Sosial (Notes style)
       if (p.indexOf('Realitas sosial yang tampak pada puisi') > -1) {
         // Hapus tag strong lama
         var cleanP = p.replace(/<strong>Realitas sosial yang tampak pada puisi:<\/strong><br>/g, '');
         // Bersihkan bullet point standar dan ganti dengan styling list
-        var listItems = cleanP.split('• ').filter(Boolean).map(function(item) {
+        var listItems = cleanP.split('• ').filter(Boolean).map(function (item) {
           return '<li style="margin-bottom: 6px;">' + item.trim() + '</li>';
         }).join('');
 
@@ -746,15 +746,15 @@ function renderAnalisisPuisi(id, nextId) {
 
         // Hilangkan judul aslinya
         var textContent = p.replace(/<strong>[a-b]\) Struktur (Fisik|Batin)<\/strong><br>/, '');
-        
+
         // Membungkus point (diksi, citraan, dll)
         // Format aslinya: • <strong>Diksi:</strong> Penjelasan...
         // Kita jadikan list yang cantik
-        var listItems = textContent.split('• ').filter(Boolean).map(function(item) {
+        var listItems = textContent.split('• ').filter(Boolean).map(function (item) {
           // highlight bagian pertama (strong)
           return '<div style="margin-bottom: 12px; font-size:0.875rem; color:var(--color-ink-900); line-height:1.6; text-align:justify; display:flex; align-items:flex-start;">' +
-                 '<span style="display:inline-block; margin-right:8px; margin-top:2px; color:var(--color-accent-red); font-size:12px;">\u25C6</span>' + // \u25C6 is a diamond unicode char
-                 '<div>' + item.trim() + '</div></div>';
+            '<span style="display:inline-block; margin-right:8px; margin-top:2px; color:var(--color-accent-red); font-size:12px;">\u25C6</span>' + // \u25C6 is a diamond unicode char
+            '<div>' + item.trim() + '</div></div>';
         }).join('');
 
         return '<div style="background:var(--color-paper-950); border:1px solid var(--color-paper-700); border-radius:6px; padding:16px 16px 4px 16px; margin:20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">'
@@ -981,7 +981,7 @@ function renderRangkuman() {
   html += '<div style="background:var(--color-paper-950); border-left:3px solid var(--color-accent-gold); padding:14px; border-radius:4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">'
     + '<p class="font-serif font-bold text-sm mb-2" style="color:var(--color-ink-900);">📜 Hakikat & Struktur Puisi</p>'
     + '<ul class="prose-text text-xs text-justify text-gray-800 leading-relaxed list-none space-y-2 m-0 p-0">'
-    + '<li style="display:flex; gap:6px;"><span class="font-bold flex-shrink-0" style="min-width:14px;">1.</span><span>Puisi merupakan karya sastra yang mengungkapkan pikiran, perasaan, dan pengalaman penyair melalui bahasa yang indah, padat, dan penuh makna.</span></li>'
+    + '<li style="display:flex; gap:6px;"><span class="font-bold flex-shrink-0" style="min-width:14px;">1.</span><span>Puisi adalah karya sastra yang mengungkapkan pikiran, perasaan, dan pengalaman penyair melalui bahasa yang indah, padat, dan penuh makna.</span></li>'
     + '<li style="display:flex; gap:6px;"><span class="font-bold flex-shrink-0" style="min-width:14px;">2.</span><span>Struktur puisi terdiri atas struktur fisik dan struktur batin. Struktur fisik meliputi diksi, citraan, majas, rima atau irama, dan tipografi. Struktur batin meliputi tema, rasa, nada, dan amanat.</span></li>'
     + '</ul></div>';
 
@@ -990,8 +990,8 @@ function renderRangkuman() {
     + '<p class="font-serif font-bold text-sm mb-2" style="color:var(--color-ink-900);">🌍 Puisi sebagai Cermin Sosial</p>'
     + '<ul class="prose-text text-xs text-justify text-gray-800 leading-relaxed list-none space-y-2 m-0 p-0">'
     + '<li style="display:flex; gap:6px;"><span class="font-bold flex-shrink-0" style="min-width:14px;">3.</span><span>Puisi sebagai representasi realitas sosial berarti puisi tidak hanya menyampaikan keindahan bahasa, tetapi juga menggambarkan berbagai peristiwa dan persoalan yang terjadi dalam kehidupan masyarakat.</span></li>'
-    + '<li style="display:flex; gap:6px;"><span class="font-bold flex-shrink-0" style="min-width:14px;">4.</span><span>Realitas sosial merupakan berbagai peristiwa dan kondisi yang terjadi dalam kehidupan masyarakat, seperti persoalan kemanusiaan, lingkungan, kemiskinan, maupun pengungsian.</span></li>'
-    + '<li style="display:flex; gap:6px;"><span class="font-bold flex-shrink-0" style="min-width:14px;">5.</span><span>Fenomena pengungsian merupakan salah satu isu kemanusiaan yang terjadi akibat bencana alam, konflik, atau keadaan darurat lainnya. Pengungsian tidak hanya menyebabkan kehilangan tempat tinggal, tetapi juga menimbulkan berbagai kesulitan dan penderitaan.</span></li>'
+    + '<li style="display:flex; gap:6px;"><span class="font-bold flex-shrink-0" style="min-width:14px;">4.</span><span>Realitas sosial adalah berbagai peristiwa dan kondisi yang terjadi dalam kehidupan masyarakat, seperti persoalan kemanusiaan, lingkungan, kemiskinan, maupun pengungsian.</span></li>'
+    + '<li style="display:flex; gap:6px;"><span class="font-bold flex-shrink-0" style="min-width:14px;">5.</span><span>Fenomena pengungsian adalah salah satu isu kemanusiaan yang terjadi akibat bencana alam, konflik, atau keadaan darurat lainnya. Pengungsian tidak hanya menyebabkan kehilangan tempat tinggal, tetapi juga menimbulkan berbagai kesulitan dan penderitaan.</span></li>'
     + '<li style="display:flex; gap:6px;"><span class="font-bold flex-shrink-0" style="min-width:14px;">6.</span><span>Fenomena pengungsian dapat diangkat menjadi tema puisi karena mampu menggambarkan pengalaman, perasaan, dan perjuangan para pengungsi melalui bahasa yang puitis sehingga pembaca lebih mudah memahami persoalan kemanusiaan tersebut.</span></li>'
     + '</ul></div>';
 
@@ -1066,7 +1066,7 @@ function renderKuis(quiz) {
   var draft = {};
   try {
     draft = JSON.parse(localStorage.getItem('quizDraft')) || {};
-  } catch(e) {}
+  } catch (e) { }
 
   var html = '<div class="space-y-6" style="max-height: 65vh; overflow-y: auto; padding-right: 8px;">';
 
@@ -1103,8 +1103,8 @@ function renderKuis(quiz) {
   // Poem if exists
   if (quiz.poem) {
     html += '<div class="reveal" style="background:var(--color-paper-800); border:1px solid var(--color-paper-600); border-radius:6px; padding:16px;">';
-    if (quiz.poem.title) html += '<p class="font-serif font-bold text-center mb-1" style="color:var(--color-ink-900);">' + quiz.poem.title + '</p>';
-    html += '<div class="text-center font-serif text-sm" style="color:var(--color-ink-800); line-height: 1.6;">';
+    if (quiz.poem.title) html += '<p class="font-serif font-bold text-left mb-1" style="color:var(--color-ink-900);">' + quiz.poem.title + '</p>';
+    html += '<div class="text-left font-serif text-sm" style="color:var(--color-ink-800); line-height: 1.6;">';
     if (quiz.poem.lines) {
       quiz.poem.lines.forEach(function (line) {
         if (line.trim() === '') {
@@ -1182,7 +1182,7 @@ function renderKuis(quiz) {
   return html;
 }
 
-window.saveQuizDraft = function() {
+window.saveQuizDraft = function () {
   var getRadioVal = function (name) {
     var radios = document.getElementsByName(name);
     for (var i = 0; i < radios.length; i++) {
@@ -1752,7 +1752,7 @@ function bootstrap() {
   initKeyboard();
   showCover();
 
-  console.log('📖 Petualangan Puisi Nusantara — Buku terbuka!');
+  console.log('📖  Suara dari Pengungsian — Buku terbuka!');
   console.log('   Halaman tersedia:', PAGES.length);
 }
 

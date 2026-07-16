@@ -4,18 +4,22 @@ export interface Props {
   title?: string;
   description?: string;
 }
-const { 
-  title = "Petualangan Puisi Nusantara | Modul Pengayaan SMA",
-  description = "Modul pembelajaran interaktif pengayaan puisi untuk SMA. Jelajahi karya Chairil Anwar, Sapardi Djoko Damono, dan penyair legendaris Indonesia melalui misi-misi seru."
+const {
+  title = "Suara dari Pengungsian: Membaca Puisi, Memaknai Realitas Kehidupan | Modul Pengayaan SMA",
+  description = "Modul pembelajaran interaktif pengayaan puisi untuk SMA. Jelajahi karya Chairil Anwar, Sapardi Djoko Damono, dan penyair legendaris Indonesia melalui misi-misi seru.",
 } = Astro.props;
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="keywords" content="puisi SMA, pembelajaran puisi interaktif, Chairil Anwar, Sapardi Djoko Damono, modul pengayaan puisi" />
+    <meta
+      name="keywords"
+      content="puisi SMA, pembelajaran puisi interaktif, Chairil Anwar, Sapardi Djoko Damono, modul pengayaan puisi"
+    />
     <meta name="author" content="Tim Pengembang Modul Puisi" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -25,9 +29,15 @@ const {
     <!-- Google Fonts: Lora (body serif) + Playfair Display (display/judul) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
     <!-- jsPDF for PDF export -->
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    ></script>
   </head>
   <body>
     <slot />

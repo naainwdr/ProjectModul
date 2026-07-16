@@ -37,7 +37,7 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
 
 <MainLayout>
   <!-- ╔══════════════════════════════════════════════════════════════╗
-     ║  BUKU — PETUALANGAN PUISI NUSANTARA                         ║
+     ║  BUKU — Suara dari Pengungsian: Membaca Puisi, Memaknai Realitas Kehidupan                       ║
      ╚══════════════════════════════════════════════════════════════╝ -->
 
   <!-- ░░░ SAMPUL BUKU (Halaman 0) ░░░ -->
@@ -91,7 +91,7 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
           class="font-display font-bold text-center leading-tight"
           style="color:#f5eedf; font-size: clamp(1.6rem, 4vw, 2.4rem);"
         >
-          Petualangan<br />Puisi Nusantara
+          Suara dari Pengungsian: <br /> Membaca Puisi, Memaknai Realitas Kehidupan
         </h1>
 
         <p
@@ -453,15 +453,30 @@ const cornerSVG = `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org
     aria-modal="true"
   >
     <div class="book-modal" style="max-width:360px; text-align:center;">
-      <div class="book-modal-header" style="justify-content:center; padding-top:20px; border-bottom:none;">
-        <h3 class="page-title text-lg" id="modal-alert-title" style="margin:0;">Pemberitahuan</h3>
+      <div
+        class="book-modal-header"
+        style="justify-content:center; padding-top:20px; border-bottom:none;"
+      >
+        <h3 class="page-title text-lg" id="modal-alert-title" style="margin:0;">
+          Pemberitahuan
+        </h3>
       </div>
-      <button class="btn-modal-close" id="btn-close-alert-modal" style="position:absolute; top:12px; right:12px;">✕</button>
+      <button
+        class="btn-modal-close"
+        id="btn-close-alert-modal"
+        style="position:absolute; top:12px; right:12px;">✕</button
+      >
       <div class="book-modal-body space-y-4 px-6 pt-2 pb-6">
-        <p id="modal-alert-message" class="prose-text text-sm" style="line-height:1.6; color:var(--color-ink-900);"></p>
+        <p
+          id="modal-alert-message"
+          class="prose-text text-sm"
+          style="line-height:1.6; color:var(--color-ink-900);"
+        >
+        </p>
       </div>
       <div class="pb-6">
-        <button class="btn-book-primary" id="btn-ok-alert-modal">Kembali</button>
+        <button class="btn-book-primary" id="btn-ok-alert-modal">Kembali</button
+        >
       </div>
     </div>
   </div>

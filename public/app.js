@@ -1030,7 +1030,7 @@ function renderBiografiTokoh() {
     ttl: "Cirebon, 8 September 1988",
     bio: "Nissa Rengganis merupakan penyair, penulis, dan akademisi asal Cirebon yang dikenal aktif mengangkat isu sosial, politik, dan kemanusiaan dalam karya-karyanya. Latar belakang keilmuannya di bidang Ilmu Politik dan Hubungan Internasional, pengalaman sebagai dosen, serta keterlibatannya dalam berbagai kegiatan literasi dan kemanusiaan membentuk sudut pandangnya dalam memaknai berbagai persoalan sosial. Kepedulian tersebut tercermin dalam sejumlah karya puisinya, salah satunya Suara dari Pengungsian yang diterbitkan pada tahun 2021. Antologi ini memuat 50 puisi yang merepresentasikan pengalaman masyarakat pengungsian akibat konflik dan bencana melalui gambaran kehilangan, penderitaan, keterpisahan, serta harapan. Pengalaman kemanusiaan tersebut dihadirkan melalui bahasa puitis yang reflektif sehingga puisi tidak hanya berfungsi sebagai ekspresi estetik, tetapi juga menjadi media untuk menyuarakan realitas sosial dan membangun kepedulian pembaca terhadap kehidupan masyarakat pengungsian. <br <br> <i>(Source: https://id.wikipedia.org/wiki/Nissa_Rengganis)</i>",
     ig: "nissrengganis",
-    photo: "public/assets/Nissa Rengganis.png"
+    photo: "/assets/Nissa Rengganis.png"
   };
 
   var targetPage = 6; // Halaman berikutnya (Hakikat Puisi, urutan ke-6)
@@ -1110,7 +1110,7 @@ function renderBiografi() {
       bio: "Merancang landasan penelitian, konsep dasar pengayaan, serta bertanggung jawab penuh atas keutuhan materi utama dalam penyusunan tugas akhir ini.",
       email: "wijayapiyal@gmail.com ",
       ig: "@firyalnw_",
-      photo: "public/assets/Firyal Nur Wulanti.jpeg"
+      photo: "/assets/Firyal Nur Wulanti.jpeg"
     },
     {
       name: "Hasna Nailah Luthfiyah",
@@ -1120,7 +1120,7 @@ function renderBiografi() {
       bio: "Menyusun struktur kebahasaan, memilih ragam materi puisi, serta menyelaraskan seluruh redaksi tulisan agar materi disajikan secara runtut.",
       email: "hasnanailah2000@gmail.com ",
       ig: "@hasnanailah",
-      photo: "public/assets/Hasna Nailah L.jpeg"
+      photo: "/assets/Hasna Nailah L.jpeg"
     },
     {
       name: "Nina Wulandari",
@@ -1130,7 +1130,7 @@ function renderBiografi() {
       bio: "Membangun arsitektur perangkat lunak modul digital interaktif, mengintegrasikan sistem navigasi booklet, serta merancang interaktivitas antarmuka sistem.",
       email: "ninawd27@gmail.com",
       ig: "@naainwdr",
-      photo: "public/assets/Nina W.jpeg"
+      photo: "/assets/Nina W.jpeg"
     }
   ];
 

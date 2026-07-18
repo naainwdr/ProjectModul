@@ -808,7 +808,7 @@ function updateBookTabs(activePage) {
     if (bar) {
       // Hitung posisi scroll agar tombol berada di tengah-tengah bar
       var scrollPos = activeBtn.offsetLeft + (activeBtn.offsetWidth / 2) - (bar.offsetWidth / 2);
-      
+
       // Gunakan scrollTo dengan behavior smooth (berfungsi di sebagian besar browser modern)
       if (bar.scrollTo) {
         bar.scrollTo({ left: scrollPos, behavior: 'smooth' });
@@ -865,7 +865,7 @@ function renderLeftPage(page, n) {
     return '<div class="reveal flex flex-col h-full" style="justify-content:space-between; align-items:center; text-align:center;">'
       + '<div>'
       + '<p class="font-serif text-xs italic mb-1" style="color:var(--color-ink-300); letter-spacing:.08em; text-transform:uppercase;">' + page.chapter + '</p>'
-      + '<p class="font-display font-bold" style="font-size:clamp(1.1rem,2vw,1.5rem); color:var(--color-ink-900); line-height:1.2;">Uji<br>Kemampuan</p>'
+      + '<p class="font-display font-bold" style="font-size:clamp(1.1rem,2vw,1.5rem); color:var(--color-ink-900); line-height:1.2;">Mari,<br>Uji Kemampuanmu!</p>'
       + '<div class="page-divider mt-2"><span style="font-size:10px; color:var(--color-accent-gold);">✦</span></div>'
       + '</div>'
       + (img ? (

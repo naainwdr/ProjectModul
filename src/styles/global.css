@@ -105,7 +105,23 @@ body {
   justify-content: center;
   overflow-x: hidden;
   overscroll-behavior-x: none;
-  padding: 20px 0;
+  padding: 16px 0; /* padding cukup agar cover tidak menempel ke tepi viewport */
+}
+
+/* Scene cover dan scene-book di desktop: konten terpusat (hanya saat ditampilkan) */
+#scene-cover:not(.hidden),
+#scene-book:not(.hidden) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Scene cover desktop: muat dalam satu layar penuh */
+#scene-cover:not(.hidden) {
+  max-height: 100vh;
+  overflow: visible; /* jangan clip konten yang menonjol keluar */
+  justify-content: center;
+  padding: 8px 0;
 }
 
 html {
@@ -471,12 +487,14 @@ html {
 
 #book-cover {
   width: min(520px, 92vw);
-  min-height: 80vh;
+  /* Tinggi proporsional: min antara 88vh dan 800px agar selalu muat di layar */
+  height: min(88vh, 800px);
+  min-height: 560px;
   background: linear-gradient(160deg, var(--color-cover-800) 0%, var(--color-cover-900) 60%, #1a0e08 100%);
   border-radius: 4px 8px 8px 4px;
   position: relative;
   overflow: hidden;
-  padding: 48px 40px;
+  padding: 40px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1052,9 +1070,45 @@ html {
    ============================================ */
 
 @media (max-width: 1024px) {
+  html, body {
+    height: 100%;
+    overflow: hidden !important; /* Blokir scroll body */
+  }
   body {
     padding: 0;
+    display: flex;
+    flex-direction: column;
     background: var(--color-paper-bg);
+  }
+  
+  .book-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    z-index: 10;
+  }
+  
+  #scene-cover {
+    flex: 1;
+    width: 100% !important;
+  }
+
+  #scene-book {
+    flex: 1;
+    min-height: 0;
+    height: 100% !important;
+    width: 100% !important;
+    align-items: stretch !important;
   }
 
   /* Tampilkan tab bar di mobile, sesuaikan posisi menempel atas */
@@ -1065,7 +1119,7 @@ html {
     right: 0;
     gap: 1px;
     padding: 0 10px;
-    z-index: 50;
+    z-index: 1000 !important; /* Pastikan selalu di atas kertas */
   }
   .book-tab {
     padding: 6px 10px;
@@ -1076,18 +1130,26 @@ html {
   }
 
   .book-wrapper {
-    width: 100%;
-    height: calc(100svh - 52px);
-    min-height: calc(100svh - 52px);
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    flex: 1;
+    min-height: 0 !important;
     filter: none;
     box-shadow: none;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Mobile: single column (hide left, hide spine-binder) */
   .book-spread {
     grid-template-columns: 1fr;
-    height: calc(100svh - 52px);
-    min-height: calc(100svh - 52px);
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    flex: 1;
     position: relative;
     touch-action: pan-y; /* Mencegah geser horizontal bawaan browser */
   }
@@ -1098,9 +1160,11 @@ html {
 
   /* Halaman kanan = full-screen dengan binder di kiri */
   .book-page-right {
-    height: calc(100svh - 52px);
-    max-height: calc(100svh - 52px);
-    min-height: calc(100svh - 52px);
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    height: 100% !important;
+    min-height: 0 !important;
     padding: 72px 20px 20px 52px; /* Bottom padding dikurangi karena nav sudah di luar kertas */
     border-radius: 0 0 12px 12px; /* Lengkungan sedikit di bawah agar mirip buku */
     overflow-y: auto;
@@ -1180,26 +1244,41 @@ html {
   /* Sembunyikan top nav (desktop) pada mobile */
   #book-top-nav { display: none; }
 
-  /* Nav bar bawah fixed */
   #book-bottom-nav {
-    width: 100%;
-    padding: 8px 12px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(244,238,224,0.96);
-    backdrop-filter: blur(8px);
+    position: relative !important;
+    bottom: auto !important;
+    height: auto !important;
+    min-height: 58px;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 10px 4px !important;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+    background: var(--color-paper-900);
     border-top: 1px solid var(--color-paper-700);
-    z-index: 50;
+    z-index: 100;
     box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-    /* Safe area untuk iPhone */
-    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+    flex-shrink: 0;
+    flex-wrap: nowrap !important;
+    justify-content: space-between;
+    gap: 2px;
+    box-sizing: border-box !important;
   }
 
+  /* Kecilkan padding dan font pada tombol agar muat sebaris di mobile */
   .btn-page-turn {
-    padding: 8px 14px;
-    font-size: 12px;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    white-space: nowrap;
+    gap: 4px !important;
+  }
+  
+  /* Kecilkan juga teks informasi halaman di tengah */
+  #page-info-bottom {
+    font-size: 10px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   #book-cover {

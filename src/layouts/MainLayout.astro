@@ -5,8 +5,8 @@ export interface Props {
   description?: string;
 }
 const {
-  title = "Suara dari Pengungsian: Membaca Puisi, Memaknai Realitas Kehidupan | Modul Pengayaan SMA",
-  description = "Modul pembelajaran interaktif pengayaan puisi untuk SMA. Jelajahi karya Chairil Anwar, Sapardi Djoko Damono, dan penyair legendaris Indonesia melalui misi-misi seru.",
+  title = "Suara dari Pengungsian: Membaca Puisi, Memaknai Realitas Kehidupan | Buku Pengayaan Digital SMA",
+  description = "Buku pengayaan digital interaktif sastra puisi untuk SMA.",
 } = Astro.props;
 ---
 
@@ -18,9 +18,9 @@ const {
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content="puisi SMA, pembelajaran puisi interaktif, Chairil Anwar, Sapardi Djoko Damono, modul pengayaan puisi"
+      content="puisi SMA, pembelajaran puisi interaktif, Nissa Renganis, buku pengayaan digital puisi"
     />
-    <meta name="author" content="Tim Pengembang Modul Puisi" />
+    <meta name="author" content="Tim Pengembang Buku Pengayaan Puisi Digital" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -38,6 +38,119 @@ const {
       is:inline
       src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
     ></script>
+    <style is:global>
+      /* ====================================================
+         FIX MOBILE: Paksa seluruh elemen mengisi layar penuh
+         tanpa gap kanan/bawah
+         ==================================================== */
+      @media (max-width: 1024px) {
+        html, body {
+          margin: 0 !important;
+          padding: 0 !important;
+          width: 100vw !important;
+          max-width: 100vw !important;
+          height: 100% !important;
+          overflow: hidden !important;
+        }
+
+        /* Scene buku mengisi SELURUH layar (hanya saat tidak hidden) */
+        #scene-book:not(.hidden) {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          width: 100vw !important;
+          max-width: 100vw !important;
+          height: 100% !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: stretch !important;
+          overflow: hidden !important;
+        }
+
+        /* Scene cover mengisi SELURUH layar (hanya saat tidak hidden) */
+        #scene-cover:not(.hidden) {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          width: 100vw !important;
+          max-width: 100vw !important;
+          height: 100% !important;
+          margin: 0 !important;
+        }
+
+        /* Wrapper buku: ikuti ukuran parent */
+        .book-wrapper {
+          width: 100% !important;
+          max-width: 100% !important;
+          min-width: 0 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          flex: 1 !important;
+          min-height: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Grid buku: satu kolom saja */
+        .book-spread {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Halaman kanan: full width */
+        .book-page-right {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Nav footer: lebar penuh, tidak ada celah kanan.
+           .book-nav (parent) juga perlu di-override karena dia yang membatasi lebar */
+        .book-nav,
+        #book-bottom-nav {
+          width: 100vw !important;
+          max-width: 100vw !important;
+          margin: 0 !important;
+          padding-left: 4px !important;   /* cukup sedikit napas dari kiri */
+          padding-right: 4px !important;  /* cukup sedikit napas dari kanan */
+          padding-top: 10px !important;
+          padding-bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+          box-sizing: border-box !important;
+          left: 0 !important;
+          right: 0 !important;
+        }
+
+        /* KRITIS: Hapus batasan 80vh agar halaman mengisi sisa ruang */
+        .book-page-right {
+          max-height: none !important;
+          min-height: 0 !important;
+          flex: 1 !important;
+          height: 100% !important;
+          overflow-y: auto !important;
+        }
+
+        /* book-wrapper dan book-spread harus mengisi sisa ruang di antara tab-bar dan nav-footer */
+        .book-wrapper {
+          display: flex !important;
+          flex-direction: column !important;
+        }
+
+        .book-spread {
+          flex: 1 !important;
+          height: 100% !important;
+          display: flex !important;
+          flex-direction: column !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <slot />

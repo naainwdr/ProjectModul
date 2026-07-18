@@ -409,22 +409,33 @@ function renderDOM(n) {
 
       if (coverImg && page.leftIllustration) {
         if (pageRight) pageRight.classList.add('mobile-cover-active');
+        var navFooter = document.getElementById('book-bottom-nav');
+        if (navFooter) navFooter.style.display = 'none';
+
         coverImg.style.cursor = 'pointer';
         coverImg.onclick = function () {
           if (pageRight) pageRight.classList.remove('mobile-cover-active');
+          if (navFooter) navFooter.style.display = 'flex';
           window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // Teks bantuan di luar gambar
-        var imgContainer = mobileCoverEl.querySelector('.mx-auto');
-        if (imgContainer) {
-          var tapText = document.createElement('p');
-          tapText.className = 'animate-popup';
-          tapText.style = 'text-align:center; font-size:13px; color:var(--color-accent-red); font-weight:bold; margin-top:12px; cursor:pointer;';
-          tapText.innerHTML = '👆 Ketuk di sini atau pada gambar untuk membaca bab';
-          tapText.onclick = coverImg.onclick;
-          imgContainer.parentNode.insertBefore(tapText, imgContainer.nextSibling);
+        // Teks CTA menimpa gambar (overlay)
+        if (coverImg) {
+          // Buat gambar sedikit gelap agar teks overlay terbaca
+          var imgEl = coverImg.querySelector('img');
+          if (imgEl) imgEl.style.filter = 'brightness(0.6) sepia(0.2)';
+
+          var tapText = document.createElement('div');
+          tapText.className = 'absolute inset-0 flex flex-col items-center justify-center cursor-pointer pointer-events-none';
+          tapText.innerHTML = '<svg class="animate-bounce" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));"><path d="M12 2v14M19 9l-7 7-7-7"/></svg>'
+                            + '<p style="text-align:center; font-size:12px; color:#fff; font-weight:bold; font-style:italic; margin-top:8px; letter-spacing:0.05em; font-family:var(--font-serif); text-shadow: 0 2px 6px rgba(0,0,0,0.9);">KETUK UNTUK<br>MEMBUKA</p>';
+          // coverImg div holds the relative positioning
+          coverImg.appendChild(tapText);
         }
+      } else {
+        // Pastikan footer tampil jika tidak ada cover
+        var navFooter = document.getElementById('book-bottom-nav');
+        if (navFooter) navFooter.style.display = 'flex';
       }
       // Jika tidak ada gambar: mobile-cover-active sudah dihapus di atas,
       // sehingga page-content langsung tampil dan mobile-cover-content tersembunyi
@@ -436,6 +447,10 @@ function renderDOM(n) {
     contentEl.innerHTML = page.render();
     contentEl.style.opacity = '1';
   }
+
+  // Scroll ke atas saat pindah halaman (UX: konten muncul dari paling atas)
+  var pageRight = document.getElementById('page-right');
+  if (pageRight) pageRight.scrollTop = 0;
 
   // Update text & UI state
   var pageLabel = document.getElementById('page-label');
@@ -614,15 +629,16 @@ function renderDaftarIsi() {
 
   PAGES.forEach(function (page, i) {
     if (page.id.startsWith('analisis-puisi-')) return;
+    var title = page.rightTitle || "";
+    if (title === 'Profil Penulis Buku') return;
 
     var n = i + 1;
-    var title = page.rightTitle || "";
 
     // ─── SISIPAN 1: LEVEL 1 (Pembelajaran) ───
     if (/a\.\s+pendahuluan/i.test(title) && !hasRenderedPembelajaran) {
       html += '<button class="chapter-item" data-page="' + n + '" style="display: flex; align-items: flex-end; width: 100%; text-align: left; background: transparent; border: none; cursor: pointer; padding-top: 4px; padding-bottom: 4px; padding-left: 0px; font-weight: bold; color: #1f2937;">'
-        + '<span style="flex-shrink: 0; padding-right: 4px;">Pembelajaran</span>'
-        + '<span style="flex-grow: 1; border-bottom: 1px dotted #9ca3af; margin: 0 4px; margin-bottom: 3px;"></span>'
+        + '<span style="flex: 0 1 auto; padding-right: 4px; white-space: normal; max-width: 80%;">Pembelajaran</span>'
+        + '<span style="flex-grow: 1; border-bottom: 1px dotted #9ca3af; margin: 0 4px; margin-bottom: 4px;"></span>'
         + '<span style="flex-shrink: 0; padding-left: 4px; text-align: right; min-w: 24px;">1</span>'
         + '</button>';
       hasRenderedPembelajaran = true;
@@ -631,8 +647,8 @@ function renderDaftarIsi() {
     // ─── SISIPAN 2: LEVEL 2 (B. Uraian Materi) ───
     if (/^1\.\s+hakikat/i.test(title) && !hasRenderedUraianMateri) {
       html += '<button class="chapter-item" data-page="' + n + '" style="display: flex; align-items: flex-end; width: 100%; text-align: left; background: transparent; border: none; cursor: pointer; padding-top: 4px; padding-bottom: 4px; padding-left: 16px; font-weight: 600; font-size: 0.875rem; color: #374151;">'
-        + '<span style="flex-shrink: 0; padding-right: 4px;">B. Uraian Materi</span>'
-        + '<span style="flex-grow: 1; border-bottom: 1px dotted #9ca3af; margin: 0 4px; margin-bottom: 3px;"></span>'
+        + '<span style="flex: 0 1 auto; padding-right: 4px; white-space: normal; max-width: 80%;">B. Uraian Materi</span>'
+        + '<span style="flex-grow: 1; border-bottom: 1px dotted #9ca3af; margin: 0 4px; margin-bottom: 4px;"></span>'
         + '<span style="flex-shrink: 0; padding-left: 4px; text-align: right; min-w: 24px;">1</span>'
         + '</button>';
       hasRenderedUraianMateri = true;
@@ -663,8 +679,8 @@ function renderDaftarIsi() {
 
     // Render tombol utama asli dari array PAGES
     html += '<button class="chapter-item" data-page="' + n + '" style="display: flex; align-items: flex-end; width: 100%; text-align: left; background: transparent; border: none; cursor: pointer; padding-top: 4px; padding-bottom: 4px; padding-left: ' + paddingLeft + '; ' + textStyle + '">'
-      + '<span style="flex-shrink: 0; padding-right: 4px;">' + displayTitle + '</span>'
-      + '<span style="flex-grow: 1; border-bottom: 1px dotted #9ca3af; margin: 0 4px; margin-bottom: 3px;"></span>'
+      + '<span style="flex: 0 1 auto; padding-right: 4px; white-space: normal; max-width: 75%;">' + displayTitle + '</span>'
+      + '<span style="flex-grow: 1; border-bottom: 1px dotted #9ca3af; margin: 0 4px; margin-bottom: 4px;"></span>'
       + '<span style="flex-shrink: 0; padding-left: 4px; text-align: right; min-w: 24px;">' + pageNum + '</span>'
       + '</button>';
   });
@@ -717,7 +733,6 @@ function renderHalamanDinamis(id) {
     + '<div class="prose-text mt-4">'
     + contentHTML
     + '</div>'
-    + (nextPageNum > 0 ? '<div class="mt-6 text-right pb-4"><button class="btn-book-primary" onclick="goToPage(' + nextPageNum + ')">Lanjut \u2192</button></div>' : '')
     + '</div>';
 }
 
@@ -800,7 +815,6 @@ function renderAnalisisPuisi(id, nextId) {
     + '<div class="prose-text">'
     + contentHTML
     + '</div>'
-    + (nextPageNum > 0 ? '<div class="mt-6 text-right pb-4"><button class="btn-book-primary" onclick="goToPage(' + nextPageNum + ')">' + nextLabel + '</button></div>' : '')
     + '</div>';
 }
 
@@ -826,7 +840,6 @@ function renderHakikatPuisi() {
     + contentHTML
     + '</div>'
     + '<div class="mt-6 text-right pb-4">'
-    + '<button class="btn-book-primary" onclick="goToPage(6)">Lanjut ke Puisi & Sosial →</button>'
     + '</div>'
     + '</div>';
 }
@@ -867,7 +880,6 @@ function renderPetunjuk() {
     + '</div>'
 
     + '<div class="mt-6 text-right pb-4">' // pb-4 ditambahkan agar ada sedikit space di bawah tombol jika di-scroll
-    + '<button class="btn-book-primary" onclick="goToPage(4)">Mulai Pembelajaran →</button>'
     + '</div>'
     + '</div>';
 }
@@ -886,7 +898,6 @@ function renderPendahuluan() {
     + paragraphsHTML
     + '</div>'
     + '<div class="mt-6 text-right pb-4">'
-    + '<button class="btn-book-primary" onclick="goToPage(5)">Lanjut ke Hakikat Puisi →</button>'
     + '</div>'
     + '</div>';
 }
@@ -910,7 +921,6 @@ function renderPuisiSosial() {
     + contentHTML
     + '</div>'
     + '<div class="mt-6 text-right pb-4">'
-    + '<button class="btn-book-primary" onclick="goToPage(' + (nextPageNum || 7) + ')">Lanjut ke Representasi Realitas \u2192</button>'
     + '</div>'
     + '</div>';
 }
@@ -936,7 +946,6 @@ function renderPuisiRepresentasi() {
     + contentHTML
     + '</div>'
     + '<div class="mt-6 text-right pb-4">'
-    + '<button class="btn-book-primary" onclick="goToPage(' + (nextPageNum || 8) + ')">Lanjut ke Pengungsian \u2192</button>'
     + '</div>'
     + '</div>';
 }
@@ -964,7 +973,6 @@ function renderPuisiPengungsian() {
     + contentHTML
     + '</div>'
     + '<div class="mt-6 text-right pb-4">'
-    + '<button class="btn-book-primary" onclick="goToPage(' + (nextPageNum || 9) + ')">Lihat Analisis Puisi →</button>'
     + '</div>'
     + '</div>';
 }
@@ -1016,7 +1024,6 @@ function renderRangkuman() {
 
   html += '</div>'
     + '<div class="mt-6 text-right pb-4">'
-    + '<button class="btn-book-primary" onclick="goToPage(' + targetPage + ')">Lanjut ke Kuis Evaluasi →</button>'
     + '</div>'
     + '</div>';
 
@@ -1028,7 +1035,8 @@ function renderBiografiTokoh() {
     name: "Nissa Rengganis",
     role: "Penulis Puisi 'Suara dari Pengungsian'",
     ttl: "Cirebon, 8 September 1988",
-    bio: "Nissa Rengganis merupakan penyair, penulis, dan akademisi asal Cirebon yang dikenal aktif mengangkat isu sosial, politik, dan kemanusiaan dalam karya-karyanya. Latar belakang keilmuannya di bidang Ilmu Politik dan Hubungan Internasional, pengalaman sebagai dosen, serta keterlibatannya dalam berbagai kegiatan literasi dan kemanusiaan membentuk sudut pandangnya dalam memaknai berbagai persoalan sosial. Kepedulian tersebut tercermin dalam sejumlah karya puisinya, salah satunya Suara dari Pengungsian yang diterbitkan pada tahun 2021. Antologi ini memuat 50 puisi yang merepresentasikan pengalaman masyarakat pengungsian akibat konflik dan bencana melalui gambaran kehilangan, penderitaan, keterpisahan, serta harapan. Pengalaman kemanusiaan tersebut dihadirkan melalui bahasa puitis yang reflektif sehingga puisi tidak hanya berfungsi sebagai ekspresi estetik, tetapi juga menjadi media untuk menyuarakan realitas sosial dan membangun kepedulian pembaca terhadap kehidupan masyarakat pengungsian. <br <br> <i>(Source: https://id.wikipedia.org/wiki/Nissa_Rengganis)</i>",
+    bio: "Nissa Rengganis merupakan penyair, penulis, dan akademisi asal Cirebon yang dikenal aktif mengangkat isu sosial, politik, dan kemanusiaan dalam karya-karyanya. Latar belakang keilmuannya di bidang Ilmu Politik dan Hubungan Internasional, pengalaman sebagai dosen, serta keterlibatannya dalam berbagai kegiatan literasi dan kemanusiaan membentuk sudut pandangnya dalam memaknai berbagai persoalan sosial. Kepedulian tersebut tercermin dalam sejumlah karya puisinya, salah satunya Suara dari Pengungsian yang diterbitkan pada tahun 2021. Antologi ini memuat 50 puisi yang merepresentasikan pengalaman masyarakat pengungsian akibat konflik dan bencana melalui gambaran kehilangan, penderitaan, keterpisahan, serta harapan. Pengalaman kemanusiaan tersebut dihadirkan melalui bahasa puitis yang reflektif sehingga puisi tidak hanya berfungsi sebagai ekspresi estetik, tetapi juga menjadi media untuk menyuarakan realitas sosial dan membangun kepedulian pembaca terhadap kehidupan masyarakat pengungsian.",
+    source: "https://id.wikipedia.org/wiki/Nissa_Rengganis",
     ig: "nissrengganis",
     photo: "/assets/Nissa Rengganis.png"
   };
@@ -1036,10 +1044,13 @@ function renderBiografiTokoh() {
   var targetPage = 6; // Halaman berikutnya (Hakikat Puisi, urutan ke-6)
 
   // Memisahkan teks bio menjadi array kata untuk animasi typewriter per kata
-  var bioWords = a.bio.split(' ');
+  var fullBioText = a.bio + " (Source: " + a.source + ")";
+  var bioWords = fullBioText.split(' ');
   var bioAnimatedHTML = bioWords.map(function (word, index) {
     // Delay dimunculkan satu persatu tiap 0.04 detik
-    return '<span style="opacity:0; display:inline-block; animation: fadeWord 0.2s ease forwards; animation-delay: ' + (index * 0.04) + 's;">' + word + '</span>';
+    var isItalic = (index >= bioWords.length - 2);
+    var extraStyle = isItalic ? 'font-style: italic; color: var(--color-ink-700); ' : '';
+    return '<span style="opacity:0; display:inline-block; max-width: 100%; word-break: break-all; white-space: normal; vertical-align: top; animation: fadeWord 0.2s ease forwards; animation-delay: ' + (index * 0.04) + 's; ' + extraStyle + '">' + word + '</span>';
   }).join(' ');
 
   // CSS Khusus untuk halaman ini
@@ -1093,7 +1104,6 @@ function renderBiografiTokoh() {
     + '</div>'
 
     + '<div class="mt-6 text-right pb-4">'
-    + '<button class="btn-book-primary" onclick="goToPage(' + targetPage + ')">Mulai Pembelajaran →</button>'
     + '</div>'
 
     + '</div>';
@@ -1114,7 +1124,7 @@ function renderBiografi() {
     },
     {
       name: "Hasna Nailah Luthfiyah",
-      role: "Penulis & Editor Modul",
+      role: "Penulis & Editor Buku Pengayaan Digital",
       ttl: "Serang, 25 Januari 2004",
       prodi: "Pendidikan Teknik Otomotif, FPTI UPI",
       bio: "Menyusun struktur kebahasaan, memilih ragam materi puisi, serta menyelaraskan seluruh redaksi tulisan agar materi disajikan secara runtut.",
@@ -1127,7 +1137,7 @@ function renderBiografi() {
       role: "Pengembang Sistem",
       ttl: "Cirebon, 27 Juni 2005",
       prodi: "Ilmu Komputer, FPMIPA UPI",
-      bio: "Membangun arsitektur perangkat lunak modul digital interaktif, mengintegrasikan sistem navigasi booklet, serta merancang interaktivitas antarmuka sistem.",
+      bio: "Membangun arsitektur perangkat lunak buku pengayaan digital interaktif, mengintegrasikan sistem navigasi booklet, serta merancang interaktivitas antarmuka sistem.",
       email: "ninawd27@gmail.com",
       ig: "@naainwdr",
       photo: "/assets/Nina W.jpeg"
@@ -1492,7 +1502,6 @@ function renderDaftarPustaka(bibliography) {
     + '</div>'
     + '</div>'
     + '<div class="reveal text-right mt-6 pb-4">'
-    + '<button class="btn-book-primary" onclick="goToPage(' + targetPage + ')">Lanjut ke Biografi Penulis →</button>'
     + '</div>'
     + '</div>';
 }

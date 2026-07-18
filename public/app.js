@@ -386,9 +386,31 @@ function renderDOM(n) {
 
   var leftEl = document.getElementById('page-left-content');
   var mobileCoverEl = document.getElementById('mobile-cover-content');
+  var contentEl = document.getElementById('page-content');
+
+  // ── Tentukan konten kiri & kanan ──────────────────────────────
+  var isDesktop = window.innerWidth > 1024;
+  var isSpecialPage = (page.id === 'pendahuluan' || page.id === 'kuis');
+  var leftContent, rightContent;
+
+  if (isDesktop && !isSpecialPage) {
+    // Desktop reguler: split konten ke 2 halaman
+    var split = renderDesktopSplitContent(page, n);
+    if (split) {
+      leftContent = split.left;
+      rightContent = split.right;
+    } else {
+      leftContent = renderLeftPage(page, n);
+      rightContent = page.render();
+    }
+  } else {
+    // Mobile atau halaman spesial: perilaku asal
+    leftContent = renderLeftPage(page, n);
+    rightContent = page.render();
+  }
 
   if (leftEl) {
-    leftEl.innerHTML = renderLeftPage(page, n);
+    leftEl.innerHTML = leftContent;
     leftEl.style.opacity = '1';
   }
   if (mobileCoverEl) {
@@ -428,7 +450,7 @@ function renderDOM(n) {
           var tapText = document.createElement('div');
           tapText.className = 'absolute inset-0 flex flex-col items-center justify-center cursor-pointer pointer-events-none';
           tapText.innerHTML = '<svg class="animate-bounce" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));"><path d="M12 2v14M19 9l-7 7-7-7"/></svg>'
-                            + '<p style="text-align:center; font-size:12px; color:#fff; font-weight:bold; font-style:italic; margin-top:8px; letter-spacing:0.05em; font-family:var(--font-serif); text-shadow: 0 2px 6px rgba(0,0,0,0.9);">KETUK UNTUK<br>MEMBUKA</p>';
+            + '<p style="text-align:center; font-size:22px; color:#fff; font-weight:bold; font-style:italic; margin-top:12px; letter-spacing:0.05em; font-family:var(--font-serif); text-shadow: 0 2px 6px rgba(0,0,0,0.9);">KETUK UNTUK<br>MEMBUKA</p>';
           // coverImg div holds the relative positioning
           coverImg.appendChild(tapText);
         }
@@ -442,9 +464,8 @@ function renderDOM(n) {
     }
   }
 
-  var contentEl = document.getElementById('page-content');
   if (contentEl) {
-    contentEl.innerHTML = page.render();
+    contentEl.innerHTML = rightContent;
     contentEl.style.opacity = '1';
   }
 
@@ -469,7 +490,236 @@ function renderDOM(n) {
   updateBookTabs(n);
   updateProgressDots(n);
   initScrollReveal();
+
+  // Popup perayaan untuk halaman Pendahuluan & Kuis
+  if (page.id === 'pendahuluan' || page.id === 'kuis') {
+    setTimeout(function () { showCelebrationPopup(page.id); }, 600);
+  }
 }
+
+// ─── DESKTOP CONTENT SPLIT (Kiri = awal, Kanan = sisa) ───────────
+
+function renderDesktopSplitContent(page, n) {
+  // Render HTML lengkap ke tempDiv untuk di-parse
+  var fullHTML = page.render();
+  var tmp = document.createElement('div');
+  tmp.innerHTML = fullHTML;
+
+  // Pastikan root adalah elemen pertama, jika tag <style> lewati ke elemen berikutnya
+  var root = tmp.firstElementChild;
+  if (root && root.tagName === 'STYLE') {
+    root = root.nextElementSibling;
+  }
+  if (!root) return null;
+
+  // Ambil komponen-komponen utama
+  var titleEl = root.querySelector('.page-title');
+  var dividerEl = root.querySelector('.page-divider');
+
+  var chapterLabel = '<p class="font-serif text-xs italic mb-2" style="color:var(--color-ink-300); letter-spacing:.08em; text-transform:uppercase;">' + page.chapter + '</p>';
+  var titleHTML = titleEl ? titleEl.outerHTML : '';
+  var dividerHTML = dividerEl ? dividerEl.outerHTML : '<div class="page-divider mt-3"><span style="font-size:10px; color:var(--color-accent-gold);">✦</span></div>';
+
+  var proseDiv = root.querySelector('.prose-text');
+
+  // Custom Splits
+  if (page.id === 'glosarium') {
+    var children = Array.prototype.slice.call(root.children);
+    var leftHTML = '<div class="reveal h-full flex flex-col">' + chapterLabel + titleHTML + dividerHTML;
+
+    // Ambil input pencarian dari anak pertama
+    var inputEl = children[0] ? children[0].querySelector('input') : null;
+    if (inputEl) leftHTML += '<div style="margin-top:16px;">' + inputEl.outerHTML + '</div>';
+
+    // Ambil div filter (anak kedua)
+    if (children[1]) leftHTML += '<div style="margin-top:16px;">' + children[1].outerHTML + '</div>';
+
+    leftHTML += '</div>';
+
+    // Ambil list glosarium (anak ketiga)
+    var rightHTML = '<div class="reveal h-full">' + (children[2] ? children[2].outerHTML : '') + '</div>';
+    return { left: leftHTML, right: rightHTML };
+  }
+  else if (page.id === 'daftar-isi') {
+    var container = root.querySelector('.space-y-1');
+    if (container) {
+      var items = Array.prototype.slice.call(container.children);
+      var mid = Math.ceil(items.length / 2);
+      var leftItems = items.slice(0, mid).map(function (el) { return el.outerHTML; }).join('');
+      var rightItems = items.slice(mid).map(function (el) { return el.outerHTML; }).join('');
+
+      var leftHTML = '<div class="reveal">' + chapterLabel + titleHTML + dividerHTML
+        + '<p class="prose-text text-sm mt-2 mb-4">Klik bab mana saja untuk langsung membuka halamannya.</p>'
+        + '<div class="space-y-1" style="display: flex; flex-direction: column; gap: 4px;">' + leftItems + '</div></div>';
+      var rightHTML = '<div class="reveal">'
+        + '<div class="space-y-1" style="display: flex; flex-direction: column; gap: 4px;">' + rightItems + '</div></div>';
+      return { left: leftHTML, right: rightHTML };
+    }
+  }
+  else if (page.id === 'petunjuk' && proseDiv) {
+    var items = Array.prototype.slice.call(root.children);
+    var itemsInProse = Array.prototype.slice.call(proseDiv.children);
+
+    // Cek daftar ol
+    var listOl = proseDiv.querySelector('ol');
+    if (listOl) {
+      var listItems = Array.prototype.slice.call(listOl.children);
+      var leftList = listItems.slice(0, 5).map(function (el) { return el.outerHTML; }).join('');
+      var rightList = listItems.slice(5).map(function (el) { return el.outerHTML; }).join('');
+
+      var leftProseHTML = proseDiv.innerHTML.replace(listOl.outerHTML, '<ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">' + leftList + '</ol>');
+      // Buang paragraf penutup di kiri
+      var closingP = proseDiv.querySelector('p.mt-4');
+      if (closingP) leftProseHTML = leftProseHTML.replace(closingP.outerHTML, '');
+
+      var rightProseHTML = '<ol start="6" class="list-decimal pl-5 space-y-2 text-sm text-gray-700">' + rightList + '</ol>';
+      if (closingP) rightProseHTML += closingP.outerHTML;
+
+      var leftHTML = '<div class="reveal">' + chapterLabel + titleHTML + dividerHTML
+        + '<div class="prose-text space-y-3 mt-4 text-justify">' + leftProseHTML + '</div></div>';
+      var rightHTML = '<div class="reveal">'
+        + '<div class="prose-text space-y-3 mt-4 text-justify">' + rightProseHTML + '</div></div>';
+      return { left: leftHTML, right: rightHTML };
+    }
+  }
+  else if (page.id === 'biografi-tokoh') {
+    // Cari div utama card (di dalam struktur .reveal)
+    var card = root.querySelector('div[style*="background:linear-gradient"]');
+    if (card) {
+      var children = Array.prototype.slice.call(card.children);
+      var header = children[0] ? children[0].outerHTML : '';
+      var bio = children[1] ? children[1].outerHTML : '';
+      var contact = children[3] ? children[3].outerHTML : ''; // 2 is spacer
+
+      var leftCardHTML = '<div style="background:linear-gradient(to bottom, var(--color-paper-900), var(--color-paper-950)); border:1px solid var(--color-paper-600); border-radius:12px; padding:30px 24px; display:flex; flex-direction:column; position:relative; box-shadow: 0 8px 20px -5px rgba(0,0,0,0.05); min-height: 480px; flex-grow:1;">'
+        + header
+        + '<div style="flex-grow:1;"></div>'
+        + contact
+        + '</div>';
+
+      var rightCardHTML = '<div style="background:linear-gradient(to bottom, var(--color-paper-900), var(--color-paper-950)); border:1px solid var(--color-paper-600); border-radius:12px; padding:30px 24px; display:flex; flex-direction:column; position:relative; box-shadow: 0 8px 20px -5px rgba(0,0,0,0.05); min-height: 480px; flex-grow:1;">'
+        + bio
+        + '</div>';
+
+      var leftHTML = '<div class="reveal flex flex-col h-full">' + chapterLabel + titleHTML + dividerHTML
+        + '<div style="padding: 10px 8px 40px 8px; flex-grow: 1; display: flex; flex-direction: column;">' + leftCardHTML + '</div></div>';
+      var rightHTML = '<div class="reveal flex flex-col h-full">'
+        + '<div style="padding: 10px 8px 40px 8px; flex-grow: 1; display: flex; flex-direction: column;">' + rightCardHTML + '</div></div>';
+
+      // Ambil tag style yang ada di tmp
+      var styleTag = tmp.querySelector('style');
+      if (styleTag) leftHTML = styleTag.outerHTML + leftHTML;
+
+      return { left: leftHTML, right: rightHTML };
+    }
+  }
+  else if (page.id === 'puisi-representasi' && proseDiv) {
+    var items = Array.prototype.slice.call(proseDiv.children);
+    var leftItems = [], rightItems = [];
+    var isRight = false;
+    items.forEach(function (el) {
+      if (el.textContent.trim().indexOf('B.') === 0 || el.innerHTML.indexOf('<strong>B.') > -1 || el.textContent.trim().indexOf('b.') === 0 || el.innerHTML.indexOf('<strong>b.') > -1) {
+        isRight = true;
+      }
+      if (isRight) rightItems.push(el.outerHTML);
+      else leftItems.push(el.outerHTML);
+    });
+    var leftHTML = '<div class="reveal">' + chapterLabel + titleHTML + dividerHTML
+      + '<div class="prose-text">' + leftItems.join('') + '</div></div>';
+    var rightHTML = '<div class="reveal">'
+      + '<div class="prose-text">' + rightItems.join('') + '</div></div>';
+    return { left: leftHTML, right: rightHTML };
+  }
+  else if (page.id.indexOf('analisis-puisi-') === 0 && proseDiv) {
+    var items = Array.prototype.slice.call(proseDiv.children);
+    if (items.length > 0) {
+      var leftItems = [items[0].outerHTML];
+      var rightItems = items.slice(1).map(function (el) { return el.outerHTML; });
+      var leftHTML = '<div class="reveal">' + chapterLabel + titleHTML + dividerHTML
+        + '<div class="prose-text">' + leftItems.join('') + '</div></div>';
+      var rightHTML = '<div class="reveal">'
+        + '<div class="prose-text">' + rightItems.join('') + '</div></div>';
+      return { left: leftHTML, right: rightHTML };
+    }
+  }
+  else if (page.id === 'rangkuman') {
+    var container = root.querySelector('.space-y-5');
+    if (container) {
+      var groups = Array.prototype.slice.call(container.children);
+      var leftGroups = groups.slice(0, 2).map(function (el) { return el.outerHTML; }).join('');
+      var rightGroups = groups.slice(2).map(function (el) { return el.outerHTML; }).join('');
+
+      var leftHTML = '<div class="reveal">' + chapterLabel + titleHTML + dividerHTML
+        + '<div class="space-y-5 mt-4" style="padding-right: 8px;">' + leftGroups + '</div></div>';
+      var rightHTML = '<div class="reveal">'
+        + '<div class="space-y-5 mt-4" style="padding-right: 8px;">' + rightGroups + '</div></div>';
+      return { left: leftHTML, right: rightHTML };
+    }
+  }
+  else if (page.id === 'biografi') { // Penulis Tim Penyusun Aplikasi
+    var container = root.querySelector('.space-y-12');
+    if (container) {
+      var groups = Array.prototype.slice.call(container.children);
+      var leftGroups = groups.slice(0, 1).map(function (el) { return el.outerHTML; }).join('');
+      var rightGroups = groups.slice(1).map(function (el) { return el.outerHTML; }).join('');
+
+      var leftHTML = '<div class="reveal flex flex-col h-full">' + chapterLabel + titleHTML + dividerHTML
+        + '<div class="space-y-12" style="padding: 25px 8px 40px 8px;">' + leftGroups + '</div></div>';
+      var rightHTML = '<div class="reveal flex flex-col h-full">'
+        + '<div class="space-y-12" style="padding: 25px 8px 40px 8px;">' + rightGroups + '</div></div>';
+      return { left: leftHTML, right: rightHTML };
+    }
+  }
+
+  // --- DEFAULT SPLIT FALLBACK ---
+  var contentItems = [];
+  if (proseDiv) {
+    Array.prototype.forEach.call(proseDiv.children, function (child) {
+      contentItems.push({ html: child.outerHTML, prose: true });
+    });
+  } else {
+    Array.prototype.forEach.call(root.children, function (child) {
+      if (!child.classList.contains('page-title') &&
+        !child.classList.contains('page-divider') &&
+        !child.classList.contains('prose-text')) {
+        contentItems.push({ html: child.outerHTML, prose: false });
+      }
+    });
+  }
+
+  // Jika konten terlalu sedikit, jangan split
+  if (contentItems.length <= 1) return null;
+
+  // Split: kiri ~40%, kanan ~60% (konten awal biasanya lebih panjang)
+  var splitAt = Math.ceil(contentItems.length * 0.4);
+  if (splitAt < 1) splitAt = 1;
+
+  var leftItems = contentItems.slice(0, splitAt);
+  var rightItems = contentItems.slice(splitAt);
+
+  function wrap(items) {
+    var html = items.map(function (i) { return i.html; }).join('');
+    var hasProse = items.some(function (i) { return i.prose; });
+    return hasProse ? '<div class="prose-text">' + html + '</div>' : html;
+  }
+
+  // Halaman kiri: label chapter + judul + divider + awal konten
+  var leftHTML = '<div class="reveal">'
+    + chapterLabel
+    + titleHTML
+    + dividerHTML
+    + '<div style="margin-top:8px;">' + wrap(leftItems) + '</div>'
+    + '</div>';
+
+  // Halaman kanan: sisa konten tanpa judul ulang
+  var rightHTML = '<div class="reveal">'
+    + wrap(rightItems)
+    + '</div>';
+
+  return { left: leftHTML, right: rightHTML };
+}
+
+
 
 
 function updateLeftIllustration(page) {
@@ -542,12 +792,33 @@ function buildBookTabs() {
 }
 
 function updateBookTabs(activePage) {
+  var activeBtn = null;
   document.querySelectorAll('.book-tab').forEach(function (btn) {
     var n = parseInt(btn.getAttribute('data-page'));
-    btn.classList.toggle('active', n === activePage);
+    var isActive = (n === activePage);
+    btn.classList.toggle('active', isActive);
+    if (isActive) {
+      activeBtn = btn;
+    }
   });
-}
 
+  // Gerakkan bookmark aktif ke tengah layar secara halus (smooth scroll)
+  if (activeBtn) {
+    var bar = document.getElementById('book-tabs-bar');
+    if (bar) {
+      // Hitung posisi scroll agar tombol berada di tengah-tengah bar
+      var scrollPos = activeBtn.offsetLeft + (activeBtn.offsetWidth / 2) - (bar.offsetWidth / 2);
+      
+      // Gunakan scrollTo dengan behavior smooth (berfungsi di sebagian besar browser modern)
+      if (bar.scrollTo) {
+        bar.scrollTo({ left: scrollPos, behavior: 'smooth' });
+      } else {
+        // Fallback untuk browser lawas
+        bar.scrollLeft = scrollPos;
+      }
+    }
+  }
+}
 function updateProgressDots(activePage) {
   var container = document.getElementById('progress-dots');
   if (!container) return;
@@ -561,6 +832,61 @@ function updateProgressDots(activePage) {
 
 function renderLeftPage(page, n) {
   var img = page.leftIllustration;
+  var pageId = page.id;
+
+  // ── HALAMAN PENDAHULUAN: Cover spesial 2x ukuran + CTA ──
+  if (pageId === 'pendahuluan') {
+    return '<div class="reveal flex flex-col h-full" style="justify-content:space-between; align-items:center; text-align:center;">'
+      + '<div>'
+      + '<p class="font-serif text-xs italic mb-1" style="color:var(--color-ink-300); letter-spacing:.08em; text-transform:uppercase;">' + page.chapter + '</p>'
+      + '<p class="font-display font-bold" style="font-size:clamp(2rem,3.5vw,2.5rem); color:var(--color-ink-900); line-height:1.2; letter-spacing: -0.02em;">Mari,<br> Mulai Belajar</p>'
+      + '<div class="page-divider mt-2"><span style="font-size:10px; color:var(--color-accent-gold);">✦</span></div>'
+      + '</div>'
+      + (img ? (
+        '<div class="mx-auto my-3 flex justify-center">'
+        + '<div class="animate-breathing" style="position:relative; width:300px; height:400px; border-radius:6px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.4), 0 0 0 6px #fff, 0 0 0 8px var(--color-accent-gold); border:none;">'
+        + '<img src="' + img.src + '" alt="' + escapeAttr(img.alt) + '" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">'
+        + '<div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top, rgba(0,0,0,0.65), transparent); padding:16px 12px 12px; color:#fff; font-family:var(--font-serif); font-size:0.75rem; font-style:italic; text-align:center;">' + escapeHTML(img.alt) + '</div>'
+        + '</div></div>'
+      ) : (
+        '<div class="flex-1 flex items-center justify-center">'
+        + '<p style="font-size:6rem; opacity:0.2;">📖</p>'
+        + '</div>'
+      ))
+      + '<div style="border-top:1px solid var(--color-paper-700); padding-top:12px; margin-top:4px; width:100%;">'
+      + '<p class="font-serif text-xs italic text-center" style="color:var(--color-ink-400);">'
+      + '"Puisi bukan hanya kata — ia adalah jiwa yang berbicara."</p>'
+      + '</div>'
+      + '</div>';
+  }
+
+  // ── HALAMAN KUIS: Cover spesial 2x ukuran + CTA ──
+  if (pageId === 'kuis') {
+    return '<div class="reveal flex flex-col h-full" style="justify-content:space-between; align-items:center; text-align:center;">'
+      + '<div>'
+      + '<p class="font-serif text-xs italic mb-1" style="color:var(--color-ink-300); letter-spacing:.08em; text-transform:uppercase;">' + page.chapter + '</p>'
+      + '<p class="font-display font-bold" style="font-size:clamp(1.1rem,2vw,1.5rem); color:var(--color-ink-900); line-height:1.2;">Uji<br>Kemampuan</p>'
+      + '<div class="page-divider mt-2"><span style="font-size:10px; color:var(--color-accent-gold);">✦</span></div>'
+      + '</div>'
+      + (img ? (
+        '<div class="mx-auto my-3 flex justify-center">'
+        + '<div class="animate-breathing" style="position:relative; width:300px; height:400px; border-radius:6px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.4), 0 0 0 6px #fff, 0 0 0 8px var(--color-accent-gold); border:none;">'
+        + '<img src="' + img.src + '" alt="' + escapeAttr(img.alt) + '" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">'
+        + '<div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top, rgba(0,0,0,0.65), transparent); padding:16px 12px 12px; color:#fff; font-family:var(--font-serif); font-size:0.75rem; font-style:italic; text-align:center;">' + escapeHTML(img.alt) + '</div>'
+        + '</div></div>'
+      ) : (
+        '<div class="flex-1 flex items-center justify-center">'
+        + '<p style="font-size:6rem; opacity:0.2;">🏆</p>'
+        + '</div>'
+      ))
+      + '<div style="border-top:1px solid var(--color-paper-700); padding-top:12px; margin-top:4px; width:100%;">'
+      + '<p class="font-serif text-xs italic text-center" style="color:var(--color-ink-400);">'
+      + '"Tunjukkan yang terbaik dari dirimu!"</p>'
+      + '</div>'
+      + '</div>';
+  }
+
+  // ── SEMUA HALAMAN LAIN: Hanya ornamen dekoratif tanpa gambar ──
   var html = '<div class="reveal flex flex-col h-full" style="justify-content:space-between;">';
 
   // Header bab
@@ -572,31 +898,167 @@ function renderLeftPage(page, n) {
     + '<div class="page-divider mt-3"><span style="font-size:10px; color:var(--color-accent-gold);">✦</span></div>'
     + '</div>';
 
-  // Ilustrasi animasi zoom (breathing)
-  if (img) {
-    html += '<div class="mx-auto my-4 flex justify-center">'
-      + '<div class="animate-breathing" style="position:relative; width: 150px; height: 200px; border-radius:4px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.3); border:4px solid #fff;">'
-      + '<img src="' + img.src + '" alt="' + escapeAttr(img.alt) + '" loading="lazy"'
-      + ' style="width:100%; height:100%; object-fit:cover; display:block;">'
-      + '<div class="popup-image-caption" style="text-align:center;">' + escapeHTML(img.alt) + '</div>'
-      + '</div></div>';
-  } else {
-    // Ornamen teks pengganti
-    html += '<div class="flex-1 flex items-center justify-center">'
-      + '<p style="font-size:4rem; opacity:0.15;">📖</p>'
-      + '</div>';
-  }
+  // Ornamen dekoratif tengah (tanpa gambar buku)
+  html += '<div class="flex-1 flex flex-col items-center justify-center gap-4" style="padding: 16px 0;">'
+    + '<svg width="60" height="60" viewBox="0 0 60 60" fill="none" style="opacity:0.12;">'
+    + '<circle cx="30" cy="30" r="28" stroke="var(--color-ink-900)" stroke-width="1.5"/>'
+    + '<circle cx="30" cy="30" r="20" stroke="var(--color-ink-900)" stroke-width="0.8" stroke-dasharray="4 3"/>'
+    + '<circle cx="30" cy="30" r="4" fill="var(--color-accent-gold)"/>'
+    + '<line x1="30" y1="8" x2="30" y2="16" stroke="var(--color-ink-900)" stroke-width="1.2"/>'
+    + '<line x1="30" y1="44" x2="30" y2="52" stroke="var(--color-ink-900)" stroke-width="1.2"/>'
+    + '<line x1="8" y1="30" x2="16" y2="30" stroke="var(--color-ink-900)" stroke-width="1.2"/>'
+    + '<line x1="44" y1="30" x2="52" y2="30" stroke="var(--color-ink-900)" stroke-width="1.2"/>'
+    + '</svg>'
+    + '<p style="font-family:var(--font-serif); font-size:0.7rem; color:var(--color-ink-400); font-style:italic; text-align:center; max-width:140px; line-height:1.6;">'
+    + 'Suara dari Pengungsian</p>'
+    + '</div>';
 
-  // Quote / keterangan bawah
+  // Quote bawah
   html += '<div style="border-top:1px solid var(--color-paper-700); padding-top:12px; margin-top:8px;">'
     + '<p class="font-serif text-xs italic text-center" style="color:var(--color-ink-300);">'
-    + 'Suara dari Pengungsian: Membaca Puisi, Memaknai Realitas Kehidupan</p>'
+    + 'Membaca Puisi, Memaknai Realitas Kehidupan</p>'
     + '</div>';
 
   html += '</div>';
   return html;
 }
 
+// ─── POPUP PERAYAAN (CONFETTI) ────────────────────────────────────
+
+function showCelebrationPopup(type) {
+  // Hapus popup lama jika masih ada
+  var existing = document.getElementById('celebration-overlay');
+  if (existing) existing.remove();
+
+  var isPendahuluan = (type === 'pendahuluan');
+  var emoji = isPendahuluan ? '🎉' : '🏆';
+  var title = isPendahuluan ? 'Selamat Belajar!' : 'Saatnya Kuis!';
+  var subtitle = isPendahuluan
+    ? 'Jelajahi dunia puisi dan temukan keindahan kata-kata.'
+    : 'Tunjukkan pemahaman terbaikmu tentang puisi!';
+  var colors = isPendahuluan
+    ? [
+      '#b8860b', /* emas tua */
+      '#c17f24', /* emas hangat */
+      '#8b1a1a', /* merah marun */
+      '#9b7a58', /* tinta pudar */
+      '#e0ceaf', /* kertas tua */
+      '#ccb895', /* tepi halaman */
+      '#a0522d', /* coklat kayu */
+      '#d4a017', /* kuning emas */
+      '#7a5240', /* aksen sampul */
+      '#c8b89a'  /* meja kayu */
+    ]
+    : [
+      '#b8860b', /* emas tua */
+      '#d4a017', /* kuning emas */
+      '#c17f24', /* emas hangat */
+      '#8b1a1a', /* merah marun */
+      '#a0522d', /* coklat kayu */
+      '#ccb895', /* tepi halaman */
+      '#e0ceaf', /* kertas tua */
+      '#7a5240', /* aksen sampul */
+      '#9b7a58', /* tinta pudar */
+      '#eddfc8'  /* halaman kusam */
+    ];
+
+  // Buat elemen overlay — overflow:hidden agar confetti terkurung di dalam
+  var overlay = document.createElement('div');
+  overlay.id = 'celebration-overlay';
+  overlay.style.cssText = [
+    'position:fixed', 'inset:0', 'z-index:9999',
+    'display:flex', 'align-items:center', 'justify-content:center',
+    'background:rgba(0,0,0,0.45)',
+    'overflow:hidden',
+    'animation:celebFadeIn 0.3s ease forwards'
+  ].join(';');
+
+  // Buat partikel confetti langsung sebagai DOM element (bukan innerHTML)
+  // agar animasi benar-benar berjalan dari posisi yang tepat
+  var fragment = document.createDocumentFragment();
+  for (var i = 0; i < 80; i++) {
+    var el = document.createElement('div');
+    var x = Math.random() * 100;
+    var startY = -(Math.random() * 40);          // mulai dari -40px s/d 0, tepat di atas terlihat
+    var dur = 2.5 + Math.random() * 2;
+    var delay = Math.random() * 2;
+    var color = colors[Math.floor(Math.random() * colors.length)];
+    var size = 7 + Math.floor(Math.random() * 10);
+    var isCircle = Math.random() > 0.4;
+    el.style.cssText = [
+      'position:absolute',
+      'left:' + x + '%',
+      'top:' + startY + 'px',
+      'width:' + size + 'px',
+      'height:' + size + 'px',
+      'background:' + color,
+      isCircle ? 'border-radius:50%' : 'border-radius:2px',
+      'opacity:1',
+      'pointer-events:none',
+      'animation:confettiFall ' + dur + 's ease-in ' + delay + 's both'
+    ].join(';');
+    fragment.appendChild(el);
+  }
+
+  // Buat kartu popup sebagai DOM element
+  var cardEl = document.createElement('div');
+  cardEl.style.cssText = [
+    'position:relative',
+    'background:var(--color-paper-950,#f8f0e3)',
+    'border-radius:16px',
+    'padding:36px 32px',
+    'max-width:360px',
+    'width:90%',
+    'text-align:center',
+    'box-shadow:0 20px 60px rgba(0,0,0,0.4)',
+    'animation:celebPop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) forwards',
+    'border:2px solid ' + (isPendahuluan ? 'rgba(255,180,0,0.4)' : 'rgba(255,215,0,0.6)'),
+    'z-index:1'
+  ].join(';');
+  cardEl.innerHTML = ''
+    // Tombol tutup
+    + '<button onclick="document.getElementById(\'celebration-overlay\').remove()" style="'
+    + 'position:absolute;top:12px;right:14px;background:none;border:none;cursor:pointer;'
+    + 'font-size:1.2rem;color:var(--color-ink-500,#999);line-height:1;">'
+    + '✕</button>'
+    // Emoji besar
+    + '<div style="font-size:4rem;margin-bottom:12px;display:block;animation:celebBounce 0.8s ease 0.3s infinite alternate;">' + emoji + '</div>'
+    // Judul
+    + '<h2 style="font-family:var(--font-display,serif);font-size:1.6rem;font-weight:700;'
+    + 'color:var(--color-ink-900,#2d1a0e);margin:0 0 8px;line-height:1.2;">' + title + '</h2>'
+    // Subjudul
+    + '<p style="font-family:var(--font-serif,serif);font-size:0.9rem;color:var(--color-ink-600,#666);'
+    + 'margin:0 0 24px;font-style:italic;line-height:1.5;">' + subtitle + '</p>'
+    // Tombol aksi
+    + '<button onclick="document.getElementById(\'celebration-overlay\').remove()" style="'
+    + 'background:#8b1a1a;'
+    + 'color:#fbf8f1;'
+    + 'border:none;'
+    + 'border-radius:3px;'
+    + 'padding:10px 28px;'
+    + 'font-family:var(--font-serif,serif);font-size:0.9rem;font-weight:600;'
+    + 'letter-spacing:0.02em;'
+    + 'cursor:pointer;'
+    + 'box-shadow:0 3px 0 #5c1111, 0 6px 12px rgba(139,26,26,0.2);'
+    + 'transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);"'
+    + ' onmouseover="this.style.transform=\'translateY(-2px)\';this.style.boxShadow=\'0 5px 0 #5c1111, 0 10px 16px rgba(139,26,26,0.3)\'"'
+    + ' onmouseout="this.style.transform=\'\';this.style.boxShadow=\'0 3px 0 #5c1111, 0 6px 12px rgba(139,26,26,0.2)\'">'
+    + (isPendahuluan ? '✨ Mari Kita Mulai!' : '📝 Kerjakan Kuis!') + '</button>';
+
+  // Append confetti dulu (di bawah), lalu card (di atas)
+  overlay.appendChild(fragment);
+  overlay.appendChild(cardEl);
+  document.body.appendChild(overlay);
+
+  // Tutup otomatis setelah 6 detik
+  setTimeout(function () {
+    var el = document.getElementById('celebration-overlay');
+    if (el) {
+      el.style.animation = 'celebFadeOut 0.4s ease forwards';
+      setTimeout(function () { if (el.parentNode) el.remove(); }, 400);
+    }
+  }, 6000);
+}
 
 
 // ─── RENDER KONTEN TIAP HALAMAN ──────────────────────────────────
@@ -1701,7 +2163,8 @@ function initGlossaryListeners() {
       var term = (card.getAttribute('data-term') || '').toLowerCase();
       var catVal = (card.getAttribute('data-category') || '').toLowerCase();
       var matchQ = !query || term.includes(query.toLowerCase());
-      var matchC = !cat || cat === 'semua' || catVal === cat.toLowerCase();
+      var activeCatLow = (cat || '').toLowerCase();
+      var matchC = !activeCatLow || activeCatLow === 'semua' || catVal === activeCatLow;
       card.style.display = (matchQ && matchC) ? '' : 'none';
     });
   }

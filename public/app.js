@@ -773,8 +773,12 @@ function renderAnalisisPuisi(id, nextId) {
 
         // Membungkus point (diksi, citraan, dll)
         // Format aslinya: • <strong>Diksi:</strong> Penjelasan...
-        // Kita jadikan list yang cantik
         var listItems = textContent.split('• ').filter(Boolean).map(function (item) {
+          // Format teks yang berada di antara / / (kutipan puisi) menggunakan font Playfair Display yang lebih formal dan italic
+          // Karena di JSON formatnya <i>/teks/</i>, kita tangkap dan ubah dengan tetap menyertakan / /
+          item = item.replace(/<i>\/([^<>]+?)\/<\/i>/g, '<span style="font-family: var(--font-display); font-size: inherit; color: inherit; font-style: italic;">/$1/</span>');
+          item = item.replace(/\/([^<>]+?)\//g, '<span style="font-family: var(--font-display); font-size: inherit; color: inherit; font-style: italic;">/$1/</span>'); // fallback jika tidak ada tag <i>
+
           // highlight bagian pertama (strong)
           return '<div style="margin-bottom: 12px; font-size:0.875rem; color:var(--color-ink-900); line-height:1.6; text-align:justify; display:flex; align-items:flex-start;">' +
             '<span style="display:inline-block; margin-right:8px; margin-top:2px; color:var(--color-accent-red); font-size:12px;">\u25C6</span>' + // \u25C6 is a diamond unicode char
@@ -940,8 +944,8 @@ function renderPuisiRepresentasi() {
   }
 
   return '<div class="reveal space-y-4">'
-    + '<p class="page-title">3. Puisi sebagai Representasi Realitas Sosial</p>'
-    + '<div class="page-divider"><span>\u2726</span></div>'
+    + '<p class="page-title leading-tight">3. Puisi sebagai Representasi<br>Realitas Sosial</p>'
+    + '<div class="page-divider mt-2"><span>\u2726</span></div>'
     + '<div class="prose-text">'
     + contentHTML
     + '</div>'
@@ -967,8 +971,8 @@ function renderPuisiPengungsian() {
   }
 
   return '<div class="reveal space-y-4">'
-    + '<p class="page-title">4. Pengungsian sebagai Representasi Realitas Sosial dalam Puisi</p>'
-    + '<div class="page-divider"><span>✦</span></div>'
+    + '<p class="page-title leading-tight">4. Pengungsian sebagai Representasi<br>Realitas Sosial dalam Puisi</p>'
+    + '<div class="page-divider mt-2"><span>✦</span></div>'
     + '<div class="prose-text">'
     + contentHTML
     + '</div>'
@@ -1047,9 +1051,8 @@ function renderBiografiTokoh() {
   var fullBioText = a.bio + " (Source: " + a.source + ")";
   var bioWords = fullBioText.split(' ');
   var bioAnimatedHTML = bioWords.map(function (word, index) {
-    // Delay dimunculkan satu persatu tiap 0.04 detik
-    var isItalic = (index >= bioWords.length - 2);
-    var extraStyle = isItalic ? 'font-style: italic; color: var(--color-ink-700); ' : '';
+    // Seluruh teks profil dibuat miring (italic)
+    var extraStyle = 'font-style: italic; color: var(--color-ink-900); ';
     return '<span style="opacity:0; display:inline-block; max-width: 100%; word-break: break-all; white-space: normal; vertical-align: top; animation: fadeWord 0.2s ease forwards; animation-delay: ' + (index * 0.04) + 's; ' + extraStyle + '">' + word + '</span>';
   }).join(' ');
 
